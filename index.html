@@ -9,9 +9,12 @@
     body { font-family: "Inter", "SF Pro Text", Arial, sans-serif; background: #0b1220; color: #e2e8f0; margin: 0; }
     .page { max-width: 1400px; margin: 0 auto; padding: 24px; }
     h1 { margin: 0 0 0.35em 0; letter-spacing: 0.2px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
     .card { background: #111a2e; border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
     .card h3 { margin-top: 0; margin-bottom: 10px; font-size: 1.02em; }
+    .layout-row { display: grid; gap: 20px; margin-bottom: 20px; }
+    .row-primary { grid-template-columns: 2fr 1fr; align-items: start; }
+    .row-secondary { grid-template-columns: repeat(2, minmax(280px, 1fr)); }
+    .row-stack { grid-template-columns: 1fr; }
     table { width: 100%; border-collapse: collapse; }
     th, td { padding: 9px 8px; text-align: left; }
     th { border-bottom: 1px solid #22314f; color: #9fb0c8; font-weight: 600; }
@@ -37,7 +40,8 @@
     .summary-box { background: #111a2e; border-radius: 10px; padding: 14px 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
     .summary-value { font-size: 1.2em; font-weight: 700; }
     .summary-label { font-size: 0.9em; color: #9fb0c8; margin-top: 4px; }
-    @media (max-width: 1200px) { .grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1200px) { .row-primary { grid-template-columns: 1.5fr 1fr; } }
+    @media (max-width: 980px) { .row-primary, .row-secondary { grid-template-columns: 1fr; } }
     .table-wrap { overflow-x: auto; }
     .error-banner { display: none; background: rgba(255,90,90,0.15); color: #ffb4b4; padding: 10px 12px; border-radius: 8px; margin: 8px 0 16px; position: relative; }
     .error-banner button { position: absolute; right: 10px; top: 8px; background: transparent; border: none; color: #ffb4b4; cursor: pointer; }
@@ -59,7 +63,7 @@
       <div class="summary-box"><div class="summary-value" id="sumWinRate">–</div><div class="summary-label">Win Rate</div></div>
     </div>
 
-    <div class="grid">
+    <div class="layout-row row-primary">
       <div class="card">
         <h3>Equity</h3>
         <canvas id="equityChart"></canvas>
@@ -68,6 +72,9 @@
         <h3>Open Positions</h3>
         <div class="table-wrap"><table id="positionsTable"></table></div>
       </div>
+    </div>
+
+    <div class="layout-row row-secondary">
       <div class="card">
         <h3>Recent Trades</h3>
         <div class="table-wrap"><table id="tradesTable"></table></div>
