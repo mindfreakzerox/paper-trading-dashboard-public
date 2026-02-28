@@ -14,11 +14,16 @@
     th, td { padding: 8px; text-align: left; }
     th { border-bottom: 1px solid #334155; color: #94a3b8; font-weight: 600; }
     tr:nth-child(even) { background: #111827; }
-    .pill { padding: 2px 8px; border-radius: 999px; font-size: 12px; }
+    .pill { padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
     .buy { background: #0ea5e9; color: #0b1220; }
     .sell { background: #f97316; color: #0b1220; }
+    .status-ok { background: #22c55e; color: #052e16; }
+    .status-partial { background: #eab308; color: #422006; }
+    .status-error { background: #ef4444; color: #450a0a; }
+    .status-skipped { background: #94a3b8; color: #0f172a; }
     canvas { width: 100%; height: 220px; }
     .footer { margin-top: 20px; color: #94a3b8; font-size: 12px; }
+    .note { color: #cbd5e1; font-size: 12px; max-width: 340px; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -38,9 +43,15 @@
       <h3>Recent Trades</h3>
       <table id="tradesTable"></table>
     </div>
+    <div class="card">
+      <h3>Run Metrics</h3>
+      <table id="metricsTable"></table>
+    </div>
   </div>
   <div class="footer">Updates every ~5 minutes.</div>
   <script>
+    const fmtUsd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
+
     async function loadData() {
       const res = await fetch('data/status.json?_=' + Date.now());
       const data = await res.json();
@@ -48,6 +59,7 @@
       renderPositions(data);
       renderTrades(data);
       renderEquity(data);
+      renderMetrics(data);
     }
 
     function renderPositions(data) {
@@ -57,7 +69,7 @@
       ];
       data.positions.forEach(p => {
         const d = new Date(p.entry_time * 1000).toLocaleString();
-        rows.push(`<tr><td>${p.symbol}</td><td>${p.qty.toFixed(6)}</td><td>${p.entry_price.toFixed(2)}</td><td>${d}</td></tr>`);
+        rows.push(`<tr><td>${p.symbol}</td><td>${Number(p.qty).toFixed(6)}</td><td>${Number(p.entry_price).toFixed(2)}</td><td>${d}</td></tr>`);
       });
       tbl.innerHTML = rows.join('');
     }
@@ -70,7 +82,7 @@
       data.trades.forEach(t => {
         const d = new Date(t.ts * 1000).toLocaleString();
         const sideCls = t.side === 'BUY' ? 'buy' : 'sell';
-        rows.push(`<tr><td>${d}</td><td>${t.symbol}</td><td><span class="pill ${sideCls}">${t.side}</span></td><td>${Number(t.qty).toFixed(6)}</td><td>${t.price.toFixed(2)}</td></tr>`);
+        rows.push(`<tr><td>${d}</td><td>${t.symbol}</td><td><span class="pill ${sideCls}">${t.side}</span></td><td>${Number(t.qty).toFixed(6)}</td><td>${Number(t.price).toFixed(2)}</td></tr>`);
       });
       tbl.innerHTML = rows.join('');
     }
@@ -83,9 +95,35 @@
       if (chart) chart.destroy();
       chart = new Chart(ctx, {
         type: 'line',
-        data: { labels, datasets: [{ label: 'Equity', data: eq, borderColor: '#22d3ee', fill: false }] },
+        data: { labels, datasets: [{ label: 'Equity', data: eq, borderColor: '#22d3ee', fill: false, tension: 0.2 }] },
         options: { scales: { x: { display: true }, y: { display: true } }, plugins: { legend: { display: false } } }
       });
+    }
+
+    function renderMetrics(data) {
+      const tbl = document.getElementById('metricsTable');
+      const rows = [
+        '<tr><th>Time</th><th>Status</th><th>Equity</th><th>Cash</th><th>Pos</th><th>Trades</th><th>Fees</th><th>Duration</th><th>Note</th></tr>'
+      ];
+      (data.metrics || []).forEach(m => {
+        const d = new Date(m.ts * 1000).toLocaleString();
+        const cls = `status-${(m.status || 'ok').toLowerCase()}`;
+        const tradesDetail = `${m.trades || 0} (${m.buys || 0}/${m.sells || 0})`;
+        rows.push(
+          `<tr>
+            <td>${d}</td>
+            <td><span class="pill ${cls}">${m.status || 'ok'}</span></td>
+            <td>${fmtUsd.format(m.equity || 0)}</td>
+            <td>${fmtUsd.format(m.cash || 0)}</td>
+            <td>${m.positions ?? 0}</td>
+            <td>${tradesDetail}</td>
+            <td>${fmtUsd.format(m.fees || 0)}</td>
+            <td>${(m.duration_ms || 0)} ms</td>
+            <td class="note">${m.note || ''}</td>
+          </tr>`
+        );
+      });
+      tbl.innerHTML = rows.join('');
     }
 
     loadData();
