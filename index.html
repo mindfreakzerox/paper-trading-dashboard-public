@@ -9,8 +9,8 @@
     body { font-family: "Inter", "SF Pro Text", Arial, sans-serif; background: #0b1220; color: #e2e8f0; margin: 0; }
     .page { max-width: 1400px; margin: 0 auto; padding: 24px; }
     h1 { margin: 0 0 0.35em 0; letter-spacing: 0.2px; }
-    .card { background: #111a2e; border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
-    .card h3 { margin-top: 0; margin-bottom: 10px; font-size: 1.02em; }
+    .card { background: #111a2e; border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.25); display: flex; flex-direction: column; gap: 10px; }
+    .card h3 { margin-top: 0; margin-bottom: 6px; font-size: 1.02em; }
     .layout-row { display: grid; gap: 20px; margin-bottom: 20px; }
     .row-primary { grid-template-columns: 2fr 1fr; align-items: start; }
     .row-secondary { grid-template-columns: repeat(2, minmax(280px, 1fr)); }
@@ -20,6 +20,12 @@
     th { border-bottom: 1px solid #22314f; color: #9fb0c8; font-weight: 600; }
     tr:nth-child(even) { background: #0f172a; }
     tr:hover { background: #17223a; }
+    .table-wrap { overflow-x: auto; }
+    .table-scroll { max-height: 340px; overflow: auto; }
+    .table-sticky th { position: sticky; top: 0; background: #0d1729; z-index: 2; }
+    @media (max-width: 1200px) { .row-primary { grid-template-columns: 1.5fr 1fr; } .table-scroll { max-height: 280px; } }
+    @media (max-width: 980px) { .row-primary, .row-secondary { grid-template-columns: 1fr; } .table-scroll { max-height: 260px; } }
+    @media (max-width: 640px) { .table-scroll { max-height: 220px; } }
     .pill { padding: 4px 10px; border-radius: 20px; font-size: 0.8em; font-weight: 600; display: inline-block; }
     .pill-buy { background: rgba(0,200,120,0.15); color: #00d084; }
     .pill-sell { background: rgba(255,90,90,0.15); color: #ff5c5c; }
@@ -40,9 +46,6 @@
     .summary-box { background: #111a2e; border-radius: 10px; padding: 14px 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
     .summary-value { font-size: 1.2em; font-weight: 700; }
     .summary-label { font-size: 0.9em; color: #9fb0c8; margin-top: 4px; }
-    @media (max-width: 1200px) { .row-primary { grid-template-columns: 1.5fr 1fr; } }
-    @media (max-width: 980px) { .row-primary, .row-secondary { grid-template-columns: 1fr; } }
-    .table-wrap { overflow-x: auto; }
     .error-banner { display: none; background: rgba(255,90,90,0.15); color: #ffb4b4; padding: 10px 12px; border-radius: 8px; margin: 8px 0 16px; position: relative; }
     .error-banner button { position: absolute; right: 10px; top: 8px; background: transparent; border: none; color: #ffb4b4; cursor: pointer; }
     .skeleton { background: linear-gradient(90deg, #1a2539 0%, #1f2c44 50%, #1a2539 100%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 6px; min-height: 16px; }
@@ -70,18 +73,18 @@
       </div>
       <div class="card">
         <h3>Open Positions</h3>
-        <div class="table-wrap"><table id="positionsTable"></table></div>
+        <div class="table-wrap table-scroll"><table id="positionsTable" class="table-sticky"></table></div>
       </div>
     </div>
 
     <div class="layout-row row-secondary">
       <div class="card">
         <h3>Recent Trades</h3>
-        <div class="table-wrap"><table id="tradesTable"></table></div>
+        <div class="table-wrap table-scroll"><table id="tradesTable" class="table-sticky"></table></div>
       </div>
       <div class="card">
         <h3>Run Metrics</h3>
-        <div class="table-wrap"><table id="metricsTable"></table></div>
+        <div class="table-wrap table-scroll"><table id="metricsTable" class="table-sticky"></table></div>
       </div>
     </div>
     <div class="footer">Updates every ~5 minutes.</div>
