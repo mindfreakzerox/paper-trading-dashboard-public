@@ -161,8 +161,8 @@
       const fee = 0; // frontend-only view; keep neutral
       const buys = {};
       const closed = [];
-      trades.sort((a,b)=>a.ts-b.ts);
-      for (const t of trades) {
+      const ordered = [...(trades || [])].sort((a,b)=>a.ts-b.ts);
+      for (const t of ordered) {
         if (t.side === 'BUY') {
           (buys[t.symbol] ||= []).push({qty:t.qty, price:t.price});
         } else {
@@ -209,7 +209,8 @@
       const tbl = document.getElementById('tradesTable');
       const header = '<tr><th class="tr-time">Time</th><th>Symbol</th><th>Side</th><th class="num">Qty</th><th class="num">Price</th></tr>';
       const rows = [];
-      (data.trades || []).forEach(t => {
+      const ordered = [...(data.trades || [])].sort((a,b)=>b.ts-a.ts);
+      ordered.forEach(t => {
         const d = new Date(t.ts * 1000).toLocaleString();
         const sideCls = t.side === 'BUY' ? 'pill-buy' : 'pill-sell';
         rows.push(`<tr>
