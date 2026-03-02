@@ -1,19 +1,11 @@
 {
-  "as_of": "2026-03-02T07:08:09.843136+00:00",
+  "as_of": "2026-03-02T07:13:29.316279+00:00",
   "prices": {
-    "BTCUSDT": 65972.59,
-    "ETHUSDT": 1934.64,
-    "SOLUSDT": 82.86
+    "BTCUSDT": 65746.0,
+    "ETHUSDT": 1932.79,
+    "SOLUSDT": 82.77
   },
   "positions": [
-    {
-      "symbol": "BTCUSDT",
-      "qty": 0.059843330161636836,
-      "entry_price": 66841.2,
-      "entry_time": 1772426235,
-      "last_sell_time": 0,
-      "high_since_entry": 66874.67
-    },
     {
       "symbol": "ETHUSDT",
       "qty": 1.637331695080121,
@@ -24,6 +16,14 @@
     }
   ],
   "trades": [
+    {
+      "id": 3,
+      "symbol": "BTCUSDT",
+      "side": "SELL",
+      "qty": 0.059843330161636836,
+      "price": 65746.0,
+      "ts": 1772435606
+    },
     {
       "id": 2,
       "symbol": "ETHUSDT",
@@ -501,9 +501,27 @@
       "ts": 1772435289,
       "equity": 19900.26867555811,
       "cash": 12784.6018
+    },
+    {
+      "ts": 1772435609,
+      "equity": 19874.745252156077,
+      "cash": 16710.12692522217
     }
   ],
   "metrics": [
+    {
+      "ts": 1772435609,
+      "duration_ms": 4152,
+      "status": "ok",
+      "buys": 0,
+      "sells": 1,
+      "trades": 1,
+      "fees": 8.934459584806975,
+      "positions": 1,
+      "equity": 19874.745252156077,
+      "cash": 16710.12692522217,
+      "note": ""
+    },
     {
       "ts": 1772435289,
       "duration_ms": 3647,
