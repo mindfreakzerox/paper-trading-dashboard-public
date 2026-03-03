@@ -1,13 +1,37 @@
 {
-  "as_of": "2026-03-03T12:26:54.331152+00:00",
+  "as_of": "2026-03-03T12:32:00.079253+00:00",
   "strategy": "grid_dca_hybrid",
   "current_regime": "cash",
-  "adx_value": 33.597143,
-  "grid_levels": {},
+  "adx_value": 32.766442,
+  "grid_levels": {
+    "SOLUSDT": {
+      "center_price": 84.98,
+      "buy_levels": [
+        84.1302,
+        83.2804,
+        82.4306,
+        81.5808,
+        80.731,
+        79.8812,
+        79.0314,
+        78.1816
+      ],
+      "sell_levels": [
+        85.8298,
+        86.6796,
+        87.5294,
+        88.3792,
+        89.229,
+        90.0788,
+        90.9286,
+        91.7784
+      ]
+    }
+  },
   "prices": {
-    "BTCUSDT": 67597.7,
-    "ETHUSDT": 1976.93,
-    "SOLUSDT": 85.1
+    "BTCUSDT": 67460.54,
+    "ETHUSDT": 1971.34,
+    "SOLUSDT": 84.98
   },
   "positions": [],
   "trades": [
@@ -2332,9 +2356,27 @@
       "ts": 1772540814,
       "equity": 19774.172946234627,
       "cash": 19774.172946234627
+    },
+    {
+      "ts": 1772541119,
+      "equity": 19774.172946234627,
+      "cash": 19774.172946234627
     }
   ],
   "metrics": [
+    {
+      "ts": 1772541120,
+      "duration_ms": 3892,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 0,
+      "equity": 19774.172946234627,
+      "cash": 19774.172946234627,
+      "note": ""
+    },
     {
       "ts": 1772540814,
       "duration_ms": 4519,
@@ -4912,19 +4954,6 @@
     {
       "ts": 1772479810,
       "duration_ms": 4157,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 0,
-      "equity": 19852.104738713184,
-      "cash": 19852.104738713184,
-      "note": ""
-    },
-    {
-      "ts": 1772479494,
-      "duration_ms": 4076,
       "status": "ok",
       "buys": 0,
       "sells": 0,
