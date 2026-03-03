@@ -55,6 +55,35 @@
     .pagination button { background: #1a2438; color: #e2e8f0; border: 1px solid #22314f; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
     .pagination button:disabled { opacity: 0.5; cursor: default; }
     .pagination .page-info { font-weight: 600; }
+
+    .regime-banner { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; background: #111a2e; border-radius: 12px; padding: 16px 20px; margin-top: 16px; box-shadow: 0 4px 18px rgba(0,0,0,0.2); }
+    .regime-label { text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; color: #94a3b8; margin-bottom: 6px; }
+    .regime-badge { font-size: 1.35rem; font-weight: 700; padding: 10px 22px; border-radius: 999px; background: #1d4ed8; color: #e0edff; box-shadow: inset 0 0 20px rgba(255,255,255,0.08); transition: background 0.2s ease, color 0.2s ease; }
+    .regime-info { flex: 1; min-width: 240px; color: #cbd5e1; font-size: 0.95rem; }
+    .regime-subtext { color: #94a3b8; font-size: 0.85rem; margin-top: 6px; }
+    .strategy-card { gap: 18px; }
+    .strategy-title { font-size: 1.25rem; font-weight: 700; }
+    .strategy-header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; }
+    .strategy-insights { display: flex; gap: 24px; flex-wrap: wrap; }
+    .strategy-insight { min-width: 120px; }
+    .strategy-value { font-size: 1.1rem; font-weight: 600; }
+    .strategy-current { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .strategy-regime-pill { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 6px 14px; font-weight: 600; border: 1px solid rgba(255,255,255,0.15); }
+    .grid-levels-list { font-family: 'DM Mono', 'Roboto Mono', monospace; font-size: 0.85rem; color: #cbd5e1; }
+    .grid-levels-list span { display: inline-block; margin-right: 10px; }
+    .regime-description { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .regime-description-item { display: flex; gap: 12px; font-size: 0.9rem; line-height: 1.4; }
+    .regime-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+    .regime-dot.grid { background: #3b82f6; }
+    .regime-dot.dca { background: #22c55e; }
+    .regime-dot.cash { background: #f87171; }
+    .regime-timeline-wrap { margin-top: 18px; }
+    .regime-timeline-header { display: flex; justify-content: space-between; font-size: 0.85rem; color: #94a3b8; margin-bottom: 6px; }
+    .regime-timeline-bar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: #0f172a; border: 1px solid #1f2a44; box-shadow: inset 0 0 8px rgba(0,0,0,0.4); }
+    .regime-segment { height: 100%; }
+    .regime-timeline-legend { display: flex; gap: 18px; margin-top: 10px; font-size: 0.78rem; color: #94a3b8; flex-wrap: wrap; }
+    .regime-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    .regime-pill { border: 1px solid rgba(255,255,255,0.08); }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -63,6 +92,71 @@
     <h1>Paper Trading Dashboard</h1>
     <div class="error-banner" id="errorBanner">Error loading data <button onclick="dismissError()">✕</button></div>
     <div id="asof" class="footer">Loading...</div>
+
+    <div class="regime-banner">
+      <div>
+        <div class="regime-label">Current Regime</div>
+        <div id="regimeBadge" class="regime-badge">Loading…</div>
+      </div>
+      <div class="regime-info">
+        <div id="regimeSummary">Waiting for latest signal…</div>
+        <div id="regimeSubtext" class="regime-subtext">The engine will publish the active Grid/DCA/Cash mode as soon as new data arrives.</div>
+      </div>
+    </div>
+
+    <div class="layout-row row-stack">
+      <div class="card strategy-card">
+        <div class="strategy-header">
+          <div>
+            <div class="muted" style="text-transform:uppercase;letter-spacing:1px;">Strategy</div>
+            <div class="strategy-title">Grid+DCA Hybrid</div>
+          </div>
+          <div class="strategy-insights">
+            <div class="strategy-insight">
+              <div class="muted">ADX (14)</div>
+              <div class="strategy-value" id="strategyAdx">–</div>
+            </div>
+            <div class="strategy-insight">
+              <div class="muted">Last Update</div>
+              <div class="strategy-value" id="strategyRegimeTimestamp">–</div>
+            </div>
+          </div>
+        </div>
+        <div class="strategy-current">
+          <div>
+            <div class="muted">Current Regime</div>
+            <div id="strategyRegimePill" class="strategy-regime-pill">Waiting…</div>
+          </div>
+          <div>
+            <div class="muted">Grid Levels</div>
+            <div id="strategyGridLevels" class="grid-levels-list">–</div>
+          </div>
+        </div>
+        <div class="regime-description">
+          <div class="regime-description-item">
+            <div><span class="regime-dot grid"></span></div>
+            <div>
+              <strong>Grid</strong>
+              <p>Layered buy/sell levels accumulate inventory while ADX &lt; 25 keeps price range-bound.</p>
+            </div>
+          </div>
+          <div class="regime-description-item">
+            <div><span class="regime-dot dca"></span></div>
+            <div>
+              <strong>DCA</strong>
+              <p>Trend-following adds to strength when ADX ≥ 25 and price holds above the EMA50.</p>
+            </div>
+          </div>
+          <div class="regime-description-item">
+            <div><span class="regime-dot cash"></span></div>
+            <div>
+              <strong>Cash</strong>
+              <p>Risk-off stance when trend remains strong but price loses the EMA50 — capital stays flat.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="summary-strip" id="summaryStrip">
       <div class="summary-box"><div class="summary-value" id="sumEquity">–</div><div class="summary-label">Total Equity</div></div>
@@ -75,6 +169,18 @@
       <div class="card">
         <h3>Equity</h3>
         <canvas id="equityChart"></canvas>
+        <div class="regime-timeline-wrap">
+          <div class="regime-timeline-header">
+            <span>Regime timeline</span>
+            <span id="regimeTimelineRange">–</span>
+          </div>
+          <div class="regime-timeline-bar" id="regimeTimelineBar"></div>
+          <div class="regime-timeline-legend">
+            <span class="regime-legend-item"><span class="regime-dot grid"></span>Grid</span>
+            <span class="regime-legend-item"><span class="regime-dot dca"></span>DCA</span>
+            <span class="regime-legend-item"><span class="regime-dot cash"></span>Cash</span>
+          </div>
+        </div>
       </div>
       <div class="card">
         <h3>Open Positions</h3>
@@ -128,6 +234,95 @@
       return `${sign}${abs}%`;
     };
 
+
+    const regimeMeta = {
+      grid: {
+        key: 'grid',
+        label: 'Grid',
+        color: '#3b82f6',
+        badgeBg: '#1d4ed8',
+        badgeText: '#e0edff',
+        bgSoft: 'rgba(59,130,246,0.18)',
+        border: 'rgba(59,130,246,0.4)',
+        summary: 'Range grid ladder engaged while ADX stays below 25.',
+      },
+      dca: {
+        key: 'dca',
+        label: 'DCA',
+        color: '#22c55e',
+        badgeBg: '#15803d',
+        badgeText: '#dcfce7',
+        bgSoft: 'rgba(34,197,94,0.18)',
+        border: 'rgba(34,197,94,0.4)',
+        summary: 'Trend-following DCA buys when ADX ≥ 25 and price holds above EMA50.',
+      },
+      cash: {
+        key: 'cash',
+        label: 'Cash',
+        color: '#f87171',
+        badgeBg: '#b91c1c',
+        badgeText: '#fee2e2',
+        bgSoft: 'rgba(248,113,113,0.18)',
+        border: 'rgba(248,113,113,0.35)',
+        summary: 'Risk-off posture while trend is strong but price is sub EMA50.',
+      },
+      unknown: {
+        key: 'unknown',
+        label: 'Unknown',
+        color: '#475569',
+        badgeBg: '#334155',
+        badgeText: '#e2e8f0',
+        bgSoft: 'rgba(71,85,105,0.25)',
+        border: 'rgba(148,163,184,0.35)',
+        summary: 'Waiting for the next regime update.',
+      },
+    };
+
+    function normalizeRegimeKey(raw) {
+      if (raw === undefined || raw === null) return null;
+      const key = String(raw).trim().toLowerCase();
+      if (!key) return null;
+      if (['grid', 'sideways', 'range'].includes(key)) return 'grid';
+      if (['dca', 'uptrend', 'trend', 'trend_up'].includes(key)) return 'dca';
+      if (['cash', 'downtrend', 'flat', 'risk_off'].includes(key)) return 'cash';
+      return null;
+    }
+
+    function getRegimeMeta(key) {
+      return regimeMeta[key] || regimeMeta.unknown;
+    }
+
+    function getCurrentRegimeKey(data) {
+      const fromData = normalizeRegimeKey(data && data.current_regime);
+      if (fromData) return fromData;
+      const trades = (data && data.trades) || [];
+      const latest = trades.slice().sort((a,b)=>b.ts-a.ts).find(t => normalizeRegimeKey(t.regime));
+      if (latest) return normalizeRegimeKey(latest.regime);
+      return null;
+    }
+
+    function formatGridLevels(levels) {
+      if (!levels || !Object.keys(levels).length) return 'No grid ladder active';
+      const chunks = [];
+      for (const [symbol, detail] of Object.entries(levels)) {
+        const buys = (detail.buy_levels || []).slice(0, 3).map(level => formatPrice(level)).join(' / ');
+        const sells = (detail.sell_levels || []).slice(0, 3).map(level => formatPrice(level)).join(' / ');
+        const buyMore = (detail.buy_levels || []).length > 3 ? '…' : '';
+        const sellMore = (detail.sell_levels || []).length > 3 ? '…' : '';
+        chunks.push(`${symbol}: B ${buys || '–'}${buyMore} · S ${sells || '–'}${sellMore}`);
+      }
+      return chunks.join('  |  ');
+    }
+
+    function formatDuration(seconds) {
+      const s = Math.max(0, Math.floor(seconds));
+      const hours = Math.floor(s / 3600);
+      const mins = Math.floor((s % 3600) / 60);
+      if (hours > 0) return `${hours}h ${mins}m`;
+      if (mins > 0) return `${mins}m`;
+      return `${Math.max(1, s)}s`;
+    }
+
     function showError(msg) {
       const banner = document.getElementById('errorBanner');
       banner.style.display = 'block';
@@ -147,9 +342,12 @@
         dismissError();
         document.getElementById('asof').innerText = 'As of ' + new Date(data.as_of).toLocaleString();
         renderSummary(data);
+        renderRegimeIndicator(data);
+        renderStrategyCard(data);
         renderPositions(data);
         renderTrades(data);
         renderEquity(data);
+        renderRegimeTimeline(data);
         renderMetrics(data);
       } catch (e) {
         showError('Failed to load status.json');
@@ -162,7 +360,9 @@
       const lastTs = eqArr.length ? eqArr[eqArr.length - 1].ts : 0;
       const dayStart = new Date(lastTs * 1000); dayStart.setHours(0,0,0,0);
       const dayStartTs = dayStart.getTime()/1000;
-      const dayEq = eqArr.find(e => e.ts >= dayStartTs)?.equity ?? (eqArr[0]?.equity || 0);
+      const dayEntry = eqArr.find(e => e.ts >= dayStartTs);
+      const fallbackEntry = eqArr[0];
+      const dayEq = (dayEntry && typeof dayEntry.equity !== 'undefined' ? dayEntry.equity : ((fallbackEntry && typeof fallbackEntry.equity !== 'undefined') ? fallbackEntry.equity : 0));
       const pnlToday = lastEq - dayEq;
       const posCount = (data.positions || []).length;
       const winRate = computeWinRate(data.trades || []);
@@ -172,6 +372,85 @@
       document.getElementById('sumPnl').style.color = pnlFmt.color;
       document.getElementById('sumPositions').textContent = posCount;
       document.getElementById('sumWinRate').textContent = winRate !== null ? formatPercent(winRate * 100) : '–';
+    }
+
+    function renderRegimeIndicator(data) {
+      const badge = document.getElementById('regimeBadge');
+      const summary = document.getElementById('regimeSummary');
+      const subtext = document.getElementById('regimeSubtext');
+      if (!badge || !summary || !subtext) return;
+      const key = getCurrentRegimeKey(data);
+      const meta = getRegimeMeta(key);
+      badge.textContent = meta.label;
+      badge.style.background = meta.badgeBg;
+      badge.style.color = meta.badgeText;
+      summary.textContent = meta.summary;
+      const lastTrade = ((data && data.trades) || []).slice().sort((a,b)=>b.ts-a.ts).find(t => normalizeRegimeKey(t.regime));
+      if (lastTrade) {
+        subtext.textContent = `Triggered ${new Date(lastTrade.ts * 1000).toLocaleString()} via ${lastTrade.symbol}`;
+      } else if (data && data.as_of) {
+        subtext.textContent = `Last update ${new Date(data.as_of).toLocaleString()}`;
+      } else {
+        subtext.textContent = 'Waiting for trades with regime tags.';
+      }
+    }
+
+    function renderStrategyCard(data) {
+      const key = getCurrentRegimeKey(data);
+      const meta = getRegimeMeta(key);
+      const pill = document.getElementById('strategyRegimePill');
+      if (pill) {
+        pill.textContent = meta.label;
+        pill.style.background = meta.bgSoft;
+        pill.style.color = meta.badgeText;
+        pill.style.borderColor = meta.border;
+      }
+      const adxEl = document.getElementById('strategyAdx');
+      if (adxEl) {
+        const adx = Number(data && data.adx_value);
+        adxEl.textContent = Number.isFinite(adx) ? adx.toFixed(1) : '–';
+      }
+      const tsEl = document.getElementById('strategyRegimeTimestamp');
+      if (tsEl) {
+        tsEl.textContent = data && data.as_of ? new Date(data.as_of).toLocaleString() : '–';
+      }
+      const gridEl = document.getElementById('strategyGridLevels');
+      if (gridEl) {
+        gridEl.textContent = formatGridLevels(data && data.grid_levels);
+      }
+    }
+
+    function renderRegimeTimeline(data) {
+      const bar = document.getElementById('regimeTimelineBar');
+      const rangeEl = document.getElementById('regimeTimelineRange');
+      if (!bar || !rangeEl) return;
+      const trades = ((data && data.trades) || [])
+        .map(t => ({ ...t, regimeKey: normalizeRegimeKey(t.regime) }))
+        .filter(t => t.regimeKey)
+        .sort((a,b)=>a.ts-b.ts);
+      if (!trades.length) {
+        bar.innerHTML = '<div class="muted" style="padding:4px 8px;">No regime history yet</div>';
+        rangeEl.textContent = '—';
+        return;
+      }
+      const equityRows = (data && data.equity) || [];
+      const lastTs = equityRows.length ? equityRows[equityRows.length - 1].ts : trades[trades.length - 1].ts;
+      const segments = [];
+      for (let i = 0; i < trades.length; i++) {
+        const start = trades[i].ts;
+        const end = i < trades.length - 1 ? trades[i + 1].ts : lastTs;
+        const duration = Math.max(end - start, 1);
+        segments.push({ start, end, duration, meta: getRegimeMeta(trades[i].regimeKey) });
+      }
+      const total = segments.reduce((sum, seg) => sum + seg.duration, 0);
+      bar.innerHTML = segments.map(seg => {
+        const width = Math.max((seg.duration / total) * 100, 1);
+        const title = `${seg.meta.label} • ${formatDuration(seg.duration)}`;
+        return `<div class="regime-segment" style="width:${width}%; background:${seg.meta.color};" title="${title}"></div>`;
+      }).join('');
+      const startTs = trades[0].ts;
+      const rangeText = `${new Date(startTs * 1000).toLocaleDateString()} → ${new Date(lastTs * 1000).toLocaleDateString()}`;
+      rangeEl.textContent = rangeText;
     }
 
     function computeWinRate(trades) {
@@ -227,22 +506,26 @@
 
     function renderTrades(data) {
       const tbl = document.getElementById('tradesTable');
-      const header = '<tr><th class="tr-time">Time</th><th>Symbol</th><th>Side</th><th class="num">Qty</th><th class="num">Price</th></tr>';
+      const header = '<tr><th class="tr-time">Time</th><th>Symbol</th><th>Side</th><th>Regime</th><th class="num">Qty</th><th class="num">Price</th></tr>';
       const rows = [];
       const ordered = [...(data.trades || [])].sort((a,b)=>b.ts-a.ts);
       const page = paginate(ordered, 'trades');
       page.items.forEach(t => {
         const d = new Date(t.ts * 1000).toLocaleString();
         const sideCls = t.side === 'BUY' ? 'pill-buy' : 'pill-sell';
+        const regimeKey = normalizeRegimeKey(t.regime);
+        const regime = getRegimeMeta(regimeKey);
+        const regimeCell = regimeKey ? `<span class="pill regime-pill" style="background:${regime.bgSoft}; color:${regime.badgeText}; border-color:${regime.border};">${regime.label}</span>` : '<span class="muted">–</span>';
         rows.push(`<tr>
           <td class="muted nowrap tr-time">${d}</td>
           <td>${t.symbol}</td>
           <td><span class="pill ${sideCls}">${t.side}</span></td>
+          <td>${regimeCell}</td>
           <td class="num monospace">${formatQty(t.qty)}</td>
           <td class="num monospace">${formatPrice(t.price)}</td>
         </tr>`);
       });
-      if (!rows.length) rows.push('<tr><td colspan="5" class="muted">No trades yet</td></tr>');
+      if (!rows.length) rows.push('<tr><td colspan="6" class="muted">No trades yet</td></tr>');
       tbl.innerHTML = header + rows.join('');
       renderPagination('trades', ordered.length);
     }
@@ -252,7 +535,7 @@
       id: 'crosshair',
       afterDatasetsDraw(chart, args, opts) {
         const { ctx, tooltip, chartArea } = chart;
-        if (!tooltip?.getActiveElements?.().length) return;
+        if (!tooltip || typeof tooltip.getActiveElements !== "function" || !tooltip.getActiveElements().length) return;
         const x = tooltip.caretX;
         ctx.save();
         ctx.strokeStyle = '#334155';
@@ -347,7 +630,7 @@
             <td><span class="pill ${cls}">${m.status || 'ok'}</span></td>
             <td class="num monospace" style="font-size:1.1em;">${formatMoney(m.equity || 0)}</td>
             <td class="num monospace">${formatMoney(m.cash || 0)}</td>
-            <td class="num monospace">${m.positions ?? 0}</td>
+            <td class="num monospace">${(m.positions === undefined || m.positions === null) ? 0 : m.positions}</td>
             <td class="num monospace">${tradesDetail}</td>
             <td class="num monospace">${formatMoney(m.fees || 0)}</td>
             <td class="num monospace">${(m.duration_ms || 0)} ms</td>
@@ -365,11 +648,17 @@
       document.getElementById('positionsTable').innerHTML = '<tr><td class="muted">Loading…</td></tr>';
       document.getElementById('tradesTable').innerHTML = '<tr><td class="muted">Loading…</td></tr>';
       document.getElementById('metricsTable').innerHTML = '<tr><td class="muted">Loading…</td></tr>';
+      const badge = document.getElementById('regimeBadge');
+      if (badge) badge.textContent = 'Loading…';
+      const summary = document.getElementById('regimeSummary');
+      if (summary) summary.textContent = 'Fetching latest strategy signal…';
+      const gridLevels = document.getElementById('strategyGridLevels');
+      if (gridLevels) gridLevels.textContent = '–';
     }
 
     function paginate(arr, key) {
       const cfg = paginationState[key];
-      const totalPages = Math.max(1, Math.ceil((arr?.length || 0) / cfg.size));
+      const totalPages = Math.max(1, Math.ceil(((arr || []).length) / cfg.size));
       cfg.page = Math.min(Math.max(1, cfg.page), totalPages);
       const start = (cfg.page - 1) * cfg.size;
       return { items: (arr || []).slice(start, start + cfg.size), totalPages };
@@ -403,18 +692,22 @@
     }
 
     document.addEventListener('change', (e) => {
-      const type = e.target?.dataset?.pagetype;
-      const key = e.target?.dataset?.key;
+      const target = e.target || {};
+      const dataset = target.dataset || {};
+      const type = dataset.pagetype;
+      const key = dataset.key;
       if (type === 'size' && key && paginationState[key]) {
-        paginationState[key].size = Number(e.target.value) || paginationState[key].size;
+        paginationState[key].size = Number(target.value) || paginationState[key].size;
         paginationState[key].page = 1;
         rerenderTable(key);
       }
     });
 
     document.addEventListener('click', (e) => {
-      const type = e.target?.dataset?.pagetype;
-      const key = e.target?.dataset?.key;
+      const target = e.target || {};
+      const dataset = target.dataset || {};
+      const type = dataset.pagetype;
+      const key = dataset.key;
       if (!type || !key || !paginationState[key]) return;
       if (type === 'prev') {
         paginationState[key].page = Math.max(1, paginationState[key].page - 1);
