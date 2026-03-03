@@ -1,53 +1,26 @@
 {
-  "as_of": "2026-03-03T10:02:28.825177+00:00",
+  "as_of": "2026-03-03T10:07:53.906504+00:00",
   "strategy": "grid_dca_hybrid",
   "current_regime": "cash",
   "adx_value": 35.252334,
-  "grid_levels": {
-    "SOLUSDT": {
-      "center_price": 85.63,
-      "buy_levels": [
-        84.7737,
-        83.9174,
-        83.0611,
-        82.2048,
-        81.3485,
-        80.4922,
-        79.6359,
-        78.7796
-      ],
-      "sell_levels": [
-        86.4863,
-        87.3426,
-        88.1989,
-        89.0552,
-        89.9115,
-        90.7678,
-        91.6241,
-        92.4804
-      ]
-    }
-  },
+  "grid_levels": {},
   "prices": {
-    "BTCUSDT": 66539.08,
-    "ETHUSDT": 1948.47,
-    "SOLUSDT": 84.13
+    "BTCUSDT": 66537.24,
+    "ETHUSDT": 1949.67,
+    "SOLUSDT": 84.07
   },
-  "positions": [
-    {
-      "symbol": "SOLUSDT",
-      "qty": 17.481108546954403,
-      "entry_price": 86.7735,
-      "entry_time": 1772494288,
-      "last_sell_time": null,
-      "high_since_entry": 0.0,
-      "dca_level": 1,
-      "avg_entry_price": 85.80691527490877,
-      "total_invested": 1500.0,
-      "last_dca_time": 0
-    }
-  ],
+  "positions": [],
   "trades": [
+    {
+      "id": 15,
+      "symbol": "SOLUSDT",
+      "side": "SELL",
+      "qty": 17.481108546954403,
+      "price": 84.07,
+      "ts": 1772532473,
+      "fee": 2.2044551933136844,
+      "regime": "downtrend"
+    },
     {
       "id": 14,
       "symbol": "BTCUSDT",
@@ -2219,9 +2192,27 @@
       "ts": 1772532148,
       "equity": 19777.42626794076,
       "cash": 18306.740605885483
+    },
+    {
+      "ts": 1772532473,
+      "equity": 19774.172946234627,
+      "cash": 19774.172946234627
     }
   ],
   "metrics": [
+    {
+      "ts": 1772532473,
+      "duration_ms": 4659,
+      "status": "ok",
+      "buys": 0,
+      "sells": 1,
+      "trades": 1,
+      "fees": 2.2044551933136844,
+      "positions": 0,
+      "equity": 19774.172946234627,
+      "cash": 19774.172946234627,
+      "note": ""
+    },
     {
       "ts": 1772532148,
       "duration_ms": 4080,
@@ -4799,19 +4790,6 @@
     {
       "ts": 1772471035,
       "duration_ms": 5172,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 0,
-      "equity": 19852.104738713184,
-      "cash": 19852.104738713184,
-      "note": ""
-    },
-    {
-      "ts": 1772470713,
-      "duration_ms": 3786,
       "status": "ok",
       "buys": 0,
       "sells": 0,
