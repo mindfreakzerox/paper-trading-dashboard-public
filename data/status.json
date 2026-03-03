@@ -1,32 +1,9 @@
 {
-  "as_of": "2026-03-03T08:59:39.383463+00:00",
+  "as_of": "2026-03-03T09:04:53.079354+00:00",
   "strategy": "grid_dca_hybrid",
-  "current_regime": "grid",
-  "adx_value": 22.778249,
+  "current_regime": "cash",
+  "adx_value": 25.057335,
   "grid_levels": {
-    "BTCUSDT": {
-      "center_price": 68778.01,
-      "buy_levels": [
-        68090.2299,
-        67402.4498,
-        66714.6697,
-        66026.8896,
-        65339.1095,
-        64651.3294,
-        63963.5493,
-        63275.7692
-      ],
-      "sell_levels": [
-        69465.7901,
-        70153.5702,
-        70841.3503,
-        71529.1304,
-        72216.9105,
-        72904.6906,
-        73592.4707,
-        74280.2508
-      ]
-    },
     "SOLUSDT": {
       "center_price": 85.63,
       "buy_levels": [
@@ -52,9 +29,9 @@
     }
   },
   "prices": {
-    "BTCUSDT": 66989.41,
-    "ETHUSDT": 1953.32,
-    "SOLUSDT": 84.26
+    "BTCUSDT": 67025.57,
+    "ETHUSDT": 1958.39,
+    "SOLUSDT": 84.47
   },
   "positions": [
     {
@@ -68,21 +45,19 @@
       "avg_entry_price": 85.80691527490877,
       "total_invested": 1500.0,
       "last_dca_time": 0
-    },
-    {
-      "symbol": "BTCUSDT",
-      "qty": 0.014761325410304227,
-      "entry_price": 68090.22989999999,
-      "entry_time": 1772514354,
-      "last_sell_time": null,
-      "high_since_entry": 0.0,
-      "dca_level": 1,
-      "avg_entry_price": 67744.59421522843,
-      "total_invested": 1000.0,
-      "last_dca_time": 0
     }
   ],
   "trades": [
+    {
+      "id": 14,
+      "symbol": "BTCUSDT",
+      "side": "SELL",
+      "qty": 0.014761325410304227,
+      "price": 67025.57,
+      "ts": 1772528689,
+      "fee": 1.4840793743716871,
+      "regime": "downtrend"
+    },
     {
       "id": 13,
       "symbol": "ETHUSDT",
@@ -2184,9 +2159,27 @@
       "ts": 1772528379,
       "equity": 19780.649121899398,
       "cash": 17318.838435678732
+    },
+    {
+      "ts": 1772528692,
+      "equity": 19783.369844846722,
+      "cash": 18306.740605885483
     }
   ],
   "metrics": [
+    {
+      "ts": 1772528692,
+      "duration_ms": 4729,
+      "status": "ok",
+      "buys": 0,
+      "sells": 1,
+      "trades": 1,
+      "fees": 1.4840793743716871,
+      "positions": 1,
+      "equity": 19783.369844846722,
+      "cash": 18306.740605885483,
+      "note": ""
+    },
     {
       "ts": 1772528379,
       "duration_ms": 3681,
@@ -4764,19 +4757,6 @@
     {
       "ts": 1772467272,
       "duration_ms": 3691,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 0,
-      "equity": 19852.104738713184,
-      "cash": 19852.104738713184,
-      "note": ""
-    },
-    {
-      "ts": 1772466953,
-      "duration_ms": 4304,
       "status": "ok",
       "buys": 0,
       "sells": 0,
