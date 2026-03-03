@@ -1,8 +1,8 @@
 {
-  "as_of": "2026-03-03T08:17:54.640042+00:00",
+  "as_of": "2026-03-03T08:23:33.000536+00:00",
   "strategy": "grid_dca_hybrid",
   "current_regime": "grid",
-  "adx_value": 17.481538,
+  "adx_value": 17.927665,
   "grid_levels": {
     "BTCUSDT": {
       "center_price": 68778.01,
@@ -75,9 +75,9 @@
     }
   },
   "prices": {
-    "BTCUSDT": 68033.15,
-    "ETHUSDT": 1988.98,
-    "SOLUSDT": 85.33
+    "BTCUSDT": 67950.0,
+    "ETHUSDT": 1987.17,
+    "SOLUSDT": 85.11
   },
   "positions": [
     {
@@ -94,14 +94,14 @@
     },
     {
       "symbol": "ETHUSDT",
-      "qty": 0.24897487086669348,
+      "qty": 0.5004903016401899,
       "entry_price": 2008.2348,
       "entry_time": 1772504411,
       "last_sell_time": null,
       "high_since_entry": 0.0,
       "dca_level": 1,
-      "avg_entry_price": 2008.2348,
-      "total_invested": 500.0,
+      "avg_entry_price": 1998.0407147208123,
+      "total_invested": 1000.0,
       "last_dca_time": 0
     },
     {
@@ -118,6 +118,16 @@
     }
   ],
   "trades": [
+    {
+      "id": 9,
+      "symbol": "ETHUSDT",
+      "side": "BUY",
+      "qty": 0.2515154307734965,
+      "price": 1987.9496,
+      "ts": 1772526211,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
     {
       "id": 8,
       "symbol": "BTCUSDT",
@@ -2129,9 +2139,27 @@
       "ts": 1772525874,
       "equity": 19832.273532350857,
       "cash": 17849.104738713184
+    },
+    {
+      "ts": 1772526212,
+      "equity": 19827.717947901932,
+      "cash": 17348.354738713184
     }
   ],
   "metrics": [
+    {
+      "ts": 1772526212,
+      "duration_ms": 4426,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.75,
+      "positions": 3,
+      "equity": 19827.717947901932,
+      "cash": 17348.354738713184,
+      "note": ""
+    },
     {
       "ts": 1772525874,
       "duration_ms": 4677,
@@ -4709,19 +4737,6 @@
     {
       "ts": 1772464754,
       "duration_ms": 5647,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 0,
-      "equity": 19852.104738713184,
-      "cash": 19852.104738713184,
-      "note": ""
-    },
-    {
-      "ts": 1772464448,
-      "duration_ms": 3714,
       "status": "ok",
       "buys": 0,
       "sells": 0,
