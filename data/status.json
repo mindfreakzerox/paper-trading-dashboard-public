@@ -1,8 +1,8 @@
 {
-  "as_of": "2026-03-03T12:57:54.062375+00:00",
+  "as_of": "2026-03-03T13:03:13.317870+00:00",
   "strategy": "grid_dca_hybrid",
   "current_regime": "cash",
-  "adx_value": 31.006793,
+  "adx_value": 29.415344,
   "grid_levels": {
     "SOLUSDT": {
       "center_price": 84.98,
@@ -29,12 +29,35 @@
     }
   },
   "prices": {
-    "BTCUSDT": 67389.94,
-    "ETHUSDT": 1967.89,
-    "SOLUSDT": 84.46
+    "BTCUSDT": 67212.57,
+    "ETHUSDT": 1960.42,
+    "SOLUSDT": 84.06
   },
-  "positions": [],
+  "positions": [
+    {
+      "symbol": "SOLUSDT",
+      "qty": 5.943169040368382,
+      "entry_price": 84.1302,
+      "entry_time": 1772542993,
+      "last_sell_time": null,
+      "high_since_entry": 0.0,
+      "dca_level": 1,
+      "avg_entry_price": 84.1302,
+      "total_invested": 500.0,
+      "last_dca_time": 0
+    }
+  ],
   "trades": [
+    {
+      "id": 16,
+      "symbol": "SOLUSDT",
+      "side": "BUY",
+      "qty": 5.943169040368382,
+      "price": 84.1302,
+      "ts": 1772542993,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
     {
       "id": 15,
       "symbol": "SOLUSDT",
@@ -2386,9 +2409,27 @@
       "ts": 1772542673,
       "equity": 19774.172946234627,
       "cash": 19774.172946234627
+    },
+    {
+      "ts": 1772542993,
+      "equity": 19773.005735767994,
+      "cash": 19273.422946234627
     }
   ],
   "metrics": [
+    {
+      "ts": 1772542993,
+      "duration_ms": 4696,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.75,
+      "positions": 1,
+      "equity": 19773.005735767994,
+      "cash": 19273.422946234627,
+      "note": ""
+    },
     {
       "ts": 1772542673,
       "duration_ms": 4666,
@@ -4966,19 +5007,6 @@
     {
       "ts": 1772481024,
       "duration_ms": 4917,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 0,
-      "equity": 19852.104738713184,
-      "cash": 19852.104738713184,
-      "note": ""
-    },
-    {
-      "ts": 1772480971,
-      "duration_ms": 4174,
       "status": "ok",
       "buys": 0,
       "sells": 0,
