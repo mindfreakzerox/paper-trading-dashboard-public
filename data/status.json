@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-03-03T02:15:13.693198+00:00",
+  "as_of": "2026-03-03T02:20:12.924205+00:00",
   "strategy": "grid_dca_hybrid",
   "prices": {
-    "BTCUSDT": 68622.65,
-    "ETHUSDT": 2008.76,
-    "SOLUSDT": 85.55
+    "BTCUSDT": 68495.75,
+    "ETHUSDT": 2004.09,
+    "SOLUSDT": 85.47
   },
   "positions": [
     {
@@ -18,9 +18,31 @@
       "avg_entry_price": 86.33302538071067,
       "total_invested": 1000.0,
       "last_dca_time": 0
+    },
+    {
+      "symbol": "ETHUSDT",
+      "qty": 0.24897487086669348,
+      "entry_price": 2008.2348,
+      "entry_time": 1772504411,
+      "last_sell_time": null,
+      "high_since_entry": 0.0,
+      "dca_level": 1,
+      "avg_entry_price": 2008.2348,
+      "total_invested": 500.0,
+      "last_dca_time": 0
     }
   ],
   "trades": [
+    {
+      "id": 7,
+      "symbol": "ETHUSDT",
+      "side": "BUY",
+      "qty": 0.24897487086669348,
+      "price": 2008.2348,
+      "ts": 1772504411,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
     {
       "id": 6,
       "symbol": "SOLUSDT",
@@ -1662,9 +1684,27 @@
       "ts": 1772504113,
       "equity": 19841.534914306387,
       "cash": 18850.604738713184
+    },
+    {
+      "ts": 1772504412,
+      "equity": 19838.826319029617,
+      "cash": 18349.854738713184
     }
   ],
   "metrics": [
+    {
+      "ts": 1772504412,
+      "duration_ms": 5828,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.75,
+      "positions": 2,
+      "equity": 19838.826319029617,
+      "cash": 18349.854738713184,
+      "note": ""
+    },
     {
       "ts": 1772504113,
       "duration_ms": 8481,
@@ -4249,19 +4289,6 @@
       "fees": 0.0,
       "positions": 1,
       "equity": 19915.793157751734,
-      "cash": 16710.12692522217,
-      "note": ""
-    },
-    {
-      "ts": 1772443126,
-      "duration_ms": 3048,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 1,
-      "equity": 19917.79070241973,
       "cash": 16710.12692522217,
       "note": ""
     }
