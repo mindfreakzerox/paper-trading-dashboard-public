@@ -1,8 +1,8 @@
 {
-  "as_of": "2026-03-04T01:28:41.596254+00:00",
+  "as_of": "2026-03-04T01:33:57.901127+00:00",
   "strategy": "grid_dca_hybrid",
   "current_regime": "grid",
-  "adx_value": 12.33323,
+  "adx_value": 12.043208,
   "grid_levels": {
     "BTCUSDT": {
       "center_price": 66715.42,
@@ -75,25 +75,22 @@
     }
   },
   "prices": {
-    "BTCUSDT": 68196.59,
-    "ETHUSDT": 1977.83,
-    "SOLUSDT": 86.91
+    "BTCUSDT": 68530.45,
+    "ETHUSDT": 1987.21,
+    "SOLUSDT": 87.5
   },
-  "positions": [
-    {
-      "symbol": "SOLUSDT",
-      "qty": 0.3531301871180341,
-      "entry_price": 84.1302,
-      "entry_time": 1772542993,
-      "last_sell_time": null,
-      "high_since_entry": 0.0,
-      "dca_level": 1,
-      "avg_entry_price": 83.70314314720812,
-      "total_invested": 29.558106601941176,
-      "last_dca_time": 0
-    }
-  ],
+  "positions": [],
   "trades": [
+    {
+      "id": 20,
+      "symbol": "SOLUSDT",
+      "side": "SELL",
+      "qty": 0.3531301871180341,
+      "price": 87.4054,
+      "ts": 1772588037,
+      "fee": 0.04629822788568993,
+      "regime": "sideways"
+    },
     {
       "id": 19,
       "symbol": "SOLUSDT",
@@ -3205,9 +3202,27 @@
       "ts": 1772587721,
       "equity": 19801.863490797055,
       "cash": 19771.172946234627
+    },
+    {
+      "ts": 1772588037,
+      "equity": 19801.992133263866,
+      "cash": 19801.992133263866
     }
   ],
   "metrics": [
+    {
+      "ts": 1772588037,
+      "duration_ms": 7142,
+      "status": "ok",
+      "buys": 0,
+      "sells": 1,
+      "trades": 1,
+      "fees": 0.04629822788568993,
+      "positions": 0,
+      "equity": 19801.992133263866,
+      "cash": 19801.992133263866,
+      "note": ""
+    },
     {
       "ts": 1772587721,
       "duration_ms": 4487,
@@ -5792,19 +5807,6 @@
       "fees": 0.0,
       "positions": 3,
       "equity": 19832.273532350857,
-      "cash": 17849.104738713184,
-      "note": ""
-    },
-    {
-      "ts": 1772525575,
-      "duration_ms": 4931,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 3,
-      "equity": 19838.98893128219,
       "cash": 17849.104738713184,
       "note": ""
     }
