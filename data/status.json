@@ -1,8 +1,8 @@
 {
-  "as_of": "2026-03-04T03:28:53.061020+00:00",
+  "as_of": "2026-03-04T03:33:54.426055+00:00",
   "strategy": "grid_dca_hybrid",
   "current_regime": "grid",
-  "adx_value": 11.190495,
+  "adx_value": 11.289125,
   "grid_levels": {
     "BTCUSDT": {
       "center_price": 68395.3,
@@ -75,25 +75,79 @@
     }
   },
   "prices": {
-    "BTCUSDT": 67994.39,
-    "ETHUSDT": 1965.01,
-    "SOLUSDT": 86.29
+    "BTCUSDT": 67592.76,
+    "ETHUSDT": 1952.49,
+    "SOLUSDT": 85.63
   },
   "positions": [
     {
       "symbol": "ETHUSDT",
-      "qty": 0.25347578672547305,
+      "qty": 0.5095380610705937,
       "entry_price": 1972.575,
       "entry_time": 1772591770,
       "last_sell_time": null,
       "high_since_entry": 0.0,
       "dca_level": 1,
-      "avg_entry_price": 1972.575,
+      "avg_entry_price": 1962.5619289340102,
+      "total_invested": 1000.0,
+      "last_dca_time": 0
+    },
+    {
+      "symbol": "BTCUSDT",
+      "qty": 0.007384286713421902,
+      "entry_price": 67711.34700000001,
+      "entry_time": 1772595230,
+      "last_sell_time": null,
+      "high_since_entry": 0.0,
+      "dca_level": 1,
+      "avg_entry_price": 67711.34700000001,
+      "total_invested": 500.0,
+      "last_dca_time": 0
+    },
+    {
+      "symbol": "SOLUSDT",
+      "qty": 5.836035417731742,
+      "entry_price": 85.67460000000001,
+      "entry_time": 1772595234,
+      "last_sell_time": null,
+      "high_since_entry": 0.0,
+      "dca_level": 1,
+      "avg_entry_price": 85.67460000000001,
       "total_invested": 500.0,
       "last_dca_time": 0
     }
   ],
   "trades": [
+    {
+      "id": 24,
+      "symbol": "SOLUSDT",
+      "side": "BUY",
+      "qty": 5.836035417731742,
+      "price": 85.67460000000001,
+      "ts": 1772595234,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
+    {
+      "id": 23,
+      "symbol": "ETHUSDT",
+      "side": "BUY",
+      "qty": 0.25606227434512074,
+      "price": 1952.6499999999999,
+      "ts": 1772595232,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
+    {
+      "id": 22,
+      "symbol": "BTCUSDT",
+      "side": "BUY",
+      "qty": 0.007384286713421902,
+      "price": 67711.34700000001,
+      "ts": 1772595230,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
     {
       "id": 21,
       "symbol": "ETHUSDT",
@@ -3340,9 +3394,27 @@
       "ts": 1772594932,
       "equity": 19799.32458893729,
       "cash": 19301.242133263866
+    },
+    {
+      "ts": 1772595234,
+      "equity": 19792.724134535474,
+      "cash": 17798.992133263866
     }
   ],
   "metrics": [
+    {
+      "ts": 1772595234,
+      "duration_ms": 4719,
+      "status": "ok",
+      "buys": 3,
+      "sells": 0,
+      "trades": 3,
+      "fees": 2.25,
+      "positions": 3,
+      "equity": 19792.724134535474,
+      "cash": 17798.992133263866,
+      "note": ""
+    },
     {
       "ts": 1772594932,
       "duration_ms": 3453,
@@ -5920,19 +5992,6 @@
     {
       "ts": 1772533105,
       "duration_ms": 4570,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 0,
-      "equity": 19774.172946234627,
-      "cash": 19774.172946234627,
-      "note": ""
-    },
-    {
-      "ts": 1772532790,
-      "duration_ms": 3831,
       "status": "ok",
       "buys": 0,
       "sells": 0,
