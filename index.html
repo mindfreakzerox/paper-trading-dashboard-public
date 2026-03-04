@@ -84,6 +84,14 @@
     .regime-timeline-legend { display: flex; gap: 18px; margin-top: 10px; font-size: 0.78rem; color: #94a3b8; flex-wrap: wrap; }
     .regime-legend-item { display: inline-flex; align-items: center; gap: 6px; }
     .regime-pill { border: 1px solid rgba(255,255,255,0.08); }
+    .entry-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 12px; font-size: 0.78em; font-weight: 600; cursor: pointer; user-select: none; transition: background 0.15s; }
+    .entry-badge.multi { background: rgba(99,102,241,0.18); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+    .entry-badge.single { background: rgba(148,163,184,0.12); color: #94a3b8; border: 1px solid rgba(148,163,184,0.2); }
+    .entry-badge.multi:hover { background: rgba(99,102,241,0.28); }
+    .entry-details { display: none; margin-top: 6px; padding: 8px 10px; background: #0c1524; border-radius: 8px; border: 1px solid #1f2a44; font-size: 0.82em; }
+    .entry-details.open { display: block; }
+    .entry-detail-row { display: flex; justify-content: space-between; padding: 3px 0; color: #cbd5e1; font-family: 'DM Mono', 'Roboto Mono', monospace; }
+    .entry-detail-row .entry-label { color: #94a3b8; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -480,26 +488,52 @@
       return wins / closed.length;
     }
 
+    function getEntriesForSymbol(symbol, trades) {
+      return (trades || [])
+        .filter(t => t.symbol === symbol && t.side === 'BUY')
+        .sort((a, b) => a.ts - b.ts)
+        .map(t => ({ price: t.price, qty: t.qty, time: t.ts }));
+    }
+
     function renderPositions(data) {
       const tbl = document.getElementById('positionsTable');
-      const header = '<tr><th>Symbol</th><th class="num">Qty</th><th class="num">Entry</th><th class="num">Unrealized PnL</th><th>Entry Time</th></tr>';
+      const header = '<tr><th>Symbol</th><th class="num">Qty</th><th class="num">Avg Entry</th><th>Entries</th><th class="num">Unrealized PnL</th><th>First Entry</th></tr>';
       const rows = [];
       const positions = data.positions || [];
       const page = paginate(positions, 'positions');
-      page.items.forEach(p => {
+      page.items.forEach((p, idx) => {
         const d = new Date(p.entry_time * 1000).toLocaleString();
         const px = (data.prices || {})[p.symbol] || 0;
-        const unrealized = (px - p.entry_price) * p.qty;
+        const avgEntry = p.avg_entry_price || p.entry_price;
+        const unrealized = (px - avgEntry) * p.qty;
         const pnlFmt = formatPnl(unrealized);
+        const entries = getEntriesForSymbol(p.symbol, data.trades);
+        const entryCount = entries.length || 1;
+        const isMulti = entryCount > 1;
+        const badgeClass = isMulti ? 'multi' : 'single';
+        const badgeText = isMulti ? `${entryCount} entries ▾` : '1 entry';
+        const detailId = `entry-detail-${idx}`;
+        let detailHtml = '';
+        if (isMulti) {
+          const detailRows = entries.map((e, i) => {
+            const t = new Date(e.time * 1000).toLocaleString();
+            return `<div class="entry-detail-row"><span class="entry-label">#${i+1}</span><span>${formatPrice(e.price)}</span><span>${formatQty(e.qty)}</span><span class="muted">${t}</span></div>`;
+          }).join('');
+          detailHtml = `<div class="entry-details" id="${detailId}"><div class="entry-detail-row" style="font-weight:600;color:#94a3b8;"><span>Entry</span><span>Price</span><span>Qty</span><span>Time</span></div>${detailRows}</div>`;
+        }
         rows.push(`<tr>
           <td><strong style="font-size:1.05em;">${p.symbol}</strong></td>
           <td class="num monospace">${formatQty(p.qty)}</td>
-          <td class="num monospace">${formatPrice(p.entry_price)}</td>
+          <td class="num monospace">${formatPrice(avgEntry)}</td>
+          <td>
+            <span class="entry-badge ${badgeClass}" ${isMulti ? `onclick="document.getElementById('${detailId}').classList.toggle('open');this.textContent=this.textContent.includes('▾')?'${entryCount} entries ▴':'${entryCount} entries ▾'"` : ''}>${badgeText}</span>
+            ${detailHtml}
+          </td>
           <td class="num monospace" style="color:${pnlFmt.color}">${pnlFmt.text}</td>
           <td class="muted nowrap">${d}</td>
         </tr>`);
       });
-      if (!rows.length) rows.push('<tr><td colspan="5" class="muted">No open positions</td></tr>');
+      if (!rows.length) rows.push('<tr><td colspan="6" class="muted">No open positions</td></tr>');
       tbl.innerHTML = header + rows.join('');
       renderPagination('positions', positions.length);
     }
