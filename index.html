@@ -63,7 +63,9 @@
     .main-area { flex: 1; display: grid; grid-template-columns: 3fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; min-height: 0; }
     .card { background: #111a2e; border-radius: 10px; padding: 12px 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.2); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
     .card h3 { margin: 0 0 6px; font-size: 0.85rem; color: #94a3b8; font-weight: 600; flex-shrink: 0; }
-    canvas { width: 100% !important; flex: 1; min-height: 0; }
+    .chart-card { gap: 8px; }
+    .chart-wrapper { position: relative; width: 100%; height: 340px; max-height: 420px; min-height: 240px; flex-shrink: 0; }
+    .chart-wrapper canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
 
     /* Tables */
     .table-area { flex: 1; overflow: auto; min-height: 0; -webkit-overflow-scrolling: touch; }
@@ -118,6 +120,7 @@
       .main-area { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
       .stats-strip { width: 100%; justify-content: space-between; }
       .page { padding: 16px; }
+      .chart-wrapper { height: 300px; }
     }
 
     @media (max-width: 768px) {
@@ -129,6 +132,7 @@
       .main-area { grid-template-columns: 1fr; }
       .page { min-height: auto; padding-bottom: 40px; }
       .table-area { overflow-x: auto; }
+      .chart-wrapper { height: 260px; }
     }
 
     @media (max-width: 600px) {
@@ -136,7 +140,7 @@
       .top-bar h1 { font-size: 1rem; }
       .stats-strip { flex-direction: column; gap: 10px; }
       .table-area table { min-width: 420px; }
-      canvas { min-height: 220px; }
+      .chart-wrapper { height: 220px; }
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -195,9 +199,11 @@
     <!-- Main 2-row grid: Row 1 = Chart + Positions, Row 2 = Trades + Metrics -->
     <div class="main-area">
       <!-- Row 1 Col 1: Equity chart -->
-      <div class="card">
+      <div class="card chart-card">
         <h3>Portfolio Value (USD)</h3>
-        <canvas id="equityChart"></canvas>
+        <div class="chart-wrapper">
+          <canvas id="equityChart"></canvas>
+        </div>
         <div class="regime-tl">
           <div class="regime-tl-header"><span>Regime</span><span id="regimeTimelineRange"></span></div>
           <div class="regime-tl-bar" id="regimeTimelineBar"></div>
@@ -483,10 +489,12 @@
       const labels = ds.map(e=>new Date(e.ts*1000).toLocaleTimeString());
       const vals = ds.map(e=>e.equity);
       const ctx = el.getContext('2d');
+      const wrapper = el.closest('.chart-wrapper');
+      const gradHeight = wrapper?.offsetHeight || el.height || 300;
       if (chart) chart.destroy();
       const pos = vals[vals.length-1]>=vals[0];
       const col = pos?'#22c55e':'#f87171';
-      const grad = ctx.createLinearGradient(0,0,0,300);
+      const grad = ctx.createLinearGradient(0,0,0,gradHeight);
       grad.addColorStop(0, pos?'rgba(34,197,94,0.2)':'rgba(248,113,113,0.2)');
       grad.addColorStop(1,'rgba(17,24,39,0.02)');
       const step = Math.max(1,Math.floor(labels.length/5));
@@ -494,7 +502,7 @@
         type:'line',
         data:{labels,datasets:[{data:vals,borderColor:col,backgroundColor:grad,fill:true,tension:0.4,borderWidth:1.5,pointRadius:0}]},
         options:{
-          responsive:true, maintainAspectRatio:false,
+          responsive:true, maintainAspectRatio:false, resizeDelay:150,
           interaction:{mode:'index',intersect:false},
           plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${formatMoney(c.parsed.y)}`}}},
           scales:{x:{ticks:{callback:(v,i)=>i%step===0?labels[i]:'',font:{size:10}},grid:{display:false}},y:{grid:{color:'#1a2540'},ticks:{font:{size:10}}}}
