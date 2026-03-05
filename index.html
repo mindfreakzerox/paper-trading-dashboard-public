@@ -92,6 +92,33 @@
     .entry-details.open { display: block; }
     .entry-detail-row { display: flex; justify-content: space-between; padding: 3px 0; color: #cbd5e1; font-family: 'DM Mono', 'Roboto Mono', monospace; }
     .entry-detail-row .entry-label { color: #94a3b8; }
+
+    /* Wallet card */
+    .wallet-card { background: #111a2e; border-radius: 16px; padding: 0; box-shadow: 0 4px 24px rgba(0,0,0,0.3); margin-bottom: 20px; overflow: hidden; }
+    .wallet-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 14px; border-bottom: 1px solid #1a2540; }
+    .wallet-header-left { display: flex; align-items: center; gap: 12px; }
+    .wallet-eth-icon { width: 32px; height: 32px; border-radius: 50%; background: #627eea; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; color: #fff; }
+    .wallet-title { font-size: 1.1rem; font-weight: 700; }
+    .wallet-subtitle { font-size: 0.82rem; color: #94a3b8; }
+    .wallet-total { text-align: right; }
+    .wallet-total-value { font-size: 1.5rem; font-weight: 700; }
+    .wallet-total-label { font-size: 0.8rem; color: #94a3b8; }
+    .wallet-address { display: flex; align-items: center; gap: 8px; padding: 0 24px 14px; }
+    .wallet-addr-text { font-family: 'DM Mono', 'Roboto Mono', monospace; font-size: 0.82rem; color: #64748b; background: #0c1524; padding: 4px 10px; border-radius: 8px; border: 1px solid #1f2a44; letter-spacing: 0.5px; }
+    .wallet-addr-label { font-size: 0.75rem; color: #475569; text-transform: uppercase; letter-spacing: 1px; }
+    .wallet-tokens { padding: 0; }
+    .wallet-token-row { display: flex; align-items: center; padding: 14px 24px; border-bottom: 1px solid #0f172a; transition: background 0.15s; }
+    .wallet-token-row:hover { background: #0f172a; }
+    .wallet-token-row:last-child { border-bottom: none; }
+    .wallet-token-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: #fff; flex-shrink: 0; }
+    .wallet-token-info { flex: 1; margin-left: 14px; }
+    .wallet-token-name { font-weight: 600; font-size: 0.95rem; }
+    .wallet-token-symbol { color: #94a3b8; font-size: 0.8rem; }
+    .wallet-token-balance { text-align: right; }
+    .wallet-token-amount { font-family: 'DM Mono', 'Roboto Mono', monospace; font-weight: 600; font-size: 0.95rem; }
+    .wallet-token-usd { color: #94a3b8; font-size: 0.82rem; }
+    .wallet-token-price { color: #64748b; font-size: 0.78rem; font-family: 'DM Mono', 'Roboto Mono', monospace; }
+    .wallet-token-pnl { font-size: 0.78rem; font-weight: 600; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -171,6 +198,30 @@
       <div class="summary-box"><div class="summary-value" id="sumPnl">–</div><div class="summary-label">Total PnL Today</div></div>
       <div class="summary-box"><div class="summary-value" id="sumPositions">–</div><div class="summary-label">Open Positions</div></div>
       <div class="summary-box"><div class="summary-value" id="sumWinRate">–</div><div class="summary-label">Win Rate</div></div>
+    </div>
+
+    <!-- Wallet Balance -->
+    <div class="wallet-card" id="walletCard">
+      <div class="wallet-header">
+        <div class="wallet-header-left">
+          <div class="wallet-eth-icon">Ξ</div>
+          <div>
+            <div class="wallet-title">Paper Wallet</div>
+            <div class="wallet-subtitle">Simulated Ethereum Mainnet</div>
+          </div>
+        </div>
+        <div class="wallet-total">
+          <div class="wallet-total-value" id="walletTotal">–</div>
+          <div class="wallet-total-label">Total Balance</div>
+        </div>
+      </div>
+      <div class="wallet-address">
+        <span class="wallet-addr-label">Address</span>
+        <span class="wallet-addr-text">0xPAPER...TRADE</span>
+      </div>
+      <div class="wallet-tokens" id="walletTokens">
+        <div class="wallet-token-row"><div class="muted" style="padding:8px 0;">Loading…</div></div>
+      </div>
     </div>
 
     <div class="layout-row row-primary">
@@ -350,6 +401,7 @@
         dismissError();
         document.getElementById('asof').innerText = 'As of ' + new Date(data.as_of).toLocaleString();
         renderSummary(data);
+        renderWallet(data);
         renderRegimeIndicator(data);
         renderStrategyCard(data);
         renderPositions(data);
@@ -380,6 +432,82 @@
       document.getElementById('sumPnl').style.color = pnlFmt.color;
       document.getElementById('sumPositions').textContent = posCount;
       document.getElementById('sumWinRate').textContent = winRate !== null ? formatPercent(winRate * 100) : '–';
+    }
+
+    const tokenMeta = {
+      USDT:    { name: 'Tether USD',     symbol: 'USDT',  color: '#26a17b', icon: '$' },
+      BTCUSDT: { name: 'Wrapped Bitcoin', symbol: 'WBTC',  color: '#f7931a', icon: '₿' },
+      ETHUSDT: { name: 'Wrapped Ether',   symbol: 'WETH',  color: '#627eea', icon: 'Ξ' },
+      SOLUSDT: { name: 'Wrapped SOL',     symbol: 'WSOL',  color: '#9945ff', icon: '◎' },
+      FXSUSDT: { name: 'Frax Share',      symbol: 'FXS',   color: '#000',    icon: 'F' },
+      FRAXUSDT:{ name: 'Frax',            symbol: 'FRAX',  color: '#000',    icon: 'F' },
+    };
+
+    function renderWallet(data) {
+      const container = document.getElementById('walletTokens');
+      const totalEl = document.getElementById('walletTotal');
+      if (!container) return;
+
+      const prices = data.prices || {};
+      const positions = data.positions || [];
+      const metrics = data.metrics || [];
+      const lastMetric = metrics.length ? metrics[metrics.length - 1] : {};
+      const cash = lastMetric.cash || 0;
+
+      // Build token list: cash first, then each priced asset
+      const tokens = [];
+
+      // USDT (cash)
+      tokens.push({ key: 'USDT', qty: cash, usdValue: cash, price: 1, pnl: null });
+
+      // Positions held
+      const posMap = {};
+      for (const p of positions) posMap[p.symbol] = p;
+
+      // Show all priced symbols (even zero balance)
+      for (const sym of Object.keys(prices)) {
+        const pos = posMap[sym];
+        const qty = pos ? pos.qty : 0;
+        const usdValue = qty * prices[sym];
+        const avgEntry = pos ? (pos.avg_entry_price || pos.entry_price) : 0;
+        const pnl = qty > 0 ? (prices[sym] - avgEntry) * qty : null;
+        tokens.push({ key: sym, qty, usdValue, price: prices[sym], pnl });
+      }
+
+      const total = tokens.reduce((s, t) => s + t.usdValue, 0);
+      totalEl.textContent = formatMoney(total);
+
+      let html = '';
+      for (const t of tokens) {
+        const meta = tokenMeta[t.key] || { name: t.key, symbol: t.key.replace('USDT',''), color: '#475569', icon: '?' };
+        const pctOfPortfolio = total > 0 ? ((t.usdValue / total) * 100).toFixed(1) : '0.0';
+        const amountStr = t.key === 'USDT' ? formatMoney(t.qty) : formatQty(t.qty);
+        const usdStr = formatMoney(t.usdValue);
+        const priceStr = t.key === 'USDT' ? '' : `@ ${formatMoney(t.price)}`;
+
+        let pnlHtml = '';
+        if (t.pnl !== null && t.qty > 0) {
+          const pnlFmt = formatPnl(t.pnl);
+          const pnlPct = t.usdValue - t.pnl !== 0 ? ((t.pnl / (t.usdValue - t.pnl)) * 100).toFixed(2) : '0.00';
+          const sign = t.pnl >= 0 ? '+' : '';
+          pnlHtml = `<div class="wallet-token-pnl" style="color:${pnlFmt.color}">${sign}${formatMoney(Math.abs(t.pnl))} (${sign}${pnlPct}%)</div>`;
+        }
+
+        html += `<div class="wallet-token-row">
+          <div class="wallet-token-icon" style="background:${meta.color}">${meta.icon}</div>
+          <div class="wallet-token-info">
+            <div class="wallet-token-name">${meta.name} <span class="wallet-token-symbol">${meta.symbol}</span></div>
+            <div class="wallet-token-price">${priceStr} · ${pctOfPortfolio}% of portfolio</div>
+          </div>
+          <div class="wallet-token-balance">
+            <div class="wallet-token-amount">${amountStr}</div>
+            <div class="wallet-token-usd">${usdStr}</div>
+            ${pnlHtml}
+          </div>
+        </div>`;
+      }
+
+      container.innerHTML = html || '<div class="wallet-token-row"><div class="muted">No assets</div></div>';
     }
 
     function renderRegimeIndicator(data) {
