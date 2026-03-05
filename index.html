@@ -322,10 +322,6 @@
       const cash = (metrics[metrics.length-1]||{}).cash||0;
       const posMap = {}; for (const p of positions) posMap[p.symbol]=p;
 
-      // Use engine equity as authoritative total (includes fees/slippage)
-      const eq = d.equity||[];
-      const engineEquity = eq.length ? eq[eq.length-1].equity : (metrics.length ? metrics[metrics.length-1].equity||0 : 0);
-
       const tokens = [{ key:'USDT', qty:cash, usd:cash, price:1, pnl:null }];
       for (const sym of Object.keys(prices)) {
         const pos = posMap[sym], qty = pos?pos.qty:0, usd = qty*prices[sym];
@@ -333,9 +329,10 @@
         tokens.push({ key:sym, qty, usd, price:prices[sym], pnl: qty>0?(prices[sym]-avg)*qty:null });
       }
 
-      // Show engine equity as the total (not raw cash+positions which ignores fees)
-      document.getElementById('walletChipTotal').textContent = formatMoney(engineEquity);
-      document.getElementById('walletTotal').textContent = formatMoney(engineEquity);
+      // Market value = cash + all positions at current market price
+      const marketValue = tokens.reduce((s,t)=>s+t.usd,0);
+      document.getElementById('walletChipTotal').textContent = formatMoney(marketValue);
+      document.getElementById('walletTotal').textContent = formatMoney(marketValue);
 
       let html = '';
       for (const t of tokens) {
@@ -346,10 +343,11 @@
           const pf = formatPnl(t.pnl), cost=t.usd-t.pnl, pct = cost?((t.pnl/cost)*100).toFixed(1):'0';
           pnlH = `<div class="wd-pnl" style="color:${pf.color}">${t.pnl>=0?'+':''}${formatMoney(Math.abs(t.pnl))} (${t.pnl>=0?'+':''}${pct}%)</div>`;
         }
+        const pctPort = marketValue>0 ? ((t.usd/marketValue)*100).toFixed(1) : '0';
         html += `<div class="wd-row">
           <div class="wd-icon" style="background:${m.color}">${m.icon}</div>
           <div class="wd-info"><div class="wd-name">${m.sym} <span>${m.name}</span></div>${t.key!=='USDT'?`<div class="wd-price">@ ${formatMoney(t.price)}</div>`:''}</div>
-          <div class="wd-bal"><div class="wd-amount">${amt}</div><div class="wd-usd">${formatMoney(t.usd)}</div>${pnlH}</div>
+          <div class="wd-bal"><div class="wd-amount">${formatMoney(t.usd)}</div><div class="wd-usd">${amt} · ${pctPort}%</div>${pnlH}</div>
         </div>`;
       }
       document.getElementById('walletTokens').innerHTML = html;
