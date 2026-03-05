@@ -396,8 +396,9 @@
     }
 
     function renderWallet(d) {
-      const prices = d.prices||{}, positions = d.positions||[], metrics = d.metrics||[];
-      const cash = (metrics[0]||{}).cash||0;
+      const prices = d.prices||{}, positions = d.positions||[], metrics = Array.isArray(d.metrics)?d.metrics:[];
+      const latestMetric = metrics.length ? metrics[0] : null;
+      const cash = latestMetric ? Number(latestMetric.cash || 0) : 0;
       const posMap = {}; for (const p of positions) posMap[p.symbol]=p;
 
       const tokens = [{ key:'USDT', qty:cash, usd:cash, price:1, pnl:null }];
