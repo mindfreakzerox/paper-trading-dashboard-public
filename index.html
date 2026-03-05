@@ -7,13 +7,17 @@
   <style>
     :root { color-scheme: dark; }
     * { box-sizing: border-box; }
-    body { font-family: "Inter", "SF Pro Text", Arial, sans-serif; background: #0b1220; color: #e2e8f0; margin: 0; overflow: hidden; }
-    .page { height: 100vh; display: flex; flex-direction: column; padding: 12px 16px; gap: 10px; max-width: 1600px; margin: 0 auto; }
+    body { font-family: "Inter", "SF Pro Text", Arial, sans-serif; background: #0b1220; color: #e2e8f0; margin: 0; overflow-x: hidden; overflow-y: auto; }
+    .page { min-height: 100vh; display: flex; flex-direction: column; padding: 12px 16px 32px; gap: 10px; max-width: 1600px; margin: 0 auto; }
 
     /* ── Top bar: title + regime + wallet dropdown + stats ── */
-    .top-bar { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .top-bar { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px; flex-shrink: 0; position: relative; }
     .top-bar h1 { font-size: 1.1rem; margin: 0; white-space: nowrap; }
     .top-bar .as-of { font-size: 0.72rem; color: #64748b; white-space: nowrap; }
+    .top-bar-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+    .top-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: flex-end; flex: 1; }
+    .nav-toggle { display: none; align-items: center; gap: 6px; border: 1px solid #1f2a44; background: #111a2e; color: #e2e8f0; border-radius: 8px; padding: 6px 10px; font-size: 0.82rem; cursor: pointer; }
+    .dropdown-wrapper { position: relative; width: fit-content; }
 
     /* Regime chip */
     .regime-chip { display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px; border-radius: 999px; font-weight: 700; font-size: 0.85rem; cursor: pointer; position: relative; transition: box-shadow 0.2s; }
@@ -62,7 +66,8 @@
     canvas { width: 100% !important; flex: 1; min-height: 0; }
 
     /* Tables */
-    .table-area { flex: 1; overflow: auto; min-height: 0; }
+    .table-area { flex: 1; overflow: auto; min-height: 0; -webkit-overflow-scrolling: touch; }
+    .table-area table { min-width: 520px; }
     table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
     th, td { padding: 5px 6px; text-align: left; }
     th { border-bottom: 1px solid #1a2540; color: #64748b; font-weight: 600; position: sticky; top: 0; background: #111a2e; z-index: 1; }
@@ -74,6 +79,12 @@
     .pill { padding: 2px 8px; border-radius: 12px; font-size: 0.72rem; font-weight: 600; display: inline-block; }
     .pill-buy { background: rgba(0,200,120,0.15); color: #00d084; }
     .pill-sell { background: rgba(255,90,90,0.15); color: #ff5c5c; }
+
+    /* Forms */
+    form { width: 100%; }
+    .form-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .form-row > * { flex: 1; min-width: 220px; }
+    @media (max-width: 600px) { .form-row { flex-direction: column; } }
 
     /* Regime timeline bar */
     .regime-tl { margin-top: 8px; flex-shrink: 0; }
@@ -97,7 +108,36 @@
     .grid-tbl .buy { color: #22c55e; }
     .grid-tbl .sell { color: #f87171; }
 
-    @media (max-width: 900px) { .main-area { grid-template-columns: 1fr; grid-template-rows: auto; } body { overflow: auto; } .page { height: auto; } }
+    /* Responsive grid + layout adjustments */
+    @media (max-width: 1200px) {
+      .main-area { grid-template-columns: 2fr 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); }
+      .stats-strip { flex-wrap: wrap; justify-content: flex-start; }
+    }
+
+    @media (max-width: 1024px) {
+      .main-area { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .stats-strip { width: 100%; justify-content: space-between; }
+      .page { padding: 16px; }
+    }
+
+    @media (max-width: 768px) {
+      .top-bar-left { width: 100%; }
+      .nav-toggle { display: inline-flex; margin-left: auto; }
+      .top-controls { display: none; width: 100%; flex-direction: column; align-items: stretch; background: #0f172a; padding: 12px; border-radius: 10px; border: 1px solid #1a2540; box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
+      .top-controls.open { display: flex; }
+      .stats-strip { flex-wrap: wrap; justify-content: space-between; }
+      .main-area { grid-template-columns: 1fr; }
+      .page { min-height: auto; padding-bottom: 40px; }
+      .table-area { overflow-x: auto; }
+    }
+
+    @media (max-width: 600px) {
+      .top-bar { gap: 6px; }
+      .top-bar h1 { font-size: 1rem; }
+      .stats-strip { flex-direction: column; gap: 10px; }
+      .table-area table { min-width: 420px; }
+      canvas { min-height: 220px; }
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -107,42 +147,48 @@
 
     <!-- Top bar -->
     <div class="top-bar">
-      <h1>📊 Paper Trading</h1>
-      <span class="as-of" id="asof">…</span>
-
-      <!-- Regime chip + dropdown -->
-      <div style="position:relative;">
-        <div class="regime-chip" id="regimeChip" onclick="document.getElementById('regimeDropdown').classList.toggle('open')">
-          <span id="regimeBadgeText">…</span>
-          <span class="regime-arrow">▾</span>
-        </div>
-        <div class="regime-detail" id="regimeDropdown">
-          <div id="regimeDetailContent"></div>
-        </div>
+      <div class="top-bar-left">
+        <h1>📊 Paper Trading</h1>
+        <span class="as-of" id="asof">…</span>
       </div>
 
-      <!-- Wallet chip + dropdown -->
-      <div style="position:relative;">
-        <div class="wallet-trigger" onclick="document.getElementById('walletDropdown').classList.toggle('open')">
-          <span class="w-icon">Ξ</span>
-          <span id="walletChipTotal">$0.00</span>
-          <span class="regime-arrow">▾</span>
-        </div>
-        <div class="wallet-dropdown" id="walletDropdown">
-          <div class="wd-header">
-            <span class="wd-header-title">Paper Wallet</span>
-            <span class="wd-header-total" id="walletTotal">–</span>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="topControls">☰ View Controls</button>
+
+      <div class="top-controls" id="topControls">
+        <!-- Regime chip + dropdown -->
+        <div class="dropdown-wrapper">
+          <div class="regime-chip" id="regimeChip" onclick="document.getElementById('regimeDropdown').classList.toggle('open')">
+            <span id="regimeBadgeText">…</span>
+            <span class="regime-arrow">▾</span>
           </div>
-          <div id="walletTokens"></div>
+          <div class="regime-detail" id="regimeDropdown">
+            <div id="regimeDetailContent"></div>
+          </div>
         </div>
-      </div>
 
-      <!-- Stats -->
-      <div class="stats-strip">
-        <div class="stat-item"><div class="stat-value" id="sumEquity">–</div><div class="stat-label">Equity</div></div>
-        <div class="stat-item"><div class="stat-value" id="sumPnl">–</div><div class="stat-label">PnL Today</div></div>
-        <div class="stat-item"><div class="stat-value" id="sumPositions">–</div><div class="stat-label">Positions</div></div>
-        <div class="stat-item"><div class="stat-value" id="sumWinRate">–</div><div class="stat-label">Win Rate</div></div>
+        <!-- Wallet chip + dropdown -->
+        <div class="dropdown-wrapper">
+          <div class="wallet-trigger" onclick="document.getElementById('walletDropdown').classList.toggle('open')">
+            <span class="w-icon">Ξ</span>
+            <span id="walletChipTotal">$0.00</span>
+            <span class="regime-arrow">▾</span>
+          </div>
+          <div class="wallet-dropdown" id="walletDropdown">
+            <div class="wd-header">
+              <span class="wd-header-title">Paper Wallet</span>
+              <span class="wd-header-total" id="walletTotal">–</span>
+            </div>
+            <div id="walletTokens"></div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-strip">
+          <div class="stat-item"><div class="stat-value" id="sumEquity">–</div><div class="stat-label">Equity</div></div>
+          <div class="stat-item"><div class="stat-value" id="sumPnl">–</div><div class="stat-label">PnL Today</div></div>
+          <div class="stat-item"><div class="stat-value" id="sumPositions">–</div><div class="stat-label">Positions</div></div>
+          <div class="stat-item"><div class="stat-value" id="sumWinRate">–</div><div class="stat-label">Win Rate</div></div>
+        </div>
       </div>
     </div>
 
@@ -193,7 +239,33 @@
         document.getElementById('regimeDropdown').classList.remove('open');
       if (!e.target.closest('.wallet-trigger') && !e.target.closest('#walletDropdown'))
         document.getElementById('walletDropdown').classList.remove('open');
+      const navWrap = document.getElementById('topControls');
+      const navToggle = document.getElementById('navToggle');
+      if (navWrap && navToggle && window.innerWidth <= 768 && !navWrap.contains(e.target) && !navToggle.contains(e.target)) {
+        navWrap.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
     });
+
+    const navToggle = document.getElementById('navToggle');
+    const topControls = document.getElementById('topControls');
+    function syncNavState() {
+      if (!navToggle || !topControls) return;
+      if (window.innerWidth > 768) {
+        topControls.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'true');
+      } else {
+        navToggle.setAttribute('aria-expanded', topControls.classList.contains('open') ? 'true' : 'false');
+      }
+    }
+    if (navToggle && topControls) {
+      navToggle.addEventListener('click', () => {
+        const open = topControls.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      window.addEventListener('resize', syncNavState);
+      syncNavState();
+    }
 
     const fmtUsd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
     const state = { loading: true, data: null };
