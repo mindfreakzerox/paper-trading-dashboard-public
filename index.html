@@ -150,7 +150,7 @@
     <div class="main-area">
       <!-- Row 1 Col 1: Equity chart -->
       <div class="card">
-        <h3>Equity Curve</h3>
+        <h3>Portfolio Value (USD)</h3>
         <canvas id="equityChart"></canvas>
         <div class="regime-tl">
           <div class="regime-tl-header"><span>Regime</span><span id="regimeTimelineRange"></span></div>
@@ -259,8 +259,11 @@
 
     function renderSummary(d) {
       const eq = d.equity||[], last = eq.length?eq[eq.length-1].equity:0;
-      const ds = new Date((eq.length?eq[eq.length-1].ts:0)*1000); ds.setHours(0,0,0,0);
-      const de = eq.find(e=>e.ts>=ds.getTime()/1000) || eq[0] || {equity:0};
+      // PnL today: compare current equity to first reading of the day
+      const lastTs = eq.length ? eq[eq.length-1].ts : 0;
+      const ds = new Date(lastTs*1000); ds.setHours(0,0,0,0);
+      const dayStartTs = ds.getTime()/1000;
+      const de = eq.find(e=>e.ts>=dayStartTs) || eq[0] || {equity:0};
       const pnl = last - (de.equity||0);
       const pf = formatPnl(pnl);
       document.getElementById('sumEquity').textContent = formatMoney(last);
@@ -318,15 +321,21 @@
       const prices = d.prices||{}, positions = d.positions||[], metrics = d.metrics||[];
       const cash = (metrics[metrics.length-1]||{}).cash||0;
       const posMap = {}; for (const p of positions) posMap[p.symbol]=p;
+
+      // Use engine equity as authoritative total (includes fees/slippage)
+      const eq = d.equity||[];
+      const engineEquity = eq.length ? eq[eq.length-1].equity : (metrics.length ? metrics[metrics.length-1].equity||0 : 0);
+
       const tokens = [{ key:'USDT', qty:cash, usd:cash, price:1, pnl:null }];
       for (const sym of Object.keys(prices)) {
         const pos = posMap[sym], qty = pos?pos.qty:0, usd = qty*prices[sym];
         const avg = pos?(pos.avg_entry_price||pos.entry_price):0;
         tokens.push({ key:sym, qty, usd, price:prices[sym], pnl: qty>0?(prices[sym]-avg)*qty:null });
       }
-      const total = tokens.reduce((s,t)=>s+t.usd,0);
-      document.getElementById('walletChipTotal').textContent = formatMoney(total);
-      document.getElementById('walletTotal').textContent = formatMoney(total);
+
+      // Show engine equity as the total (not raw cash+positions which ignores fees)
+      document.getElementById('walletChipTotal').textContent = formatMoney(engineEquity);
+      document.getElementById('walletTotal').textContent = formatMoney(engineEquity);
 
       let html = '';
       for (const t of tokens) {
