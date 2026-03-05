@@ -1,8 +1,8 @@
 {
-  "as_of": "2026-03-05T01:37:03.678798+00:00",
+  "as_of": "2026-03-05T01:42:03.178780+00:00",
   "strategy": "grid_dca_hybrid",
   "current_regime": "grid",
-  "adx_value": 21.3942,
+  "adx_value": 21.351639,
   "grid_levels": {
     "BTCUSDT": {
       "center_price": 72762.54,
@@ -121,11 +121,11 @@
     }
   },
   "prices": {
-    "BTCUSDT": 72830.7,
-    "ETHUSDT": 2123.4,
-    "SOLUSDT": 90.45,
+    "BTCUSDT": 72764.48,
+    "ETHUSDT": 2119.04,
+    "SOLUSDT": 89.98,
     "FXSUSDT": 0.812,
-    "FRAXUSDT": 0.6095
+    "FRAXUSDT": 0.6073
   },
   "positions": [
     {
@@ -139,9 +139,31 @@
       "avg_entry_price": 2064.6082420224793,
       "total_invested": 1512.3888023320098,
       "last_dca_time": 0
+    },
+    {
+      "symbol": "SOLUSDT",
+      "qty": 5.554278071599088,
+      "entry_price": 90.0207,
+      "entry_time": 1772674917,
+      "last_sell_time": null,
+      "high_since_entry": 0.0,
+      "dca_level": 1,
+      "avg_entry_price": 90.0207,
+      "total_invested": 500.0,
+      "last_dca_time": 0
     }
   ],
   "trades": [
+    {
+      "id": 31,
+      "symbol": "SOLUSDT",
+      "side": "BUY",
+      "qty": 5.554278071599088,
+      "price": 90.0207,
+      "ts": 1772674917,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
     {
       "id": 30,
       "symbol": "ETHUSDT",
@@ -4758,9 +4780,27 @@
       "ts": 1772674623,
       "equity": 19876.546782349567,
       "cash": 18321.091215764252
+    },
+    {
+      "ts": 1772674922,
+      "equity": 19872.376889630137,
+      "cash": 17820.341215764252
     }
   ],
   "metrics": [
+    {
+      "ts": 1772674923,
+      "duration_ms": 10027,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.75,
+      "positions": 2,
+      "equity": 19872.376889630137,
+      "cash": 17820.341215764252,
+      "note": ""
+    },
     {
       "ts": 1772674623,
       "duration_ms": 11400,
@@ -7345,19 +7385,6 @@
       "fees": 0.0,
       "positions": 3,
       "equity": 19840.054786893055,
-      "cash": 18797.492133263866,
-      "note": ""
-    },
-    {
-      "ts": 1772612678,
-      "duration_ms": 6863,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 3,
-      "equity": 19839.699130625526,
       "cash": 18797.492133263866,
       "note": ""
     }
