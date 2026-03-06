@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-03-06T09:19:54.236903+00:00",
+  "as_of": "2026-03-06T09:24:58.674992+00:00",
   "strategy": "grid_dca_hybrid",
   "current_regime": "cash",
   "adx_value": 28.146994,
@@ -52,13 +52,58 @@
     }
   },
   "prices": {
-    "WBTCDAI": 70590.11,
-    "WETHDAI": 2063.41,
-    "WSOLDAI": 87.78,
-    "FRAXDAI": 0.5978
+    "WBTCDAI": 70470.01,
+    "WETHDAI": 2058.29,
+    "WSOLDAI": 87.56,
+    "FRAXDAI": 0.5958
   },
-  "positions": [],
+  "positions": [
+    {
+      "symbol": "WETHDAI",
+      "qty": 0.2424432499750405,
+      "entry_price": 2062.3383,
+      "entry_time": 1772789093,
+      "last_sell_time": null,
+      "high_since_entry": 0.0,
+      "dca_level": 1,
+      "avg_entry_price": 2062.3383,
+      "total_invested": 500.0,
+      "last_dca_time": 0
+    },
+    {
+      "symbol": "WSOLDAI",
+      "qty": 5.706140606151903,
+      "entry_price": 87.62490000000001,
+      "entry_time": 1772789095,
+      "last_sell_time": null,
+      "high_since_entry": 0.0,
+      "dca_level": 1,
+      "avg_entry_price": 87.62490000000001,
+      "total_invested": 500.0,
+      "last_dca_time": 0
+    }
+  ],
   "trades": [
+    {
+      "id": 53,
+      "symbol": "WSOLDAI",
+      "side": "BUY",
+      "qty": 5.706140606151903,
+      "price": 87.62490000000001,
+      "ts": 1772789095,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
+    {
+      "id": 52,
+      "symbol": "WETHDAI",
+      "side": "BUY",
+      "qty": 0.2424432499750405,
+      "price": 2062.3383,
+      "ts": 1772789094,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
     {
       "id": 51,
       "symbol": "WSOLDAI",
@@ -935,9 +980,27 @@
       "ts": 1772788794,
       "equity": 19994.649709946047,
       "cash": 19994.649709946047
+    },
+    {
+      "ts": 1772789098,
+      "equity": 19991.797898411834,
+      "cash": 18993.149709946047
     }
   ],
   "metrics": [
+    {
+      "ts": 1772789098,
+      "duration_ms": 7697,
+      "status": "ok",
+      "buys": 2,
+      "sells": 0,
+      "trades": 2,
+      "fees": 1.5,
+      "positions": 2,
+      "equity": 19991.797898411834,
+      "cash": 18993.149709946047,
+      "note": ""
+    },
     {
       "ts": 1772788794,
       "duration_ms": 6078,
