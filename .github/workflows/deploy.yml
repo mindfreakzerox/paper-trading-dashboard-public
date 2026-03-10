@@ -27,4 +27,6 @@ jobs:
         run: |
           IMAGE=ghcr.io/${{ github.repository_owner }}/paper-trading-dashboard-public:${{ github.sha }}
           docker build -t $IMAGE .
+          docker tag $IMAGE ghcr.io/${{ github.repository_owner }}/paper-trading-dashboard-public:latest
           docker push $IMAGE
+          docker push ghcr.io/${{ github.repository_owner }}/paper-trading-dashboard-public:latest
