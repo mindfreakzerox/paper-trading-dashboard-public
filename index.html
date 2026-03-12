@@ -385,27 +385,32 @@ async function loadData() {
     // Version
     if (d.version) $('#strategy-badge').textContent = 'Grid+DCA v' + d.version;
 
-    // KPIs (live-computed for top-line values)
+    // KPIs — prefer live values from engine, fall back to reconstruction
     const eq = d.equity || [];
-    const latest = eq[eq.length-1];
     const trades = d.trades || [];
     const prices = d.prices || {};
     const positions = d.positions || [];
 
-    const baseCash = latest ? latest.cash : STARTING_CASH;
-    const baseTs = latest ? latest.ts : 0;
-
-    let cash = baseCash;
-    const tradesAfterSnapshot = trades.filter(t => (t.ts || 0) > baseTs);
-    for (const t of tradesAfterSnapshot) {
-      const tradeValue = (t.qty || 0) * (t.price || 0);
-      const fee = t.fee || 0;
-      if (t.side === 'BUY') cash -= (tradeValue + fee);
-      else if (t.side === 'SELL') cash += (tradeValue - fee);
+    let cash, equity;
+    if (d.live_cash != null && d.live_equity != null) {
+      cash = d.live_cash;
+      equity = d.live_equity;
+    } else {
+      // Fallback: reconstruct from equity snapshot + trades
+      const latest = eq[eq.length-1];
+      const baseCash = latest ? latest.cash : STARTING_CASH;
+      const baseTs = latest ? latest.ts : 0;
+      cash = baseCash;
+      const tradesAfterSnapshot = trades.filter(t => (t.ts || 0) > baseTs);
+      for (const t of tradesAfterSnapshot) {
+        const tradeValue = (t.qty || 0) * (t.price || 0);
+        const fee = t.fee || 0;
+        if (t.side === 'BUY') cash -= (tradeValue + fee);
+        else if (t.side === 'SELL') cash += (tradeValue - fee);
+      }
+      const positionsValue = positions.reduce((sum, p) => sum + ((p.qty || 0) * (prices[p.symbol] || 0)), 0);
+      equity = cash + positionsValue;
     }
-
-    const positionsValue = positions.reduce((sum, p) => sum + ((p.qty || 0) * (prices[p.symbol] || 0)), 0);
-    const equity = cash + positionsValue;
     const pnl = equity - STARTING_CASH;
     const pnlPct = pnl / STARTING_CASH * 100;
     const utilization = equity > 0 ? ((equity - cash) / equity * 100) : 0;
