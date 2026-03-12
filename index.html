@@ -328,17 +328,44 @@ function renderConfig(config) {
 }
 
 function computeWinRate(trades) {
-  // Group trades into round trips per symbol
+  // Group trades into round trips per symbol (FIFO, quantity-aware)
   const buys = {}, results = [];
   for (const t of [...trades].reverse()) { // oldest first
     if (t.side === 'BUY') {
       if (!buys[t.symbol]) buys[t.symbol] = [];
-      buys[t.symbol].push(t);
+      buys[t.symbol].push({ ...t, fee: t.fee || 0 });
     } else if (t.side === 'SELL' && buys[t.symbol] && buys[t.symbol].length > 0) {
-      const b = buys[t.symbol].shift();
-      const buyVal = b.qty * b.price + (b.fee||0);
-      const sellVal = t.qty * t.price - (t.fee||0);
-      results.push(sellVal - buyVal);
+      let sell = { ...t, fee: t.fee || 0 };
+
+      while (sell.qty > 0 && buys[t.symbol].length > 0) {
+        const buy = buys[t.symbol].shift();
+        const matchQty = Math.min(buy.qty, sell.qty);
+
+        const buyVal = matchQty * buy.price + (buy.fee * matchQty / buy.qty);
+        const sellVal = matchQty * sell.price - (sell.fee * matchQty / sell.qty);
+        results.push(sellVal - buyVal);
+
+        const buyRemaining = buy.qty - matchQty;
+        const sellRemaining = sell.qty - matchQty;
+
+        if (buyRemaining > 0) {
+          buys[t.symbol].unshift({
+            ...buy,
+            qty: buyRemaining,
+            fee: buy.fee * (buyRemaining / buy.qty)
+          });
+        }
+
+        if (sellRemaining > 0) {
+          sell = {
+            ...sell,
+            qty: sellRemaining,
+            fee: sell.fee * (sellRemaining / sell.qty)
+          };
+        } else {
+          break;
+        }
+      }
     }
   }
   const wins = results.filter(r => r > 0).length;
@@ -358,11 +385,27 @@ async function loadData() {
     // Version
     if (d.version) $('#strategy-badge').textContent = 'Grid+DCA v' + d.version;
 
-    // KPIs
+    // KPIs (live-computed for top-line values)
     const eq = d.equity || [];
     const latest = eq[eq.length-1];
-    const equity = latest ? latest.equity : STARTING_CASH;
-    const cash = latest ? latest.cash : STARTING_CASH;
+    const trades = d.trades || [];
+    const prices = d.prices || {};
+    const positions = d.positions || [];
+
+    const baseCash = latest ? latest.cash : STARTING_CASH;
+    const baseTs = latest ? latest.ts : 0;
+
+    let cash = baseCash;
+    const tradesAfterSnapshot = trades.filter(t => (t.ts || 0) > baseTs);
+    for (const t of tradesAfterSnapshot) {
+      const tradeValue = (t.qty || 0) * (t.price || 0);
+      const fee = t.fee || 0;
+      if (t.side === 'BUY') cash -= (tradeValue + fee);
+      else if (t.side === 'SELL') cash += (tradeValue - fee);
+    }
+
+    const positionsValue = positions.reduce((sum, p) => sum + ((p.qty || 0) * (prices[p.symbol] || 0)), 0);
+    const equity = cash + positionsValue;
     const pnl = equity - STARTING_CASH;
     const pnlPct = pnl / STARTING_CASH * 100;
     const utilization = equity > 0 ? ((equity - cash) / equity * 100) : 0;
@@ -378,7 +421,6 @@ async function loadData() {
     $('#kpi-regime').innerHTML = `<span class="${regimeClass(regime)}">${regime}</span>`;
     $('#kpi-adx').textContent = d.adx_value != null ? `ADX: ${fmt(d.adx_value,1)}` : '';
 
-    const trades = d.trades || [];
     const totalTrades = trades.length;
     const totalFees = trades.reduce((a,t) => a + (t.fee||0), 0);
     $('#kpi-trades').textContent = totalTrades;
@@ -392,10 +434,10 @@ async function loadData() {
     if (eq.length > 1) renderEquityChart(eq);
 
     // Positions
-    renderPositions(d.positions, d.prices || {});
+    renderPositions(positions, prices);
 
     // Indicators
-    renderIndicators(d.indicators, d.prices || {});
+    renderIndicators(d.indicators, prices);
 
     // Trades
     renderTrades(trades);
