@@ -60,6 +60,7 @@ tr:hover{background:#ffffff05}
 .pos-detail .val{color:var(--text);font-weight:500}
 
 /* Indicators */
+.indicators-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
 .indicator-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem}
 .indicator{background:#ffffff08;padding:.35rem .6rem;border-radius:6px;font-size:.75rem;display:flex;gap:.35rem;align-items:center}
 .indicator .ind-label{color:var(--dim)}
@@ -263,10 +264,10 @@ function renderIndicators(indicators, prices) {
     c.innerHTML = '<div style="color:var(--dim)">No indicator data</div>';
     return;
   }
-  c.innerHTML = Object.entries(indicators).map(([sym, ind]) => {
+  c.innerHTML = `<div class="indicators-grid">${Object.entries(indicators).map(([sym, ind]) => {
     const short = sym.replace('DAI','');
     const price = prices[sym] || 0;
-    return `<div style="margin-bottom:1rem">
+    return `<div>
       <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.35rem">
         <h3 style="margin:0">${short}</h3>
         <span style="font-weight:700">${fmtUsd(price)}</span>
@@ -279,7 +280,7 @@ function renderIndicators(indicators, prices) {
         <div class="indicator"><span class="ind-label">RSI</span><span class="ind-val" style="color:${ind.rsi<30?'var(--green)':ind.rsi>70?'var(--red)':'var(--text)'}">${fmt(ind.rsi,1)}</span></div>
       </div>
     </div>`;
-  }).join('');
+  }).join('')}</div>`;
 }
 
 function renderTrades(trades) {
