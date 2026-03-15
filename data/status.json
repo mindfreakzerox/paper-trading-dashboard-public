@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-03-15T05:40:39.837589+00:00",
+  "as_of": "2026-03-15T06:02:38.093873+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -44,29 +44,6 @@
         0.7093
       ]
     },
-    "WBTCDAI": {
-      "center_price": 70957.97,
-      "buy_levels": [
-        69893.6004,
-        68829.2309,
-        67764.8613,
-        66700.4918,
-        65636.1223,
-        64571.7527,
-        63507.3832,
-        62443.0136
-      ],
-      "sell_levels": [
-        72022.3395,
-        73086.7091,
-        74151.0786,
-        75215.4482,
-        76279.8178,
-        77344.1873,
-        78408.5568,
-        79472.9264
-      ]
-    },
     "WETHDAI": {
       "center_price": 2094.96,
       "buy_levels": [
@@ -90,65 +67,80 @@
         2346.3552
       ]
     },
-    "WSOLDAI": {
-      "center_price": 87.98,
+    "WBTCDAI": {
+      "center_price": 70957.97,
       "buy_levels": [
-        86.6603,
-        85.3406,
-        84.0209,
-        82.7012,
-        81.3815,
-        80.0618,
-        78.7421,
-        77.4224
+        69893.6004,
+        68829.2309,
+        67764.8613,
+        66700.4918,
+        65636.1223,
+        64571.7527,
+        63507.3832,
+        62443.0136
       ],
       "sell_levels": [
-        89.2997,
-        90.6194,
-        91.9391,
-        93.2588,
-        94.5785,
-        95.8982,
-        97.2179,
-        98.5376
+        72022.3395,
+        73086.7091,
+        74151.0786,
+        75215.4482,
+        76279.8178,
+        77344.1873,
+        78408.5568,
+        79472.9264
+      ]
+    },
+    "WSOLDAI": {
+      "center_price": 88.35,
+      "buy_levels": [
+        87.0247,
+        85.6995,
+        84.3742,
+        83.049,
+        81.7237,
+        80.3985,
+        79.0733,
+        77.748
+      ],
+      "sell_levels": [
+        89.6752,
+        91.0005,
+        92.3257,
+        93.651,
+        94.9762,
+        96.3015,
+        97.6267,
+        98.952
       ]
     }
   },
   "indicators": {
     "WBTCDAI": {
       "adx": 22.17,
-      "ema50": 70960.5385,
-      "rsi": 70.46,
-      "regime": "sideways",
-      "raw_regime": "sideways"
-    },
-    "WETHDAI": {
-      "adx": 21.97,
-      "ema50": 2087.7459,
-      "rsi": 73.39,
+      "ema50": 70959.8472,
+      "rsi": 69.91,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WSOLDAI": {
-      "adx": 21.67,
-      "ema50": 87.7275,
-      "rsi": 66.22,
+      "adx": 23.03,
+      "ema50": 87.7353,
+      "rsi": 59.49,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "FRAXDAI": {
-      "adx": 33.18,
+      "adx": 33.64,
       "ema50": 0.627,
-      "rsi": 47.58,
+      "rsi": 43.79,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     }
   },
   "prices": {
-    "WBTCDAI": 71667.14,
-    "WETHDAI": 2115.51,
-    "WSOLDAI": 88.58,
-    "FRAXDAI": 0.6338
+    "WBTCDAI": 71649.51,
+    "WSOLDAI": 88.35,
+    "FRAXDAI": 0.6314
   },
   "positions": [
     {
@@ -4470,9 +4462,27 @@
       "ts": 1773553239,
       "equity": 20095.057838599914,
       "cash": 19909.56685276209
+    },
+    {
+      "ts": 1773554557,
+      "equity": 20095.76292461859,
+      "cash": 19909.56685276209
     }
   ],
   "metrics": [
+    {
+      "ts": 1773554558,
+      "duration_ms": 1039848,
+      "status": "partial",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 3,
+      "equity": 20095.76292461859,
+      "cash": 19909.56685276209,
+      "note": "Error processing WETHDAI: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=ETHUSDT&interval=15m&limit=200 (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol ("
+    },
     {
       "ts": 1773553239,
       "duration_ms": 30382,
@@ -7059,19 +7069,6 @@
       "equity": 20050.882558765257,
       "cash": 19696.841590824544,
       "note": ""
-    },
-    {
-      "ts": 1773490951,
-      "duration_ms": 10254,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 4,
-      "equity": 20051.075723794955,
-      "cash": 19696.841590824544,
-      "note": ""
     }
   ],
   "rolling": {
@@ -7083,5 +7080,5 @@
     "trades_7d": 14
   },
   "live_cash": 19909.57,
-  "live_equity": 20095.06
+  "live_equity": 19995.07
 }
