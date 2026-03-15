@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-03-15T23:22:28.536021+00:00",
+  "as_of": "2026-03-15T23:27:28.148148+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -117,38 +117,38 @@
   "indicators": {
     "WBTCDAI": {
       "adx": 31.25,
-      "ema50": 71413.2422,
-      "rsi": 68.65,
+      "ema50": 71406.5261,
+      "rsi": 63.89,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     },
     "WETHDAI": {
       "adx": 34.5,
-      "ema50": 2105.7198,
-      "rsi": 73.78,
+      "ema50": 2105.3743,
+      "rsi": 68.48,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     },
     "WSOLDAI": {
       "adx": 30.4,
-      "ema50": 88.3954,
-      "rsi": 82.91,
+      "ema50": 88.3817,
+      "rsi": 77.09,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     },
     "FRAXDAI": {
       "adx": 25.88,
       "ema50": 0.628,
-      "rsi": 60.86,
+      "rsi": 58.07,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 72787.4,
-    "WETHDAI": 2185.07,
-    "WSOLDAI": 92.45,
-    "FRAXDAI": 0.6336
+    "WBTCDAI": 72610.74,
+    "WETHDAI": 2176.26,
+    "WSOLDAI": 92.11,
+    "FRAXDAI": 0.6327
   },
   "positions": [
     {
@@ -5493,9 +5493,27 @@
       "ts": 1773616948,
       "equity": 20098.394739007068,
       "cash": 20015.643159739862
+    },
+    {
+      "ts": 1773617248,
+      "equity": 20098.086029824703,
+      "cash": 20015.643159739862
     }
   ],
   "metrics": [
+    {
+      "ts": 1773617248,
+      "duration_ms": 7770,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 2,
+      "equity": 20098.086029824703,
+      "cash": 20015.643159739862,
+      "note": ""
+    },
     {
       "ts": 1773616948,
       "duration_ms": 7909,
@@ -8082,19 +8100,6 @@
       "equity": 20095.76292461859,
       "cash": 19909.56685276209,
       "note": "Error processing WETHDAI: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=ETHUSDT&interval=15m&limit=200 (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol ("
-    },
-    {
-      "ts": 1773553239,
-      "duration_ms": 30382,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 3,
-      "equity": 20095.057838599914,
-      "cash": 19909.56685276209,
-      "note": ""
     }
   ],
   "rolling": {
@@ -8106,5 +8111,5 @@
     "trades_7d": 18
   },
   "live_cash": 20015.64,
-  "live_equity": 20098.39
+  "live_equity": 20098.09
 }
