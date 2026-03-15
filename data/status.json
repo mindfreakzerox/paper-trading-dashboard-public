@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-03-15T23:27:28.148148+00:00",
+  "as_of": "2026-03-15T23:32:30.673252+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -117,38 +117,38 @@
   "indicators": {
     "WBTCDAI": {
       "adx": 31.25,
-      "ema50": 71406.5261,
-      "rsi": 63.89,
+      "ema50": 71404.9473,
+      "rsi": 62.06,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     },
     "WETHDAI": {
       "adx": 34.5,
-      "ema50": 2105.3743,
-      "rsi": 68.48,
+      "ema50": 2105.3328,
+      "rsi": 67.27,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     },
     "WSOLDAI": {
       "adx": 30.4,
-      "ema50": 88.3817,
-      "rsi": 77.09,
+      "ema50": 88.3762,
+      "rsi": 73.32,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     },
     "FRAXDAI": {
       "adx": 25.88,
       "ema50": 0.628,
-      "rsi": 58.07,
+      "rsi": 56.07,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 72610.74,
-    "WETHDAI": 2176.26,
-    "WSOLDAI": 92.11,
-    "FRAXDAI": 0.6327
+    "WBTCDAI": 72564.38,
+    "WETHDAI": 2175.2,
+    "WSOLDAI": 91.97,
+    "FRAXDAI": 0.632
   },
   "positions": [
     {
@@ -5498,9 +5498,27 @@
       "ts": 1773617248,
       "equity": 20098.086029824703,
       "cash": 20015.643159739862
+    },
+    {
+      "ts": 1773617550,
+      "equity": 20098.04352716238,
+      "cash": 20015.643159739862
     }
   ],
   "metrics": [
+    {
+      "ts": 1773617550,
+      "duration_ms": 7514,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 2,
+      "equity": 20098.04352716238,
+      "cash": 20015.643159739862,
+      "note": ""
+    },
     {
       "ts": 1773617248,
       "duration_ms": 7770,
@@ -8087,19 +8105,6 @@
       "equity": 20094.68674789458,
       "cash": 19909.56685276209,
       "note": ""
-    },
-    {
-      "ts": 1773554558,
-      "duration_ms": 1039848,
-      "status": "partial",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 3,
-      "equity": 20095.76292461859,
-      "cash": 19909.56685276209,
-      "note": "Error processing WETHDAI: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=ETHUSDT&interval=15m&limit=200 (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol ("
     }
   ],
   "rolling": {
@@ -8111,5 +8116,5 @@
     "trades_7d": 18
   },
   "live_cash": 20015.64,
-  "live_equity": 20098.09
+  "live_equity": 20098.04
 }
