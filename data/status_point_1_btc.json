@@ -1,22 +1,24 @@
 {
-  "as_of": "2026-03-19T17:00:26.972461+00:00",
+  "as_of": "2026-03-19T17:15:19.872144+00:00",
   "strategy": "point_1_btc_trend",
   "version": "1.0",
   "current_regime": "trend",
-  "adx_value": 48.62744926363428,
+  "adx_value": 48.683166392686765,
   "prices": {
-    "WBTCDAI": 69468.94
+    "WBTCDAI": 69236.94
   },
-  "positions": [
-    {
-      "symbol": "WBTCDAI",
-      "qty": 0.1,
-      "entry_price": 69468.94,
-      "entry_time": 1773939626,
-      "peak_price": 69468.94
-    }
-  ],
+  "positions": [],
   "trades": [
+    {
+      "id": 54,
+      "symbol": "WBTCDAI",
+      "side": "SELL",
+      "qty": 0.1,
+      "price": 69236.94,
+      "fee": 0.0,
+      "regime": "trend",
+      "ts": 1773940519
+    },
     {
       "id": 53,
       "symbol": "WBTCDAI",
@@ -813,9 +815,27 @@
       "ts": 1773939626,
       "equity": 19880.455,
       "cash": 12933.561000000002
+    },
+    {
+      "ts": 1773940519,
+      "equity": 19857.255,
+      "cash": 19857.255
     }
   ],
   "metrics": [
+    {
+      "ts": 1773940519,
+      "duration_ms": 1090,
+      "status": "ok",
+      "buys": 0,
+      "sells": 1,
+      "trades": 1,
+      "fees": 0.0,
+      "positions": 0,
+      "equity": 19857.255,
+      "cash": 19857.255,
+      "note": ""
+    },
     {
       "ts": 1773939626,
       "duration_ms": 2463,
@@ -1509,16 +1529,16 @@
   "rolling": {
     "fees_24h": 0.0,
     "fees_7d": 0.0,
-    "pnl_24h": -7066.439,
-    "pnl_7d": -7066.439,
-    "trades_24h": 53,
-    "trades_7d": 53
+    "pnl_24h": -142.745,
+    "pnl_7d": -142.745,
+    "trades_24h": 54,
+    "trades_7d": 54
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 48.63,
-      "ema50": 70967.9704,
-      "rsi": 32.44,
+      "adx": 48.68,
+      "ema50": 70954.7133,
+      "rsi": 30.37,
       "regime": "trend",
       "raw_regime": "trend"
     }
@@ -1542,6 +1562,6 @@
     "slippage_rate": 0.0,
     "regime_candle_interval": "1h"
   },
-  "live_cash": 12933.56,
-  "live_equity": 19880.46
+  "live_cash": 19857.26,
+  "live_equity": 19857.26
 }
