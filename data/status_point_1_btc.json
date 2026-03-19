@@ -1,22 +1,24 @@
 {
-  "as_of": "2026-03-19T15:30:18.536323+00:00",
+  "as_of": "2026-03-19T15:45:18.465909+00:00",
   "strategy": "point_1_btc_trend",
   "version": "1.0",
   "current_regime": "trend",
-  "adx_value": 47.222139050438656,
+  "adx_value": 47.41888436176766,
   "prices": {
-    "WBTCDAI": 69223.84
+    "WBTCDAI": 68900.0
   },
-  "positions": [
-    {
-      "symbol": "WBTCDAI",
-      "qty": 0.1,
-      "entry_price": 69223.84,
-      "entry_time": 1773934218,
-      "peak_price": 69223.84
-    }
-  ],
+  "positions": [],
   "trades": [
+    {
+      "id": 48,
+      "symbol": "WBTCDAI",
+      "side": "SELL",
+      "qty": 0.1,
+      "price": 68900.0,
+      "fee": 0.0,
+      "regime": "trend",
+      "ts": 1773935118
+    },
     {
       "id": 47,
       "symbol": "WBTCDAI",
@@ -723,9 +725,27 @@
       "ts": 1773934218,
       "equity": 19910.681,
       "cash": 12988.297
+    },
+    {
+      "ts": 1773935118,
+      "equity": 19878.297,
+      "cash": 19878.297
     }
   ],
   "metrics": [
+    {
+      "ts": 1773935118,
+      "duration_ms": 1369,
+      "status": "ok",
+      "buys": 0,
+      "sells": 1,
+      "trades": 1,
+      "fees": 0.0,
+      "positions": 0,
+      "equity": 19878.297,
+      "cash": 19878.297,
+      "note": ""
+    },
     {
       "ts": 1773934218,
       "duration_ms": 2051,
@@ -1341,16 +1361,16 @@
   "rolling": {
     "fees_24h": 0.0,
     "fees_7d": 0.0,
-    "pnl_24h": -7011.703,
-    "pnl_7d": -7011.703,
-    "trades_24h": 47,
-    "trades_7d": 47
+    "pnl_24h": -121.703,
+    "pnl_7d": -121.703,
+    "trades_24h": 48,
+    "trades_7d": 48
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 47.22,
-      "ema50": 71145.1888,
-      "rsi": 30.08,
+      "adx": 47.42,
+      "ema50": 71126.6836,
+      "rsi": 28.01,
       "regime": "trend",
       "raw_regime": "trend"
     }
@@ -1374,6 +1394,6 @@
     "slippage_rate": 0.0,
     "regime_candle_interval": "1h"
   },
-  "live_cash": 12988.3,
-  "live_equity": 19910.68
+  "live_cash": 19878.3,
+  "live_equity": 19878.3
 }
