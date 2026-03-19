@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-03-19T21:30:05.579564+00:00",
+  "as_of": "2026-03-19T21:35:26.452180+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -45,8 +45,42 @@
       ]
     }
   },
-  "indicators": {},
-  "prices": {},
+  "indicators": {
+    "WBTCDAI": {
+      "adx": 40.27,
+      "ema50": 71314.6707,
+      "rsi": 59.52,
+      "regime": "downtrend",
+      "raw_regime": "downtrend"
+    },
+    "WETHDAI": {
+      "adx": 30.28,
+      "ema50": 2198.4785,
+      "rsi": 57.09,
+      "regime": "downtrend",
+      "raw_regime": "downtrend"
+    },
+    "WSOLDAI": {
+      "adx": 20.14,
+      "ema50": 90.3529,
+      "rsi": 56.14,
+      "regime": "sideways",
+      "raw_regime": "sideways"
+    },
+    "FRAXDAI": {
+      "adx": 50.09,
+      "ema50": 0.5587,
+      "rsi": 40.75,
+      "regime": "downtrend",
+      "raw_regime": "downtrend"
+    }
+  },
+  "prices": {
+    "WBTCDAI": 70483.33,
+    "WETHDAI": 2148.5,
+    "WSOLDAI": 88.96,
+    "FRAXDAI": 0.4932
+  },
   "positions": [
     {
       "symbol": "WETHDAI",
@@ -8059,6 +8093,19 @@
   ],
   "metrics": [
     {
+      "ts": 1773956126,
+      "duration_ms": 10652,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 2,
+      "equity": 20086.566655309285,
+      "cash": 19945.965327083435,
+      "note": ""
+    },
+    {
       "ts": 1773955805,
       "duration_ms": 31,
       "status": "skipped",
@@ -10644,19 +10691,6 @@
       "equity": 20086.14229169548,
       "cash": 20051.12282708344,
       "note": ""
-    },
-    {
-      "ts": 1773909912,
-      "duration_ms": 8965,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 1,
-      "equity": 20086.095342202912,
-      "cash": 20051.12282708344,
-      "note": ""
     }
   ],
   "rolling": {
@@ -10668,5 +10702,5 @@
     "trades_7d": 46
   },
   "live_cash": 19945.97,
-  "live_equity": 19945.97
+  "live_equity": 20086.57
 }
