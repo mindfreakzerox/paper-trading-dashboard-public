@@ -1,0 +1,91 @@
+{
+  "as_of": "2026-03-19T03:59:44.320810+00:00",
+  "strategy": "point_1_btc_trend",
+  "version": "1.0",
+  "current_regime": "trend",
+  "adx_value": 40.49070486251105,
+  "prices": {
+    "WBTCDAI": 71217.71
+  },
+  "positions": [
+    {
+      "symbol": "WBTCDAI",
+      "qty": 0.1,
+      "entry_price": 71217.71,
+      "entry_time": 1773892784,
+      "peak_price": 71217.71
+    }
+  ],
+  "trades": [
+    {
+      "id": 1,
+      "symbol": "WBTCDAI",
+      "side": "BUY",
+      "qty": 0.1,
+      "price": 71217.71,
+      "fee": 0.0,
+      "regime": "trend",
+      "ts": 1773892784
+    }
+  ],
+  "equity": [
+    {
+      "ts": 1773892784,
+      "equity": 20000.0,
+      "cash": 12878.229
+    }
+  ],
+  "metrics": [
+    {
+      "ts": 1773892784,
+      "duration_ms": 1257,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.0,
+      "positions": 1,
+      "equity": 20000.0,
+      "cash": 12878.229,
+      "note": ""
+    }
+  ],
+  "rolling": {
+    "fees_24h": 0.0,
+    "fees_7d": 0.0,
+    "pnl_24h": -7121.771,
+    "pnl_7d": -7121.771,
+    "trades_24h": 1,
+    "trades_7d": 1
+  },
+  "indicators": {
+    "WBTCDAI": {
+      "adx": 40.49,
+      "ema50": 72340.9579,
+      "rsi": 34.64,
+      "regime": "trend",
+      "raw_regime": "trend"
+    }
+  },
+  "config": {
+    "mode": "point_1_btc",
+    "symbol": "BTCUSDT",
+    "qty_btc": 0.1,
+    "ema_fast": 8,
+    "ema_slow": 34,
+    "trail_atr": 0.9,
+    "hard_stop": 0.025,
+    "adx_entry": 12,
+    "adx_pull": 10,
+    "rsi_pull": 48,
+    "rsi_exit": 51,
+    "min_profit": 0.005,
+    "rsi_deep": 38,
+    "death_allow": 0.01,
+    "ema_allow": 0.02,
+    "slippage_rate": 0.0,
+    "regime_candle_interval": "1h"
+  },
+  "live_cash": 12878.23,
+  "live_equity": 20000.0
+}
