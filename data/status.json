@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-03-20T17:42:34.196161+00:00",
+  "as_of": "2026-03-20T17:47:56.986941+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -117,38 +117,38 @@
   "indicators": {
     "WBTCDAI": {
       "adx": 19.5,
-      "ema50": 70766.6442,
-      "rsi": 35.23,
+      "ema50": 70767.045,
+      "rsi": 36.31,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WETHDAI": {
       "adx": 14.84,
-      "ema50": 2168.8611,
-      "rsi": 40.05,
+      "ema50": 2168.8764,
+      "rsi": 40.75,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WSOLDAI": {
       "adx": 16.5,
-      "ema50": 89.724,
-      "rsi": 34.34,
+      "ema50": 89.7208,
+      "rsi": 32.55,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "FRAXDAI": {
       "adx": 28.26,
       "ema50": 0.5277,
-      "rsi": 27.82,
+      "rsi": 27.29,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 69604.35,
-    "WETHDAI": 2125.66,
-    "WSOLDAI": 88.32,
-    "FRAXDAI": 0.4862
+    "WBTCDAI": 69614.57,
+    "WETHDAI": 2125.98,
+    "WSOLDAI": 88.2,
+    "FRAXDAI": 0.4858
   },
   "positions": [
     {
@@ -177,14 +177,14 @@
     },
     {
       "symbol": "FRAXDAI",
-      "qty": 140.7813429342677,
+      "qty": 212.82619188194977,
       "entry_price": 0.5010695000000001,
       "entry_time": 1774009102,
       "last_sell_time": null,
       "high_since_entry": 0.0,
       "dca_level": 1,
-      "avg_entry_price": 0.4972249769820972,
-      "total_invested": 70.0,
+      "avg_entry_price": 0.49336032878059155,
+      "total_invested": 105.0,
       "last_dca_time": 0
     },
     {
@@ -201,6 +201,16 @@
     }
   ],
   "trades": [
+    {
+      "id": 136,
+      "symbol": "FRAXDAI",
+      "side": "BUY",
+      "qty": 72.04484894768206,
+      "price": 0.48580850000000003,
+      "ts": 1774028876,
+      "fee": 0.0525,
+      "regime": "sideways"
+    },
     {
       "id": 135,
       "symbol": "FRAXDAI",
@@ -8226,6 +8236,32 @@
   ],
   "metrics": [
     {
+      "ts": 1774028876,
+      "duration_ms": 12617,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.0525,
+      "positions": 4,
+      "equity": 20083.731904874563,
+      "cash": 19840.702827083427,
+      "note": ""
+    },
+    {
+      "ts": 1774028713,
+      "duration_ms": 8650,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 4,
+      "equity": 20084.06393438632,
+      "cash": 19875.75532708343,
+      "note": ""
+    },
+    {
       "ts": 1774028554,
       "duration_ms": 9660,
       "status": "ok",
@@ -10798,42 +10834,16 @@
       "equity": 20086.64897273416,
       "cash": 19980.912827083434,
       "note": ""
-    },
-    {
-      "ts": 1773982205,
-      "duration_ms": 10667,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 2,
-      "equity": 20086.605697356856,
-      "cash": 19980.912827083434,
-      "note": ""
-    },
-    {
-      "ts": 1773981913,
-      "duration_ms": 8881,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 2,
-      "equity": 20086.340909826344,
-      "cash": 19980.912827083434,
-      "note": ""
     }
   ],
   "rolling": {
-    "fees_24h": 0.21,
-    "fees_7d": 2.9307,
-    "pnl_24h": -70.21,
-    "pnl_7d": -11.3713,
-    "trades_24h": 4,
+    "fees_24h": 0.2625,
+    "fees_7d": 2.9082,
+    "pnl_24h": -105.2625,
+    "pnl_7d": 3.6512,
+    "trades_24h": 5,
     "trades_7d": 45
   },
-  "live_cash": 19875.76,
-  "live_equity": 20083.87
+  "live_cash": 19840.7,
+  "live_equity": 20083.73
 }
