@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-03-20T21:11:04.060302+00:00",
+  "as_of": "2026-03-20T21:16:29.833571+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -94,38 +94,38 @@
   "indicators": {
     "WBTCDAI": {
       "adx": 19.12,
-      "ema50": 70672.382,
-      "rsi": 49.64,
+      "ema50": 70678.2369,
+      "rsi": 54.33,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WETHDAI": {
       "adx": 15.01,
-      "ema50": 2164.1677,
-      "rsi": 49.3,
+      "ema50": 2164.307,
+      "rsi": 53.6,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WSOLDAI": {
       "adx": 18.12,
-      "ema50": 89.6343,
-      "rsi": 52.01,
+      "ema50": 89.6441,
+      "rsi": 56.38,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "FRAXDAI": {
       "adx": 31.79,
       "ema50": 0.5208,
-      "rsi": 23.24,
+      "rsi": 24.61,
       "regime": "downtrend",
       "raw_regime": "downtrend"
     }
   },
   "prices": {
-    "WBTCDAI": 69977.39,
-    "WETHDAI": 2131.69,
-    "WSOLDAI": 88.99,
-    "FRAXDAI": 0.4766
+    "WBTCDAI": 70130.52,
+    "WETHDAI": 2136.09,
+    "WSOLDAI": 89.24,
+    "FRAXDAI": 0.4777
   },
   "positions": [
     {
@@ -8211,6 +8211,32 @@
   ],
   "metrics": [
     {
+      "ts": 1774041389,
+      "duration_ms": 9827,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 3,
+      "equity": 20082.62934305566,
+      "cash": 19941.98364068979,
+      "note": ""
+    },
+    {
+      "ts": 1774041314,
+      "duration_ms": 8947,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 3,
+      "equity": 20082.557157117455,
+      "cash": 19941.98364068979,
+      "note": ""
+    },
+    {
       "ts": 1774041063,
       "duration_ms": 9507,
       "status": "ok",
@@ -10783,32 +10809,6 @@
       "equity": 20087.67832734476,
       "cash": 19980.912827083434,
       "note": ""
-    },
-    {
-      "ts": 1773994774,
-      "duration_ms": 40622,
-      "status": "partial",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 2,
-      "equity": 20086.977089501455,
-      "cash": 19980.912827083434,
-      "note": "Error processing FRAXDAI: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=FRAXUSDT&interval=1h&limit=100 (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object "
-    },
-    {
-      "ts": 1773994513,
-      "duration_ms": 9196,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 2,
-      "equity": 20087.88554373733,
-      "cash": 19980.912827083434,
-      "note": ""
     }
   ],
   "rolling": {
@@ -10820,5 +10820,5 @@
     "trades_7d": 46
   },
   "live_cash": 19941.98,
-  "live_equity": 20082.31
+  "live_equity": 20082.63
 }
