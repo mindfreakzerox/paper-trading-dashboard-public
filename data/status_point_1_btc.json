@@ -1,14 +1,32 @@
 {
-  "as_of": "2026-03-21T00:45:19.260749+00:00",
+  "as_of": "2026-03-21T01:00:12.599367+00:00",
   "strategy": "point_1_btc_trend",
   "version": "1.0",
   "current_regime": "trend",
-  "adx_value": 16.20378437702638,
+  "adx_value": 15.604058295457794,
   "prices": {
-    "WBTCDAI": 70592.21
+    "WBTCDAI": 70710.88
   },
-  "positions": [],
+  "positions": [
+    {
+      "symbol": "WBTCDAI",
+      "qty": 0.1,
+      "entry_price": 70710.88,
+      "entry_time": 1774054812,
+      "peak_price": 70710.88
+    }
+  ],
   "trades": [
+    {
+      "id": 63,
+      "symbol": "WBTCDAI",
+      "side": "BUY",
+      "qty": 0.1,
+      "price": 70710.88,
+      "fee": 0.0,
+      "regime": "trend",
+      "ts": 1774054812
+    },
     {
       "id": 62,
       "symbol": "WBTCDAI",
@@ -1530,9 +1548,27 @@
       "ts": 1774053919,
       "equity": 19783.932,
       "cash": 19783.932
+    },
+    {
+      "ts": 1774054812,
+      "equity": 19783.932,
+      "cash": 12712.844000000001
     }
   ],
   "metrics": [
+    {
+      "ts": 1774054812,
+      "duration_ms": 1671,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.0,
+      "positions": 1,
+      "equity": 19783.932,
+      "cash": 12712.844000000001,
+      "note": ""
+    },
     {
       "ts": 1774053919,
       "duration_ms": 1207,
@@ -3877,16 +3913,16 @@
   "rolling": {
     "fees_24h": 0.0,
     "fees_7d": 0.0,
-    "pnl_24h": -59.326,
-    "pnl_7d": -216.068,
-    "trades_24h": 4,
-    "trades_7d": 62
+    "pnl_24h": -7130.414,
+    "pnl_7d": -7287.156,
+    "trades_24h": 5,
+    "trades_7d": 63
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 16.2,
-      "ema50": 70431.0551,
-      "rsi": 54.03,
+      "adx": 15.6,
+      "ema50": 70451.893,
+      "rsi": 55.75,
       "regime": "trend",
       "raw_regime": "trend"
     }
@@ -3910,6 +3946,6 @@
     "slippage_rate": 0.0,
     "regime_candle_interval": "1h"
   },
-  "live_cash": 19783.93,
+  "live_cash": 12712.84,
   "live_equity": 19783.93
 }
