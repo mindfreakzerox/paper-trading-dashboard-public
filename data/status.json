@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-03-21T05:56:54.472892+00:00",
+  "as_of": "2026-03-21T06:02:07.344974+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "grid",
-  "adx_value": 14.13387,
+  "adx_value": 13.724189,
   "grid_levels": {
     "WBTCDAI": {
       "center_price": 70642.4,
@@ -116,39 +116,39 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 14.13,
-      "ema50": 70701.4294,
-      "rsi": 55.54,
+      "adx": 13.72,
+      "ema50": 70688.3917,
+      "rsi": 56.08,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WETHDAI": {
-      "adx": 15.02,
-      "ema50": 2161.6791,
-      "rsi": 54.03,
+      "adx": 15.17,
+      "ema50": 2160.7747,
+      "rsi": 53.71,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WSOLDAI": {
-      "adx": 15.87,
-      "ema50": 89.7977,
-      "rsi": 47.3,
+      "adx": 15.49,
+      "ema50": 89.7871,
+      "rsi": 49.16,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "FRAXDAI": {
-      "adx": 21.57,
-      "ema50": 0.5126,
-      "rsi": 42.34,
+      "adx": 21.29,
+      "ema50": 0.5113,
+      "rsi": 39.97,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 70713.16,
-    "WETHDAI": 2153.61,
-    "WSOLDAI": 90.02,
-    "FRAXDAI": 0.4856
+    "WBTCDAI": 70726.24,
+    "WETHDAI": 2153.44,
+    "WSOLDAI": 90.08,
+    "FRAXDAI": 0.4841
   },
   "positions": [
     {
@@ -186,9 +186,31 @@
       "avg_entry_price": 69776.62185000001,
       "total_invested": 35.0,
       "last_dca_time": 0
+    },
+    {
+      "symbol": "FRAXDAI",
+      "qty": 72.29500493155213,
+      "entry_price": 0.4841275,
+      "entry_time": 1774072815,
+      "last_sell_time": null,
+      "high_since_entry": 0.0,
+      "dca_level": 1,
+      "avg_entry_price": 0.4841275,
+      "total_invested": 35.0,
+      "last_dca_time": 0
     }
   ],
   "trades": [
+    {
+      "id": 139,
+      "symbol": "FRAXDAI",
+      "side": "BUY",
+      "qty": 72.29500493155213,
+      "price": 0.4841275,
+      "ts": 1774072815,
+      "fee": 0.0525,
+      "regime": "sideways"
+    },
     {
       "id": 138,
       "symbol": "WSOLDAI",
@@ -8244,6 +8266,32 @@
   ],
   "metrics": [
     {
+      "ts": 1774072927,
+      "duration_ms": 12702,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 4,
+      "equity": 20083.61010372902,
+      "cash": 19941.878640689785,
+      "note": ""
+    },
+    {
+      "ts": 1774072815,
+      "duration_ms": 9470,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.0525,
+      "positions": 4,
+      "equity": 20083.55317707763,
+      "cash": 19941.878640689785,
+      "note": ""
+    },
+    {
       "ts": 1774072614,
       "duration_ms": 9825,
       "status": "ok",
@@ -10816,42 +10864,16 @@
       "equity": 20084.98193910418,
       "cash": 19875.75532708343,
       "note": ""
-    },
-    {
-      "ts": 1774026663,
-      "duration_ms": 9156,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 4,
-      "equity": 20085.02966961979,
-      "cash": 19875.75532708343,
-      "note": ""
-    },
-    {
-      "ts": 1774026352,
-      "duration_ms": 9982,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 4,
-      "equity": 20084.799675003396,
-      "cash": 19875.75532708343,
-      "note": ""
     }
   ],
   "rolling": {
-    "fees_24h": 0.4146,
-    "fees_7d": 2.9553,
-    "pnl_24h": -3.9817,
-    "pnl_7d": 245.037,
-    "trades_24h": 6,
-    "trades_7d": 44
+    "fees_24h": 0.4671,
+    "fees_7d": 3.0078,
+    "pnl_24h": -39.0342,
+    "pnl_7d": 209.9845,
+    "trades_24h": 7,
+    "trades_7d": 45
   },
-  "live_cash": 19976.93,
-  "live_equity": 20083.66
+  "live_cash": 19941.88,
+  "live_equity": 20083.61
 }
