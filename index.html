@@ -191,7 +191,9 @@ footer{text-align:center;padding:2rem 0 1rem;color:var(--dim);font-size:.75rem}
 <script>
 const qp = new URLSearchParams(location.search);
 const ENGINE_MODE = (qp.get('engine') || 'default').toLowerCase();
-const STATUS_URL = ENGINE_MODE === 'point1' ? 'data/status_point_1_btc_live.json' : 'data/status.json';
+const STATUS_URL = ENGINE_MODE === 'point1'
+  ? 'https://raw.githubusercontent.com/mindfreakzerox/paper-trading-dashboard-public/main/data/status_point_1_btc_live.json'
+  : 'data/status.json';
 const STARTING_CASH = 20000;
 
 function $(sel) { return document.querySelector(sel); }
