@@ -1,14 +1,32 @@
 {
-  "as_of": "2026-03-23T11:47:54.595150+00:00",
+  "as_of": "2026-03-23T12:02:59.376701+00:00",
   "strategy": "point_1_btc_trend",
   "version": "1.0",
   "current_regime": "trend",
-  "adx_value": 38.92473824523155,
+  "adx_value": 38.37486961201278,
   "prices": {
-    "WBTCDAI": 70181.91
+    "WBTCDAI": 69732.63
   },
-  "positions": [],
+  "positions": [
+    {
+      "symbol": "WBTCDAI",
+      "qty": 0.1,
+      "entry_price": 69732.63,
+      "entry_time": 1774267379,
+      "peak_price": 69732.63
+    }
+  ],
   "trades": [
+    {
+      "id": 109,
+      "symbol": "WBTCDAI",
+      "side": "BUY",
+      "qty": 0.1,
+      "price": 69732.63,
+      "fee": 0.0,
+      "regime": "trend",
+      "ts": 1774267379
+    },
     {
       "id": 108,
       "symbol": "WBTCDAI",
@@ -2855,9 +2873,27 @@
       "ts": 1774266474,
       "equity": 19570.668000000005,
       "cash": 19570.668000000005
+    },
+    {
+      "ts": 1774267379,
+      "equity": 19570.668000000005,
+      "cash": 12597.405000000004
     }
   ],
   "metrics": [
+    {
+      "ts": 1774267379,
+      "duration_ms": 386,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.0,
+      "positions": 1,
+      "equity": 19570.668000000005,
+      "cash": 12597.405000000004,
+      "note": ""
+    },
     {
       "ts": 1774266474,
       "duration_ms": 387,
@@ -5444,34 +5480,21 @@
       "equity": 19783.932,
       "cash": 19783.932,
       "note": ""
-    },
-    {
-      "ts": 1774030519,
-      "duration_ms": 1052,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 0,
-      "equity": 19783.932,
-      "cash": 19783.932,
-      "note": ""
     }
   ],
   "rolling": {
     "fees_24h": 0.0,
     "fees_7d": 0.0,
-    "pnl_24h": 6727.932,
-    "pnl_7d": -429.332,
-    "trades_24h": 9,
-    "trades_7d": 108
+    "pnl_24h": -245.331,
+    "pnl_7d": -7402.595,
+    "trades_24h": 10,
+    "trades_7d": 109
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 38.92,
-      "ema50": 68762.0183,
-      "rsi": 65.47,
+      "adx": 38.37,
+      "ema50": 68814.2621,
+      "rsi": 60.24,
       "regime": "trend",
       "raw_regime": "trend"
     }
@@ -5495,6 +5518,6 @@
     "slippage_rate": 0.0,
     "regime_candle_interval": "1h"
   },
-  "live_cash": 19570.67,
+  "live_cash": 12597.41,
   "live_equity": 19570.67
 }
