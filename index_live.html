@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper Trading Dashboard</title>
+<style>
+:root{--bg:#0a0a0f;--card:#12121a;--border:#1e1e2e;--text:#e0e0e0;--dim:#666;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;--amber:#f59e0b;--teal:#2dd4bf;--purple:#a78bfa}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+.container{max-width:1400px;margin:0 auto;padding:1rem}
+header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:1px solid var(--border);margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
+header h1{font-size:1.5rem;font-weight:700}
+header h1 span{color:var(--teal)}
+.meta{display:flex;gap:1rem;align-items:center;font-size:.8rem;color:var(--dim)}
+.meta .version{background:var(--border);padding:.2rem .5rem;border-radius:4px}
+.nav-tabs{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.nav-tabs a{padding:.35rem .7rem;border:1px solid var(--border);border-radius:8px;color:var(--dim);text-decoration:none;font-size:.8rem}
+.nav-tabs a.active{color:var(--text);border-color:var(--teal);background:#2dd4bf1a}
+
+/* KPI row */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem}
+.kpi .label{font-size:.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.25rem}
+.kpi .value{font-size:1.5rem;font-weight:700}
+.kpi .sub{font-size:.8rem;margin-top:.15rem}
+.positive{color:var(--green)}.negative{color:var(--red)}
+
+/* Regime badge */
+.regime-badge{display:inline-block;padding:.2rem .6rem;border-radius:6px;font-size:.75rem;font-weight:600;text-transform:uppercase}
+.regime-grid{background:#2dd4bf22;color:var(--teal)}
+.regime-dca{background:#3b82f622;color:var(--blue)}
+.regime-cash{background:#f59e0b22;color:var(--amber)}
+.regime-unknown{background:#66666622;color:var(--dim)}
+
+/* Grid layouts */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;overflow:hidden}
+.card h2{font-size:1rem;font-weight:600;margin-bottom:1rem;color:var(--dim)}
+.card h3{font-size:.85rem;font-weight:600;margin-bottom:.5rem}
+
+/* Chart */
+.chart-container{position:relative;height:250px;width:100%}
+canvas{width:100%!important;height:100%!important}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+th{text-align:left;color:var(--dim);font-weight:500;padding:.5rem;border-bottom:1px solid var(--border);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em}
+td{padding:.5rem;border-bottom:1px solid #1a1a2a;white-space:nowrap}
+tr:hover{background:#ffffff05}
+.buy{color:var(--green)}.sell{color:var(--red)}
+
+/* Positions */
+.pos-card{background:#ffffff06;border-radius:8px;padding:.75rem 1rem;margin-bottom:.5rem}
+.pos-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.25rem}
+.pos-symbol{font-weight:700;font-size:.95rem}
+.pos-detail{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;font-size:.75rem;color:var(--dim)}
+.pos-detail span{display:flex;flex-direction:column}
+.pos-detail .val{color:var(--text);font-weight:500}
+
+/* Indicators */
+.indicators-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.indicator-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem}
+.indicator{background:#ffffff08;padding:.35rem .6rem;border-radius:6px;font-size:.75rem;display:flex;gap:.35rem;align-items:center}
+.indicator .ind-label{color:var(--dim)}
+.indicator .ind-val{font-weight:600}
+
+/* Config */
+.config-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.5rem;font-size:.8rem}
+.config-item{display:flex;justify-content:space-between;padding:.35rem .5rem;background:#ffffff05;border-radius:6px}
+.config-item .ck{color:var(--dim)}.config-item .cv{font-weight:600}
+
+/* Footer */
+footer{text-align:center;padding:2rem 0 1rem;color:var(--dim);font-size:.75rem}
+
+/* Loading */
+.loading{display:flex;align-items:center;justify-content:center;height:200px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📊 <span>Paper</span> Trading</h1>
+    <div class="meta">
+      <span id="strategy-badge" class="version">Grid+DCA Hybrid</span>
+      <span id="last-updated">Loading...</span>
+    </div>
+  </header>
+
+  <nav class="nav-tabs">
+    <a id="tab-default" href="index.html?engine=default">Default Engine (Grid+DCA)</a>
+    <a id="tab-point1" href="index.html?engine=point1">Point 1 BTC Engine</a>
+  </nav>
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">Equity</div>
+      <div class="value" id="kpi-equity">—</div>
+      <div class="sub" id="kpi-pnl">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Cash</div>
+      <div class="value" id="kpi-cash">—</div>
+      <div class="sub" id="kpi-utilization">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Regime</div>
+      <div class="value" id="kpi-regime">—</div>
+      <div class="sub" id="kpi-adx">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Trades</div>
+      <div class="value" id="kpi-trades">—</div>
+      <div class="sub" id="kpi-fees">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Win Rate</div>
+      <div class="value" id="kpi-winrate">—</div>
+      <div class="sub" id="kpi-avg-trade">—</div>
+    </div>
+  </div>
+
+  <!-- Rolling Metrics -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">PNL (24h)</div>
+      <div class="value" id="kpi-pnl-24h">—</div>
+      <div class="sub" id="kpi-trades-24h">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">PNL (7d)</div>
+      <div class="value" id="kpi-pnl-7d">—</div>
+      <div class="sub" id="kpi-trades-7d">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Fees (24h)</div>
+      <div class="value" id="kpi-fees-24h">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Fees (7d)</div>
+      <div class="value" id="kpi-fees-7d">—</div>
+    </div>
+  </div>
+
+  <!-- Chart + Positions -->
+  <div class="grid-2">
+    <div class="card">
+      <h2>Equity Curve</h2>
+      <div class="chart-container"><canvas id="equity-chart"></canvas></div>
+    </div>
+    <div class="card">
+      <h2>Positions</h2>
+      <div id="positions-container"><div class="loading">Loading...</div></div>
+    </div>
+  </div>
+
+  <!-- Per-symbol indicators -->
+  <div class="card" style="margin-bottom:1.5rem">
+    <h2>Market Indicators</h2>
+    <div id="indicators-container"><div class="loading">Loading...</div></div>
+  </div>
+
+  <!-- Trades -->
+  <div class="card" style="margin-bottom:1.5rem">
+    <h2>Recent Trades</h2>
+    <div style="overflow-x:auto">
+      <table id="trades-table">
+        <thead><tr><th>Time</th><th>Symbol</th><th>Side</th><th>Qty</th><th>Price</th><th>Value</th><th>Fee</th><th>Regime</th></tr></thead>
+        <tbody id="trades-body"><tr><td colspan="8" style="text-align:center;color:var(--dim)">Loading...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Config -->
+  <div class="card" style="margin-bottom:1.5rem">
+    <h2>Strategy Config</h2>
+    <div class="config-grid" id="config-container"></div>
+  </div>
+
+  <footer>
+    Paper trading simulator — not financial advice. Data refreshes every 15 min.
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<script>
+const qp = new URLSearchParams(location.search);
+const ENGINE_MODE = (qp.get('engine') || 'default').toLowerCase();
+const STATUS_URL = ENGINE_MODE === 'point1'
+  ? 'data/status_point_1_btc_live.json'
+  : 'data/status.json';
+const STARTING_CASH = 20000;
+
+function $(sel) { return document.querySelector(sel); }
+function $$(sel) { return document.querySelectorAll(sel); }
+function fmt(n, d=2) { return n != null ? Number(n).toLocaleString('en-US', {minimumFractionDigits:d,maximumFractionDigits:d}) : '—'; }
+function fmtUsd(n) { return n != null ? '$' + fmt(n) : '—'; }
+function pctClass(n) { return n >= 0 ? 'positive' : 'negative'; }
+function regimeClass(r) { return 'regime-badge regime-' + (r||'unknown'); }
+function timeAgo(ts) {
+  const s = Math.floor((Date.now()/1000) - ts);
+  if (s < 60) return s + 's ago';
+  if (s < 3600) return Math.floor(s/60) + 'm ago';
+  if (s < 86400) return Math.floor(s/3600) + 'h ago';
+  return Math.floor(s/86400) + 'd ago';
+}
+function fmtTime(ts) {
+  return new Date(ts * 1000).toLocaleString('en-US', {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false});
+}
+
+let equityChart = null;
+
+function renderEquityChart(equity) {
+  const ctx = $('#equity-chart');
+  const labels = equity.map(e => new Date(e.ts * 1000));
+  const values = equity.map(e => e.equity);
+  const cash = equity.map(e => e.cash);
+
+  if (equityChart) equityChart.destroy();
+  equityChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {label:'Equity',data:values,borderColor:'#2dd4bf',backgroundColor:'#2dd4bf15',fill:true,tension:.3,pointRadius:0,borderWidth:2},
+        {label:'Cash',data:cash,borderColor:'#3b82f6',backgroundColor:'transparent',borderDash:[4,4],tension:.3,pointRadius:0,borderWidth:1.5}
+      ]
+    },
+    options: {
+      responsive:true,maintainAspectRatio:false,
+      interaction:{intersect:false,mode:'index'},
+      plugins:{legend:{display:true,position:'top',labels:{color:'#666',boxWidth:12,font:{size:11}}}},
+      scales:{
+        x:{type:'time',time:{tooltipFormat:'MMM d, HH:mm'},ticks:{color:'#444',maxTicksLimit:8},grid:{color:'#1e1e2e'}},
+        y:{ticks:{color:'#444',callback:v=>'$'+v.toLocaleString()},grid:{color:'#1e1e2e'}}
+      }
+    }
+  });
+}
+
+function renderPositions(positions, prices) {
+  const c = $('#positions-container');
+  if (!positions || positions.length === 0) {
+    c.innerHTML = '<div style="color:var(--dim);text-align:center;padding:2rem">No open positions</div>';
+    return;
+  }
+  c.innerHTML = positions.map(p => {
+    const price = prices[p.symbol] || 0;
+    const value = p.qty * price;
+    const invested = p.total_invested || (p.qty * (p.avg_entry_price || p.entry_price));
+    const pnl = value - invested;
+    const pnlPct = invested > 0 ? (pnl / invested * 100) : 0;
+    const sym = p.symbol.replace('DAI','');
+    return `<div class="pos-card">
+      <div class="pos-header">
+        <span class="pos-symbol">${sym}</span>
+        <span class="${pctClass(pnl)}" style="font-weight:700">${pnl>=0?'+':''}${fmtUsd(pnl)} (${pnlPct>=0?'+':''}${pnlPct.toFixed(2)}%)</span>
+      </div>
+      <div class="pos-detail">
+        <span>Qty<span class="val">${fmt(p.qty, 6)}</span></span>
+        <span>Avg Entry<span class="val">${fmtUsd(p.avg_entry_price || p.entry_price)}</span></span>
+        <span>Mkt Value<span class="val">${fmtUsd(value)}</span></span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderIndicators(indicators, prices) {
+  const c = $('#indicators-container');
+  if (!indicators || Object.keys(indicators).length === 0) {
+    c.innerHTML = '<div style="color:var(--dim)">No indicator data</div>';
+    return;
+  }
+  c.innerHTML = `<div class="indicators-grid">${Object.entries(indicators).map(([sym, ind]) => {
+    const short = sym.replace('DAI','');
+    const price = prices[sym] || 0;
+    return `<div>
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.35rem">
+        <h3 style="margin:0">${short}</h3>
+        <span style="font-weight:700">${fmtUsd(price)}</span>
+        <span class="${regimeClass(ind.regime)}">${ind.regime}</span>
+        ${ind.raw_regime !== ind.regime ? `<span style="font-size:.7rem;color:var(--dim)">(signal: ${ind.raw_regime})</span>` : ''}
+      </div>
+      <div class="indicator-row">
+        <div class="indicator"><span class="ind-label">ADX</span><span class="ind-val">${fmt(ind.adx,1)}</span></div>
+        <div class="indicator"><span class="ind-label">EMA50</span><span class="ind-val">${fmtUsd(ind.ema50)}</span></div>
+        <div class="indicator"><span class="ind-label">RSI</span><span class="ind-val" style="color:${ind.rsi<30?'var(--green)':ind.rsi>70?'var(--red)':'var(--text)'}">${fmt(ind.rsi,1)}</span></div>
+      </div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function renderTrades(trades) {
+  const tbody = $('#trades-body');
+  if (!trades || trades.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--dim)">No trades yet</td></tr>';
+    return;
+  }
+  tbody.innerHTML = trades.slice(0, 50).map(t => {
+    const sym = t.symbol.replace('DAI','');
+    const value = t.qty * t.price;
+    return `<tr>
+      <td>${fmtTime(t.ts)}</td>
+      <td><strong>${sym}</strong></td>
+      <td class="${t.side.toLowerCase()}">${t.side}</td>
+      <td>${fmt(t.qty, 6)}</td>
+      <td>${fmtUsd(t.price)}</td>
+      <td>${fmtUsd(value)}</td>
+      <td style="color:var(--dim)">${fmtUsd(t.fee)}</td>
+      <td><span class="${regimeClass(t.regime)}">${t.regime||'?'}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderConfig(config) {
+  const c = $('#config-container');
+  if (!config) { c.innerHTML = ''; return; }
+
+  if (config.mode === 'point_1_btc') {
+    const items = Object.entries(config).map(([k,v]) => [k.replaceAll('_',' '), v]);
+    c.innerHTML = items.map(([k,v]) => `<div class="config-item"><span class="ck">${k}</span><span class="cv">${v}</span></div>`).join('');
+    return;
+  }
+
+  const items = [
+    ['ADX Threshold', config.adx_threshold],
+    ['Grid Spacing', config.grid_spacing_pct != null ? (config.grid_spacing_pct*100).toFixed(1)+'%' : '—'],
+    ['Grid Order Size', config.grid_order_size != null ? fmtUsd(config.grid_order_size) : '—'],
+    ['Grid Levels', config.grid_levels ?? '—'],
+    ['Grid Reset', config.grid_reset_hours != null ? config.grid_reset_hours+'h' : '—'],
+    ['DCA Order Size', config.dca_order_size != null ? fmtUsd(config.dca_order_size) : '—'],
+    ['DCA Dip %', config.dca_dip_pct != null ? (config.dca_dip_pct*100).toFixed(1)+'%' : '—'],
+    ['DCA Max Levels', config.dca_max_levels ?? '—'],
+    ['DCA RSI Gate', config.dca_rsi_threshold != null ? '<'+config.dca_rsi_threshold : '—'],
+    ['DCA Take Profit', config.dca_take_profit_pct != null ? ((config.dca_take_profit_pct)*100).toFixed(1)+'%' : '—'],
+    ['Stop Loss', config.stop_loss_pct != null ? (config.stop_loss_pct*100).toFixed(1)+'%' : '—'],
+    ['Hysteresis', config.hysteresis_candles != null ? config.hysteresis_candles+' candles' : '—'],
+    ['Slippage', config.slippage_rate != null ? (config.slippage_rate*100).toFixed(2)+'%' : '—'],
+    ['Regime TF', config.regime_candle_interval ?? '—'],
+  ];
+  c.innerHTML = items.map(([k,v]) => `<div class="config-item"><span class="ck">${k}</span><span class="cv">${v}</span></div>`).join('');
+}
+
+function computeWinRate(trades) {
+  // Group trades into round trips per symbol (FIFO, quantity-aware)
+  const buys = {}, results = [];
+  for (const t of [...trades].reverse()) { // oldest first
+    if (t.side === 'BUY') {
+      if (!buys[t.symbol]) buys[t.symbol] = [];
+      buys[t.symbol].push({ ...t, fee: t.fee || 0 });
+    } else if (t.side === 'SELL' && buys[t.symbol] && buys[t.symbol].length > 0) {
+      let sell = { ...t, fee: t.fee || 0 };
+
+      while (sell.qty > 0 && buys[t.symbol].length > 0) {
+        const buy = buys[t.symbol].shift();
+        const matchQty = Math.min(buy.qty, sell.qty);
+
+        const buyVal = matchQty * buy.price + (buy.fee * matchQty / buy.qty);
+        const sellVal = matchQty * sell.price - (sell.fee * matchQty / sell.qty);
+        results.push(sellVal - buyVal);
+
+        const buyRemaining = buy.qty - matchQty;
+        const sellRemaining = sell.qty - matchQty;
+
+        if (buyRemaining > 0) {
+          buys[t.symbol].unshift({
+            ...buy,
+            qty: buyRemaining,
+            fee: buy.fee * (buyRemaining / buy.qty)
+          });
+        }
+
+        if (sellRemaining > 0) {
+          sell = {
+            ...sell,
+            qty: sellRemaining,
+            fee: sell.fee * (sellRemaining / sell.qty)
+          };
+        } else {
+          break;
+        }
+      }
+    }
+  }
+  const wins = results.filter(r => r > 0).length;
+  const total = results.length;
+  const avg = total > 0 ? results.reduce((a,b)=>a+b,0)/total : 0;
+  return { winRate: total > 0 ? (wins/total*100) : 0, avgTrade: avg, totalRoundTrips: total };
+}
+
+async function loadData() {
+  try {
+    $('#tab-default')?.classList.toggle('active', ENGINE_MODE !== 'point1');
+    $('#tab-point1')?.classList.toggle('active', ENGINE_MODE === 'point1');
+
+    const res = await fetch(STATUS_URL + '?t=' + Date.now());
+    const d = await res.json();
+
+    // Last updated
+    $('#last-updated').textContent = d.as_of ? 'Updated ' + new Date(d.as_of).toLocaleTimeString() : '';
+
+    // Version
+    if (d.version) {
+      $('#strategy-badge').textContent = d.strategy === 'point_1_btc_trend'
+        ? `Point 1 BTC v${d.version}`
+        : `Grid+DCA v${d.version}`;
+    }
+
+    // KPIs — prefer live values from engine, fall back to reconstruction
+    const eq = d.equity || [];
+    const trades = d.trades || [];
+    const prices = d.prices || {};
+    const positions = d.positions || [];
+
+    let cash, equity;
+    if (d.live_cash != null && d.live_equity != null) {
+      cash = d.live_cash;
+      equity = d.live_equity;
+    } else {
+      // Fallback: reconstruct from equity snapshot + trades
+      const latest = eq[eq.length-1];
+      const baseCash = latest ? latest.cash : STARTING_CASH;
+      const baseTs = latest ? latest.ts : 0;
+      cash = baseCash;
+      const tradesAfterSnapshot = trades.filter(t => (t.ts || 0) > baseTs);
+      for (const t of tradesAfterSnapshot) {
+        const tradeValue = (t.qty || 0) * (t.price || 0);
+        const fee = t.fee || 0;
+        if (t.side === 'BUY') cash -= (tradeValue + fee);
+        else if (t.side === 'SELL') cash += (tradeValue - fee);
+      }
+      const positionsValue = positions.reduce((sum, p) => sum + ((p.qty || 0) * (prices[p.symbol] || 0)), 0);
+      equity = cash + positionsValue;
+    }
+    const pnl = equity - STARTING_CASH;
+    const pnlPct = pnl / STARTING_CASH * 100;
+    const utilization = equity > 0 ? ((equity - cash) / equity * 100) : 0;
+
+    $('#kpi-equity').textContent = fmtUsd(equity);
+    $('#kpi-pnl').className = 'sub ' + pctClass(pnl);
+    $('#kpi-pnl').textContent = `${pnl>=0?'+':''}${fmtUsd(pnl)} (${pnlPct>=0?'+':''}${pnlPct.toFixed(2)}%)`;
+
+    $('#kpi-cash').textContent = fmtUsd(cash);
+    $('#kpi-utilization').textContent = `${fmt(utilization,1)}% deployed`;
+
+    const regime = d.current_regime || 'unknown';
+    $('#kpi-regime').innerHTML = `<span class="${regimeClass(regime)}">${regime}</span>`;
+    $('#kpi-adx').textContent = d.adx_value != null ? `ADX: ${fmt(d.adx_value,1)}` : '';
+
+    const totalTrades = trades.length;
+    const totalFees = trades.reduce((a,t) => a + (t.fee||0), 0);
+    $('#kpi-trades').textContent = totalTrades;
+    $('#kpi-fees').textContent = `Fees: ${fmtUsd(totalFees)}`;
+
+    const wr = computeWinRate(trades);
+    $('#kpi-winrate').textContent = wr.totalRoundTrips > 0 ? fmt(wr.winRate,1) + '%' : '—';
+    $('#kpi-avg-trade').textContent = wr.totalRoundTrips > 0 ? `Avg: ${wr.avgTrade>=0?'+':''}${fmtUsd(wr.avgTrade)} (${wr.totalRoundTrips} trips)` : 'No round trips';
+
+    // Chart
+    if (eq.length > 1) renderEquityChart(eq);
+
+    // Positions
+    renderPositions(positions, prices);
+
+    // Indicators
+    renderIndicators(d.indicators, prices);
+
+    // Trades
+    renderTrades(trades);
+
+    // Config
+    renderConfig(d.config);
+
+    // Rolling metrics
+    const r = d.rolling || {};
+    $('#kpi-pnl-24h').textContent = fmtUsd(r.pnl_24h);
+    $('#kpi-pnl-24h').className = 'value ' + pctClass(r.pnl_24h || 0);
+    $('#kpi-trades-24h').textContent = (r.trades_24h || 0) + ' trades';
+    $('#kpi-pnl-7d').textContent = fmtUsd(r.pnl_7d);
+    $('#kpi-pnl-7d').className = 'value ' + pctClass(r.pnl_7d || 0);
+    $('#kpi-trades-7d').textContent = (r.trades_7d || 0) + ' trades';
+    $('#kpi-fees-24h').textContent = fmtUsd(r.fees_24h);
+    $('#kpi-fees-7d').textContent = fmtUsd(r.fees_7d);
+
+  } catch(e) {
+    console.error('Failed to load data:', e);
+  }
+}
+
+// Load + auto-refresh
+loadData();
+setInterval(loadData, 60000); // refresh every 60s
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</body>
+</html>
