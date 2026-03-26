@@ -1,22 +1,24 @@
 {
-  "as_of": "2026-03-26T15:14:13.091453+00:00",
+  "as_of": "2026-03-26T15:29:23.459798+00:00",
   "strategy": "point_1_btc_trend",
   "version": "1.0",
   "current_regime": "trend",
-  "adx_value": 26.06826205579817,
+  "adx_value": 26.66632000663205,
   "prices": {
-    "WBTCDAI": 69113.82
+    "WBTCDAI": 69079.23
   },
-  "positions": [
-    {
-      "symbol": "WBTCDAI",
-      "qty": 0.1,
-      "entry_price": 69113.82,
-      "entry_time": 1774538053,
-      "peak_price": 69113.82
-    }
-  ],
+  "positions": [],
   "trades": [
+    {
+      "id": 186,
+      "symbol": "WBTCDAI",
+      "side": "SELL",
+      "qty": 0.1,
+      "price": 69079.23,
+      "fee": 0.0,
+      "regime": "trend",
+      "ts": 1774538963
+    },
     {
       "id": 185,
       "symbol": "WBTCDAI",
@@ -5133,9 +5135,27 @@
       "ts": 1774538053,
       "equity": 19657.713000000003,
       "cash": 12746.331000000002
+    },
+    {
+      "ts": 1774538963,
+      "equity": 19654.254,
+      "cash": 19654.254
     }
   ],
   "metrics": [
+    {
+      "ts": 1774538963,
+      "duration_ms": 618,
+      "status": "ok",
+      "buys": 0,
+      "sells": 1,
+      "trades": 1,
+      "fees": 0.0,
+      "positions": 0,
+      "equity": 19654.254,
+      "cash": 19654.254,
+      "note": ""
+    },
     {
       "ts": 1774538053,
       "duration_ms": 377,
@@ -7722,34 +7742,21 @@
       "equity": 19670.424000000006,
       "cash": 19670.424000000006,
       "note": ""
-    },
-    {
-      "ts": 1774357917,
-      "duration_ms": 367,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 0,
-      "equity": 19670.424000000006,
-      "cash": 19670.424000000006,
-      "note": ""
     }
   ],
   "rolling": {
     "fees_24h": 0.0,
     "fees_7d": 0.0,
-    "pnl_24h": -6975.6,
-    "pnl_7d": -195.143,
-    "trades_24h": 53,
+    "pnl_24h": -67.677,
+    "pnl_7d": -256.427,
+    "trades_24h": 54,
     "trades_7d": 140
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 26.07,
-      "ema50": 70297.6198,
-      "rsi": 29.68,
+      "adx": 26.67,
+      "ema50": 70295.6432,
+      "rsi": 29.33,
       "regime": "trend",
       "raw_regime": "trend"
     }
@@ -7773,6 +7780,6 @@
     "slippage_rate": 0.0,
     "regime_candle_interval": "1h"
   },
-  "live_cash": 12746.33,
-  "live_equity": 19657.71
+  "live_cash": 19654.25,
+  "live_equity": 19654.25
 }
