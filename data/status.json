@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-03-28T19:16:13.014956+00:00",
+  "as_of": "2026-03-28T19:31:15.100932+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -18,7 +18,7 @@
     "slippage_rate": 0.0015,
     "regime_candle_interval": "1h"
   },
-  "current_regime": "cash",
+  "current_regime": "grid",
   "adx_value": 28.874934,
   "grid_levels": {
     "FRAXDAI": {
@@ -43,19 +43,42 @@
         0.5102,
         0.5171
       ]
+    },
+    "WBTCDAI": {
+      "center_price": 66861.88,
+      "buy_levels": [
+        65858.9518,
+        64856.0236,
+        63853.0954,
+        62850.1672,
+        61847.239,
+        60844.3108,
+        59841.3826,
+        58838.4544
+      ],
+      "sell_levels": [
+        67864.8082,
+        68867.7364,
+        69870.6646,
+        70873.5928,
+        71876.521,
+        72879.4492,
+        73882.3774,
+        74885.3056
+      ]
     }
   },
   "indicators": {
     "WBTCDAI": {
       "adx": 28.87,
-      "ema50": 67218.5368,
-      "rsi": 51.58,
-      "regime": "downtrend",
+      "ema50": 67219.6914,
+      "rsi": 53.18,
+      "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 66832.44
+    "WBTCDAI": 66861.88
   },
   "positions": [
     {
@@ -8307,6 +8330,19 @@
   ],
   "metrics": [
     {
+      "ts": 1774726275,
+      "duration_ms": 785,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 1,
+      "equity": 20064.199988445995,
+      "cash": 19992.06545650899,
+      "note": ""
+    },
+    {
       "ts": 1774725373,
       "duration_ms": 796,
       "status": "ok",
@@ -10890,19 +10926,6 @@
       "fees": 0.0,
       "positions": 2,
       "equity": 20069.156003247263,
-      "cash": 19892.393569668275,
-      "note": ""
-    },
-    {
-      "ts": 1774546708,
-      "duration_ms": 771,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 2,
-      "equity": 20069.163367970945,
       "cash": 19892.393569668275,
       "note": ""
     }
