@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-04-03T02:10:00.599995+00:00",
+  "as_of": "2026-04-03T02:25:02.828236+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "grid",
-  "adx_value": 14.570632,
+  "adx_value": 14.7164,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -70,15 +70,15 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 14.57,
-      "ema50": 67155.5342,
-      "rsi": 33.42,
+      "adx": 14.72,
+      "ema50": 67163.0389,
+      "rsi": 43.3,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 66466.69
+    "WBTCDAI": 66658.05
   },
   "positions": [
     {
@@ -889,11 +889,6 @@
     }
   ],
   "equity": [
-    {
-      "ts": 1773300347,
-      "equity": 20049.5157763199,
-      "cash": 20000.0
-    },
     {
       "ts": 1773300658,
       "equity": 20049.351765073414,
@@ -8388,9 +8383,27 @@
       "ts": 1773770300,
       "equity": 20104.24745129903,
       "cash": 19903.551474910353
+    },
+    {
+      "ts": 1773770610,
+      "equity": 20104.31207808528,
+      "cash": 19903.551474910353
     }
   ],
   "metrics": [
+    {
+      "ts": 1775183102,
+      "duration_ms": 983,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 2,
+      "equity": 20065.052597842776,
+      "cash": 19922.917816281442,
+      "note": ""
+    },
     {
       "ts": 1775182200,
       "duration_ms": 759,
@@ -10977,29 +10990,16 @@
       "equity": 20065.15734821845,
       "cash": 19993.022816281446,
       "note": ""
-    },
-    {
-      "ts": 1775002670,
-      "duration_ms": 749,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 1,
-      "equity": 20065.15734821845,
-      "cash": 19993.022816281446,
-      "note": ""
     }
   ],
   "rolling": {
-    "fees_24h": 0.105,
+    "fees_24h": 0.0525,
     "fees_7d": 0.4665,
-    "pnl_24h": -70.105,
+    "pnl_24h": -35.0525,
     "pnl_7d": 30.5242,
-    "trades_24h": 2,
+    "trades_24h": 1,
     "trades_7d": 7
   },
   "live_cash": 19922.92,
-  "live_equity": 19992.72
+  "live_equity": 19992.92
 }
