@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-04-04T17:45:31.126128+00:00",
+  "as_of": "2026-04-04T18:00:33.116934+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "grid",
-  "adx_value": 28.965307,
+  "adx_value": 30.216571,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -70,15 +70,15 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 28.97,
-      "ema50": 67036.6753,
-      "rsi": 54.99,
+      "adx": 30.22,
+      "ema50": 67051.5105,
+      "rsi": 56.06,
       "regime": "sideways",
-      "raw_regime": "sideways"
+      "raw_regime": "uptrend"
     }
   },
   "prices": {
-    "WBTCDAI": 67326.01
+    "WBTCDAI": 67342.0
   },
   "positions": [
     {
@@ -889,11 +889,6 @@
     }
   ],
   "equity": [
-    {
-      "ts": 1773349698,
-      "equity": 20049.5287789751,
-      "cash": 19949.925
-    },
     {
       "ts": 1773350010,
       "equity": 20049.93776480159,
@@ -8388,9 +8383,27 @@
       "ts": 1773819832,
       "equity": 20102.928948919307,
       "cash": 19903.44647491035
+    },
+    {
+      "ts": 1773820138,
+      "equity": 20102.964715323862,
+      "cash": 19903.44647491035
     }
   ],
   "metrics": [
+    {
+      "ts": 1775325633,
+      "duration_ms": 764,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 2,
+      "equity": 20065.77084073663,
+      "cash": 19922.917816281442,
+      "note": ""
+    },
     {
       "ts": 1775324731,
       "duration_ms": 1219,
@@ -10977,19 +10990,6 @@
       "equity": 20065.323481320327,
       "cash": 19922.917816281442,
       "note": ""
-    },
-    {
-      "ts": 1775145212,
-      "duration_ms": 756,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 2,
-      "equity": 20065.205813192166,
-      "cash": 19922.917816281442,
-      "note": ""
     }
   ],
   "rolling": {
@@ -11001,5 +11001,5 @@
     "trades_7d": 5
   },
   "live_cash": 19922.92,
-  "live_equity": 19993.62
+  "live_equity": 19993.64
 }
