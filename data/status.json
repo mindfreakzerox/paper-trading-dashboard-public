@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-04-10T23:52:04.179995+00:00",
+  "as_of": "2026-04-11T00:07:05.559223+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -68,18 +68,8 @@
       ]
     }
   },
-  "indicators": {
-    "WBTCDAI": {
-      "adx": 32.64,
-      "ema50": 72032.8402,
-      "rsi": 48.69,
-      "regime": "uptrend",
-      "raw_regime": "uptrend"
-    }
-  },
-  "prices": {
-    "WBTCDAI": 72930.36
-  },
+  "indicators": {},
+  "prices": {},
   "positions": [
     {
       "symbol": "WSOLDAI",
@@ -957,11 +947,6 @@
     }
   ],
   "equity": [
-    {
-      "ts": 1773537000,
-      "equity": 20093.03223047231,
-      "cash": 19909.56685276209
-    },
     {
       "ts": 1773537302,
       "equity": 20092.86928125434,
@@ -8456,9 +8441,27 @@
       "ts": 1773979213,
       "equity": 20087.0064679723,
       "cash": 19980.912827083434
+    },
+    {
+      "ts": 1773979370,
+      "equity": 20087.071551598256,
+      "cash": 19980.912827083434
     }
   ],
   "metrics": [
+    {
+      "ts": 1775866025,
+      "duration_ms": 40,
+      "status": "partial",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 1,
+      "equity": 20072.660917660283,
+      "cash": 20000.52638572328,
+      "note": "Error processing WBTCDAI: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=1h&limit=100 (Caused by NameResolutionError(\"HTTPSConnection(host='api.binance.com', port"
+    },
     {
       "ts": 1775865124,
       "duration_ms": 791,
@@ -11043,19 +11046,6 @@
       "fees": 0.0,
       "positions": 2,
       "equity": 20072.18177726702,
-      "cash": 19949.846494887337,
-      "note": ""
-    },
-    {
-      "ts": 1775685584,
-      "duration_ms": 807,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 2,
-      "equity": 20072.25224720715,
       "cash": 19949.846494887337,
       "note": ""
     }
