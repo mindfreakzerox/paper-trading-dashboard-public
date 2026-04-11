@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-04-11T04:07:37.746314+00:00",
+  "as_of": "2026-04-11T04:22:39.793531+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "dca",
-  "adx_value": 30.327255,
+  "adx_value": 29.947149,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -70,15 +70,15 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 30.33,
-      "ema50": 72169.897,
-      "rsi": 50.44,
+      "adx": 29.95,
+      "ema50": 72161.9433,
+      "rsi": 38.24,
       "regime": "uptrend",
-      "raw_regime": "uptrend"
+      "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 72949.99
+    "WBTCDAI": 72747.17
   },
   "positions": [
     {
@@ -957,11 +957,6 @@
     }
   ],
   "equity": [
-    {
-      "ts": 1773542280,
-      "equity": 20093.36671704211,
-      "cash": 19909.56685276209
-    },
     {
       "ts": 1773542602,
       "equity": 20093.618844633485,
@@ -8456,9 +8451,27 @@
       "ts": 1773983462,
       "equity": 20086.8684325697,
       "cash": 19980.912827083434
+    },
+    {
+      "ts": 1773983713,
+      "equity": 20086.912642953917,
+      "cash": 19980.912827083434
     }
   ],
   "metrics": [
+    {
+      "ts": 1775881359,
+      "duration_ms": 799,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 1,
+      "equity": 20072.660917660283,
+      "cash": 20000.52638572328,
+      "note": ""
+    },
     {
       "ts": 1775880457,
       "duration_ms": 792,
@@ -11043,19 +11056,6 @@
       "fees": 0.0,
       "positions": 2,
       "equity": 20071.889455953886,
-      "cash": 19949.846494887337,
-      "note": ""
-    },
-    {
-      "ts": 1775700922,
-      "duration_ms": 829,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 2,
-      "equity": 20071.750560819113,
       "cash": 19949.846494887337,
       "note": ""
     }
