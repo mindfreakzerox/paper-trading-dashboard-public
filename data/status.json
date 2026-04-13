@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-04-13T23:02:25.133137+00:00",
+  "as_of": "2026-04-13T23:17:27.290000+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "dca",
-  "adx_value": 43.490753,
+  "adx_value": 43.563953,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -70,15 +70,15 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 43.49,
-      "ema50": 72015.5248,
-      "rsi": 76.36,
+      "adx": 43.56,
+      "ema50": 72022.6688,
+      "rsi": 81.19,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     }
   },
   "prices": {
-    "WBTCDAI": 74450.0
+    "WBTCDAI": 74632.17
   },
   "positions": [
     {
@@ -979,11 +979,6 @@
     }
   ],
   "equity": [
-    {
-      "ts": 1773627300,
-      "equity": 20098.188161471095,
-      "cash": 20015.643159739862
-    },
     {
       "ts": 1773627621,
       "equity": 20098.108019105723,
@@ -8478,9 +8473,27 @@
       "ts": 1774046714,
       "equity": 20083.668147190278,
       "cash": 19976.931140689787
+    },
+    {
+      "ts": 1774046971,
+      "equity": 20083.728731016316,
+      "cash": 19976.931140689787
     }
   ],
   "metrics": [
+    {
+      "ts": 1776122247,
+      "duration_ms": 785,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 2,
+      "equity": 20074.025872820246,
+      "cash": 19965.473885723277,
+      "note": ""
+    },
     {
       "ts": 1776121345,
       "duration_ms": 814,
@@ -11067,19 +11080,6 @@
       "equity": 20072.660917660283,
       "cash": 20000.52638572328,
       "note": "Error processing WBTCDAI: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=15m&limit=200 (Caused by NameResolutionError(\"HTTPSConnection(host='api.binance.com', por"
-    },
-    {
-      "ts": 1775941795,
-      "duration_ms": 807,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 1,
-      "equity": 20072.660917660283,
-      "cash": 20000.52638572328,
-      "note": ""
     }
   ],
   "rolling": {
@@ -11091,5 +11091,5 @@
     "trades_7d": 8
   },
   "live_cash": 19965.47,
-  "live_equity": 20001.8
+  "live_equity": 20001.89
 }
