@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-04-13T13:30:39.374003+00:00",
+  "as_of": "2026-04-13T13:45:41.592123+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -71,14 +71,14 @@
   "indicators": {
     "WBTCDAI": {
       "adx": 28.28,
-      "ema50": 71449.0048,
-      "rsi": 64.16,
+      "ema50": 71442.3785,
+      "rsi": 53.68,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 71169.0
+    "WBTCDAI": 70997.54
   },
   "positions": [
     {
@@ -979,11 +979,6 @@
     }
   ],
   "equity": [
-    {
-      "ts": 1773615389,
-      "equity": 20098.234409215747,
-      "cash": 20015.643159739862
-    },
     {
       "ts": 1773615705,
       "equity": 20098.558869881777,
@@ -8478,9 +8473,27 @@
       "ts": 1774037713,
       "equity": 20084.07517711267,
       "cash": 19840.702827083427
+    },
+    {
+      "ts": 1774037973,
+      "equity": 20083.40475971894,
+      "cash": 19840.702827083427
     }
   ],
   "metrics": [
+    {
+      "ts": 1776087941,
+      "duration_ms": 827,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 2,
+      "equity": 20072.252321615073,
+      "cash": 19965.473885723277,
+      "note": ""
+    },
     {
       "ts": 1776087039,
       "duration_ms": 813,
@@ -11067,19 +11080,6 @@
       "equity": 20072.660917660283,
       "cash": 20000.52638572328,
       "note": "Error processing WBTCDAI: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=15m&limit=200 (Caused by NameResolutionError(\"HTTPSConnection(host='api.binance.com', por"
-    },
-    {
-      "ts": 1775907517,
-      "duration_ms": 809,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 1,
-      "equity": 20072.660917660283,
-      "cash": 20000.52638572328,
-      "note": ""
     }
   ],
   "rolling": {
@@ -11091,5 +11091,5 @@
     "trades_7d": 8
   },
   "live_cash": 19965.47,
-  "live_equity": 20000.2
+  "live_equity": 20000.12
 }
