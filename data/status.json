@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-04-15T17:23:23.783072+00:00",
+  "as_of": "2026-04-15T17:38:25.886050+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "grid",
-  "adx_value": 17.836748,
+  "adx_value": 17.593176,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -70,15 +70,15 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 17.84,
-      "ema50": 73822.0124,
-      "rsi": 47.56,
+      "adx": 17.59,
+      "ema50": 73828.8289,
+      "rsi": 52.12,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 73966.26
+    "WBTCDAI": 74140.07
   },
   "positions": [
     {
@@ -999,11 +999,6 @@
     }
   ],
   "equity": [
-    {
-      "ts": 1773680044,
-      "equity": 20100.748097473883,
-      "cash": 19999.14994515622
-    },
     {
       "ts": 1773680344,
       "equity": 20100.76773889178,
@@ -8498,9 +8493,27 @@
       "ts": 1774087213,
       "equity": 20083.52084988849,
       "cash": 19906.826140689784
+    },
+    {
+      "ts": 1774087324,
+      "equity": 20083.47392882841,
+      "cash": 19906.826140689784
     }
   ],
   "metrics": [
+    {
+      "ts": 1776274705,
+      "duration_ms": 792,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 2,
+      "equity": 20074.469419067987,
+      "cash": 19952.148003102648,
+      "note": ""
+    },
     {
       "ts": 1776273803,
       "duration_ms": 758,
@@ -11087,19 +11100,6 @@
       "equity": 20072.67208853062,
       "cash": 19965.473885723277,
       "note": ""
-    },
-    {
-      "ts": 1776094255,
-      "duration_ms": 41,
-      "status": "partial",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 2,
-      "equity": 20072.60841766028,
-      "cash": 19965.473885723277,
-      "note": "Error processing WBTCDAI: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=1h&limit=100 (Caused by NameResolutionError(\"HTTPSConnection(host='api.binance.com', port"
     }
   ],
   "rolling": {
@@ -11111,5 +11111,5 @@
     "trades_7d": 5
   },
   "live_cash": 19952.15,
-  "live_equity": 20002.22
+  "live_equity": 20002.33
 }
