@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-04-16T10:40:53.148564+00:00",
+  "as_of": "2026-04-16T10:55:55.305655+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "grid",
-  "adx_value": 22.416085,
+  "adx_value": 22.316805,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -70,15 +70,15 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 22.42,
-      "ema50": 74283.3481,
-      "rsi": 37.73,
+      "adx": 22.32,
+      "ema50": 74280.7645,
+      "rsi": 35.76,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 74455.87
+    "WBTCDAI": 74390.0
   },
   "positions": [
     {
@@ -1009,11 +1009,6 @@
     }
   ],
   "equity": [
-    {
-      "ts": 1773701504,
-      "equity": 20103.63040202076,
-      "cash": 20087.66337412305
-    },
     {
       "ts": 1773701820,
       "equity": 20103.620460062775,
@@ -8508,9 +8503,27 @@
       "ts": 1774103413,
       "equity": 20084.6213217945,
       "cash": 19906.826140689784
+    },
+    {
+      "ts": 1774103553,
+      "equity": 20084.579482791378,
+      "cash": 19906.826140689784
     }
   ],
   "metrics": [
+    {
+      "ts": 1776336955,
+      "duration_ms": 762,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 2,
+      "equity": 20074.848726796503,
+      "cash": 19987.095503102646,
+      "note": ""
+    },
     {
       "ts": 1776336053,
       "duration_ms": 767,
@@ -11097,19 +11110,6 @@
       "equity": 20072.60841766028,
       "cash": 19965.473885723277,
       "note": "Error processing WBTCDAI: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=1h&limit=100 (Caused by NameResolutionError(\"HTTPSConnection(host='api.binance.com', port"
-    },
-    {
-      "ts": 1776156527,
-      "duration_ms": 439,
-      "status": "partial",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 2,
-      "equity": 20072.60841766028,
-      "cash": 19965.473885723277,
-      "note": "Error processing WBTCDAI: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/klines?symbol=BTCUSDT&interval=15m&limit=200 (Caused by NameResolutionError(\"HTTPSConnection(host='api.binance.com', por"
     }
   ],
   "rolling": {
@@ -11121,5 +11121,5 @@
     "trades_7d": 6
   },
   "live_cash": 19987.1,
-  "live_equity": 20002.73
+  "live_equity": 20002.71
 }
