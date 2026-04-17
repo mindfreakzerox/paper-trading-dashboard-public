@@ -1,17 +1,17 @@
 {
-  "as_of": "2026-04-17T19:30:51.048545+00:00",
+  "as_of": "2026-04-17T19:45:53.596060+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
     "adx_threshold": 30,
     "grid_spacing_pct": 0.015,
-    "grid_order_size": 35.0,
+    "grid_order_size": 500.0,
     "grid_levels": 8,
     "grid_reset_hours": 24.0,
-    "dca_order_size": 50.0,
-    "dca_dip_pct": 0.02,
-    "dca_max_levels": 3,
-    "dca_rsi_threshold": 45,
+    "dca_order_size": 1000.0,
+    "dca_dip_pct": 0.01,
+    "dca_max_levels": 5,
+    "dca_rsi_threshold": 55,
     "dca_take_profit_pct": 0.05,
     "stop_loss_pct": 0.03,
     "hysteresis_candles": 3,
@@ -71,14 +71,14 @@
   "indicators": {
     "WBTCDAI": {
       "adx": 33.3,
-      "ema50": 75464.626,
-      "rsi": 54.32,
+      "ema50": 75459.6833,
+      "rsi": 51.65,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     }
   },
   "prices": {
-    "WBTCDAI": 77376.03
+    "WBTCDAI": 77250.0
   },
   "positions": [
     {
@@ -1027,11 +1027,6 @@
     }
   ],
   "equity": [
-    {
-      "ts": 1773742476,
-      "equity": 20102.13443878818,
-      "cash": 19953.626474910354
-    },
     {
       "ts": 1773742790,
       "equity": 20102.060890417084,
@@ -8526,9 +8521,27 @@
       "ts": 1774134011,
       "equity": 20083.491640492088,
       "cash": 19906.826140689784
+    },
+    {
+      "ts": 1774134115,
+      "equity": 20083.418922406225,
+      "cash": 19906.826140689784
     }
   ],
   "metrics": [
+    {
+      "ts": 1776455153,
+      "duration_ms": 787,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 1,
+      "equity": 20076.421192539005,
+      "cash": 20004.286660602,
+      "note": ""
+    },
     {
       "ts": 1776454251,
       "duration_ms": 777,
@@ -11113,19 +11126,6 @@
       "fees": 0.0,
       "positions": 2,
       "equity": 20074.430462331424,
-      "cash": 19952.148003102648,
-      "note": ""
-    },
-    {
-      "ts": 1776274705,
-      "duration_ms": 792,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 2,
-      "equity": 20074.469419067987,
       "cash": 19952.148003102648,
       "note": ""
     }
