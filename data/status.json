@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-20T22:11:54.820906+00:00",
+  "as_of": "2026-06-20T22:26:58.404587+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "grid",
-  "adx_value": 24.576286,
+  "adx_value": 24.968263,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -116,31 +116,31 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 24.58,
-      "ema50": 63652.1174,
-      "rsi": 57.0,
+      "adx": 24.97,
+      "ema50": 63658.4092,
+      "rsi": 64.64,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WETHDAI": {
-      "adx": 22.05,
-      "ema50": 1722.9788,
-      "rsi": 55.08,
+      "adx": 22.47,
+      "ema50": 1723.2364,
+      "rsi": 64.45,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WSOLDAI": {
-      "adx": 34.99,
-      "ema50": 70.9293,
-      "rsi": 67.55,
+      "adx": 35.87,
+      "ema50": 70.9642,
+      "rsi": 77.55,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     }
   },
   "prices": {
-    "WBTCDAI": 64006.05,
-    "WETHDAI": 1733.49,
-    "WSOLDAI": 72.57
+    "WBTCDAI": 64166.49,
+    "WETHDAI": 1740.06,
+    "WSOLDAI": 73.46
   },
   "positions": [
     {
@@ -157,14 +157,14 @@
     },
     {
       "symbol": "WETHDAI",
-      "qty": 2.637502049752725,
+      "qty": 2.3501501620505323,
       "entry_price": 1755.66755,
       "entry_time": 1781698869,
       "last_sell_time": null,
       "high_since_entry": 0.0,
       "dca_level": 1,
       "avg_entry_price": 1714.4561148889838,
-      "total_invested": 4521.881517230789,
+      "total_invested": 4029.229316234872,
       "last_dca_time": 0
     },
     {
@@ -181,6 +181,16 @@
     }
   ],
   "trades": [
+    {
+      "id": 749,
+      "symbol": "WETHDAI",
+      "side": "SELL",
+      "qty": 0.28735188770219267,
+      "price": 1740.0268499999997,
+      "ts": 1781994417,
+      "fee": 0.7499999999999999,
+      "regime": "sideways"
+    },
     {
       "id": 748,
       "symbol": "WETHDAI",
@@ -2170,24 +2180,9 @@
       "ts": 1780221982,
       "fee": 0.75,
       "regime": "sideways"
-    },
-    {
-      "id": 549,
-      "symbol": "WETHDAI",
-      "side": "SELL",
-      "qty": 0.246499515837976,
-      "price": 2028.4015499999998,
-      "ts": 1780154210,
-      "fee": 0.75,
-      "regime": "sideways"
     }
   ],
   "equity": [
-    {
-      "ts": 1778378939,
-      "equity": 20107.60282078022,
-      "cash": 16477.246988033654
-    },
     {
       "ts": 1778379843,
       "equity": 20112.156492831662,
@@ -9682,9 +9677,27 @@
       "ts": 1779733759,
       "equity": 19308.136164746113,
       "cash": 11656.674482338703
+    },
+    {
+      "ts": 1779734663,
+      "equity": 19300.08338416803,
+      "cash": 11656.674482338703
     }
   ],
   "metrics": [
+    {
+      "ts": 1781994418,
+      "duration_ms": 1803,
+      "status": "ok",
+      "buys": 0,
+      "sells": 1,
+      "trades": 1,
+      "fees": 0.7499999999999999,
+      "positions": 3,
+      "equity": 18532.16483989792,
+      "cash": 7357.432921277907,
+      "note": ""
+    },
     {
       "ts": 1781993514,
       "duration_ms": 1757,
@@ -12271,29 +12284,16 @@
       "equity": 18393.584728451886,
       "cash": 697.4472299740246,
       "note": ""
-    },
-    {
-      "ts": 1781813660,
-      "duration_ms": 1833,
-      "status": "ok",
-      "buys": 0,
-      "sells": 1,
-      "trades": 1,
-      "fees": 0.7499999999999999,
-      "positions": 3,
-      "equity": 18384.821742833385,
-      "cash": 697.4472299740246,
-      "note": ""
     }
   ],
   "rolling": {
-    "fees_24h": 9.0076,
-    "fees_7d": 73.8714,
-    "pnl_24h": 1996.0426,
-    "pnl_7d": -10826.2762,
-    "trades_24h": 11,
-    "trades_7d": 85
+    "fees_24h": 9.7576,
+    "fees_7d": 74.6214,
+    "pnl_24h": 2495.2926,
+    "pnl_7d": -10327.0262,
+    "trades_24h": 12,
+    "trades_7d": 86
   },
-  "live_cash": 6858.18,
-  "live_equity": 18477.98
+  "live_cash": 7357.43,
+  "live_equity": 18532.16
 }
