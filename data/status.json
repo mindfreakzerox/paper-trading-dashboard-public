@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-10T09:53:15.956074+00:00",
+  "as_of": "2026-08-10T10:08:20.359343+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "dca",
-  "adx_value": 33.918942,
+  "adx_value": 32.954062,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -116,31 +116,31 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 33.92,
-      "ema50": 65030.7375,
-      "rsi": 38.59,
+      "adx": 32.95,
+      "ema50": 65029.8566,
+      "rsi": 43.33,
       "regime": "uptrend",
-      "raw_regime": "downtrend"
+      "raw_regime": "uptrend"
     },
     "WETHDAI": {
-      "adx": 29.58,
-      "ema50": 1919.5576,
-      "rsi": 40.11,
-      "regime": "uptrend",
+      "adx": 28.65,
+      "ema50": 1919.4215,
+      "rsi": 43.63,
+      "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WSOLDAI": {
-      "adx": 28.26,
-      "ema50": 76.2399,
-      "rsi": 41.2,
+      "adx": 26.57,
+      "ema50": 76.2483,
+      "rsi": 40.66,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 64972.98,
-    "WETHDAI": 1917.06,
-    "WSOLDAI": 76.62
+    "WBTCDAI": 65037.27,
+    "WETHDAI": 1918.75,
+    "WSOLDAI": 76.59
   },
   "positions": [
     {
@@ -169,18 +169,28 @@
     },
     {
       "symbol": "WSOLDAI",
-      "qty": 13.482765095585822,
+      "qty": 20.009749935358137,
       "entry_price": 73.65985,
       "entry_time": 1786008349,
       "last_sell_time": null,
       "high_since_entry": 0.0,
       "dca_level": 1,
-      "avg_entry_price": 75.77024281291166,
-      "total_invested": 1021.5923850819879,
+      "avg_entry_price": 76.04254875735678,
+      "total_invested": 1521.592385081988,
       "last_dca_time": 0
     }
   ],
   "trades": [
+    {
+      "id": 1292,
+      "symbol": "WSOLDAI",
+      "side": "BUY",
+      "qty": 6.526984839772314,
+      "price": 76.60504999999999,
+      "ts": 1786356500,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
     {
       "id": 1291,
       "symbol": "WBTCDAI",
@@ -2170,24 +2180,9 @@
       "ts": 1784120344,
       "fee": 0.75,
       "regime": "sideways"
-    },
-    {
-      "id": 1093,
-      "symbol": "WSOLDAI",
-      "side": "SELL",
-      "qty": 6.392684723017757,
-      "price": 78.2144,
-      "ts": 1784120344,
-      "fee": 0.75,
-      "regime": "sideways"
     }
   ],
   "equity": [
-    {
-      "ts": 1782739182,
-      "equity": 17698.045339564847,
-      "cash": 5189.120001337995
-    },
     {
       "ts": 1782740086,
       "equity": 17662.749697677133,
@@ -9682,9 +9677,27 @@
       "ts": 1784094128,
       "equity": 18532.219409561276,
       "cash": 11331.547669465137
+    },
+    {
+      "ts": 1784095032,
+      "equity": 18556.975705709006,
+      "cash": 11331.547669465137
     }
   ],
   "metrics": [
+    {
+      "ts": 1786356500,
+      "duration_ms": 2038,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.75,
+      "positions": 3,
+      "equity": 17891.73881858507,
+      "cash": 8035.773613428464,
+      "note": ""
+    },
     {
       "ts": 1786355595,
       "duration_ms": 1852,
@@ -12271,29 +12284,16 @@
       "equity": 17871.19752507351,
       "cash": 9539.523613428464,
       "note": ""
-    },
-    {
-      "ts": 1786175652,
-      "duration_ms": 2055,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 3,
-      "equity": 17871.22389532713,
-      "cash": 9539.523613428464,
-      "note": ""
     }
   ],
   "rolling": {
-    "fees_24h": 1.5,
-    "fees_7d": 27.0275,
-    "pnl_24h": -1.5,
-    "pnl_7d": 5991.2871,
-    "trades_24h": 2,
-    "trades_7d": 37
+    "fees_24h": 2.25,
+    "fees_7d": 27.7775,
+    "pnl_24h": -502.25,
+    "pnl_7d": 5490.5371,
+    "trades_24h": 3,
+    "trades_7d": 38
   },
-  "live_cash": 8536.52,
-  "live_equity": 17884.88
+  "live_cash": 8035.77,
+  "live_equity": 17891.74
 }
