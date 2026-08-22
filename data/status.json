@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-22T05:03:07.696355+00:00",
+  "as_of": "2026-08-22T05:18:12.192505+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "dca",
-  "adx_value": 49.979224,
+  "adx_value": 47.218906,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -116,31 +116,31 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 49.98,
-      "ema50": 75040.3715,
-      "rsi": 56.77,
+      "adx": 47.22,
+      "ema50": 74987.1452,
+      "rsi": 33.24,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     },
     "WETHDAI": {
-      "adx": 56.99,
-      "ema50": 2366.0439,
-      "rsi": 55.38,
+      "adx": 54.64,
+      "ema50": 2362.9396,
+      "rsi": 29.05,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     },
     "WSOLDAI": {
-      "adx": 59.57,
-      "ema50": 90.2715,
-      "rsi": 69.06,
+      "adx": 54.34,
+      "ema50": 90.0095,
+      "rsi": 42.42,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     }
   },
   "prices": {
-    "WBTCDAI": 78545.04,
-    "WETHDAI": 2516.52,
-    "WSOLDAI": 99.94
+    "WBTCDAI": 77187.77,
+    "WETHDAI": 2437.58,
+    "WSOLDAI": 93.24
   },
   "positions": [
     {
@@ -157,18 +157,50 @@
     },
     {
       "symbol": "WETHDAI",
-      "qty": 0.3990534452279194,
+      "qty": 0.8092963911004651,
       "entry_price": 2505.93,
       "entry_time": 1787366846,
       "last_sell_time": null,
       "high_since_entry": 0.0,
       "dca_level": 1,
-      "avg_entry_price": 2505.93,
+      "avg_entry_price": 2471.282489324387,
+      "total_invested": 2000.0,
+      "last_dca_time": 0
+    },
+    {
+      "symbol": "WSOLDAI",
+      "qty": 10.725010725010726,
+      "entry_price": 93.24,
+      "entry_time": 1787375892,
+      "last_sell_time": null,
+      "high_since_entry": 0.0,
+      "dca_level": 1,
+      "avg_entry_price": 93.24,
       "total_invested": 1000.0,
       "last_dca_time": 0
     }
   ],
   "trades": [
+    {
+      "id": 1373,
+      "symbol": "WSOLDAI",
+      "side": "BUY",
+      "qty": 10.725010725010726,
+      "price": 93.24,
+      "ts": 1787375892,
+      "fee": 1.5,
+      "regime": "uptrend"
+    },
+    {
+      "id": 1372,
+      "symbol": "WETHDAI",
+      "side": "BUY",
+      "qty": 0.41024294587254573,
+      "price": 2437.58,
+      "ts": 1787375891,
+      "fee": 1.5,
+      "regime": "uptrend"
+    },
     {
       "id": 1371,
       "symbol": "WSOLDAI",
@@ -2148,34 +2180,9 @@
       "ts": 1785083194,
       "fee": 0.7499999999999999,
       "regime": "sideways"
-    },
-    {
-      "id": 1173,
-      "symbol": "WETHDAI",
-      "side": "SELL",
-      "qty": 0.2624461270273898,
-      "price": 1905.1529,
-      "ts": 1785079578,
-      "fee": 0.7500000000000001,
-      "regime": "sideways"
-    },
-    {
-      "id": 1172,
-      "symbol": "WETHDAI",
-      "side": "SELL",
-      "qty": 0.2637518291519042,
-      "price": 1895.7214499999998,
-      "ts": 1785077770,
-      "fee": 0.7500000000000001,
-      "regime": "sideways"
     }
   ],
   "equity": [
-    {
-      "ts": 1783757850,
-      "equity": 18345.580839031845,
-      "cash": 16348.656482408202
-    },
     {
       "ts": 1783758753,
       "equity": 18345.580839031845,
@@ -9670,9 +9677,27 @@
       "ts": 1785113027,
       "equity": 18001.103087469426,
       "cash": 13877.314579498856
+    },
+    {
+      "ts": 1785113931,
+      "equity": 17998.688412061558,
+      "cash": 12875.814579498856
     }
   ],
   "metrics": [
+    {
+      "ts": 1787375892,
+      "duration_ms": 2077,
+      "status": "ok",
+      "buys": 2,
+      "sells": 0,
+      "trades": 2,
+      "fees": 3.0,
+      "positions": 3,
+      "equity": 19128.893848894462,
+      "cash": 13147.777620720779,
+      "note": ""
+    },
     {
       "ts": 1787374987,
       "duration_ms": 1919,
@@ -12259,29 +12284,16 @@
       "equity": 18651.806800818154,
       "cash": 14656.056092602856,
       "note": ""
-    },
-    {
-      "ts": 1787194950,
-      "duration_ms": 1843,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 1,
-      "equity": 18657.95930317887,
-      "cash": 17660.556092602856,
-      "note": ""
     }
   ],
   "rolling": {
-    "fees_24h": 19.889,
-    "fees_7d": 76.8215,
-    "pnl_24h": -2760.5636,
-    "pnl_7d": 15137.504,
-    "trades_24h": 10,
-    "trades_7d": 49
+    "fees_24h": 22.889,
+    "fees_7d": 79.8215,
+    "pnl_24h": -4763.5636,
+    "pnl_7d": 13134.504,
+    "trades_24h": 12,
+    "trades_7d": 51
   },
-  "live_cash": 15150.78,
-  "live_equity": 19216.29
+  "live_cash": 13147.78,
+  "live_equity": 19128.89
 }
