@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-09T18:48:54.074956+00:00",
+  "as_of": "2026-09-09T19:03:59.350264+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "grid",
-  "adx_value": 22.498849,
+  "adx_value": 23.127724,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -116,31 +116,31 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 22.5,
-      "ema50": 78966.382,
-      "rsi": 38.7,
+      "adx": 23.13,
+      "ema50": 78943.6528,
+      "rsi": 35.19,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WETHDAI": {
-      "adx": 12.84,
-      "ema50": 2492.6486,
-      "rsi": 42.32,
+      "adx": 13.28,
+      "ema50": 2492.0764,
+      "rsi": 36.0,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WSOLDAI": {
-      "adx": 13.86,
-      "ema50": 103.8442,
-      "rsi": 48.37,
+      "adx": 14.15,
+      "ema50": 103.8177,
+      "rsi": 42.98,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 78522.01,
-    "WETHDAI": 2487.66,
-    "WSOLDAI": 103.52
+    "WBTCDAI": 78380.01,
+    "WETHDAI": 2478.84,
+    "WSOLDAI": 103.2
   },
   "positions": [
     {
@@ -157,14 +157,14 @@
     },
     {
       "symbol": "WETHDAI",
-      "qty": 0.6139815890723177,
+      "qty": 0.815473418457741,
       "entry_price": 2501.9175499999997,
       "entry_time": 1788745438,
       "last_sell_time": null,
       "high_since_entry": 0.0,
       "dca_level": 1,
-      "avg_entry_price": 2472.106028327445,
-      "total_invested": 1517.8275876277405,
+      "avg_entry_price": 2474.4247230571223,
+      "total_invested": 2017.8275876277405,
       "last_dca_time": 0
     },
     {
@@ -181,6 +181,16 @@
     }
   ],
   "trades": [
+    {
+      "id": 1591,
+      "symbol": "WETHDAI",
+      "side": "BUY",
+      "qty": 0.20149182938542332,
+      "price": 2481.4902,
+      "ts": 1788980638,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
     {
       "id": 1590,
       "symbol": "WSOLDAI",
@@ -2170,24 +2180,9 @@
       "ts": 1787460906,
       "fee": 0.75,
       "regime": "sideways"
-    },
-    {
-      "id": 1392,
-      "symbol": "WETHDAI",
-      "side": "BUY",
-      "qty": 0.20928616090238167,
-      "price": 2389.0733999999998,
-      "ts": 1787460906,
-      "fee": 0.75,
-      "regime": "sideways"
     }
   ],
   "equity": [
-    {
-      "ts": 1785361678,
-      "equity": 17652.930504855667,
-      "cash": 850.3145794988559
-    },
     {
       "ts": 1785362582,
       "equity": 17741.227574511464,
@@ -9682,9 +9677,27 @@
       "ts": 1786718276,
       "equity": 17514.078783462675,
       "cash": 14.77361342846416
+    },
+    {
+      "ts": 1786719181,
+      "equity": 17484.640074828407,
+      "cash": 14.77361342846416
     }
   ],
   "metrics": [
+    {
+      "ts": 1788980639,
+      "duration_ms": 2333,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.75,
+      "positions": 3,
+      "equity": 19615.145241504193,
+      "cash": 14611.553802758532,
+      "note": ""
+    },
     {
       "ts": 1788979734,
       "duration_ms": 1838,
@@ -12271,29 +12284,16 @@
       "equity": 19597.659741488005,
       "cash": 14625.053802758532,
       "note": ""
-    },
-    {
-      "ts": 1788799724,
-      "duration_ms": 1971,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 3,
-      "equity": 19594.54354635434,
-      "cash": 14625.053802758532,
-      "note": ""
     }
   ],
   "rolling": {
-    "fees_24h": 6.0,
-    "fees_7d": 47.5977,
-    "pnl_24h": 1994.0,
-    "pnl_7d": 3684.1697,
-    "trades_24h": 8,
-    "trades_7d": 58
+    "fees_24h": 6.75,
+    "fees_7d": 48.3477,
+    "pnl_24h": 1493.25,
+    "pnl_7d": 3183.4197,
+    "trades_24h": 9,
+    "trades_7d": 59
   },
-  "live_cash": 15112.3,
-  "live_equity": 19627.92
+  "live_cash": 14611.55,
+  "live_equity": 19615.15
 }
