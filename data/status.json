@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-02T03:52:58.080375+00:00",
+  "as_of": "2026-10-02T04:08:02.785203+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "grid",
-  "adx_value": 22.224662,
+  "adx_value": 23.654358,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -116,31 +116,31 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 22.22,
-      "ema50": 84188.9594,
-      "rsi": 68.99,
+      "adx": 23.65,
+      "ema50": 84235.0977,
+      "rsi": 69.63,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WETHDAI": {
-      "adx": 12.91,
-      "ema50": 2695.5118,
-      "rsi": 57.56,
+      "adx": 14.06,
+      "ema50": 2696.1556,
+      "rsi": 56.99,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WSOLDAI": {
-      "adx": 14.5,
-      "ema50": 118.6682,
-      "rsi": 73.17,
+      "adx": 16.7,
+      "ema50": 118.7744,
+      "rsi": 73.7,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 85408.59,
-    "WETHDAI": 2716.0,
-    "WSOLDAI": 120.34
+    "WBTCDAI": 85473.24,
+    "WETHDAI": 2715.95,
+    "WSOLDAI": 120.96
   },
   "positions": [
     {
@@ -154,21 +154,19 @@
       "avg_entry_price": 2682.1622432142867,
       "total_invested": 1064.4161927999382,
       "last_dca_time": 0
-    },
-    {
-      "symbol": "WSOLDAI",
-      "qty": 0.8275132664335052,
-      "entry_price": 120.9522,
-      "entry_time": 1790561247,
-      "last_sell_time": null,
-      "high_since_entry": 0.0,
-      "dca_level": 1,
-      "avg_entry_price": 117.65659492741516,
-      "total_invested": 97.36239318582915,
-      "last_dca_time": 0
     }
   ],
   "trades": [
+    {
+      "id": 1854,
+      "symbol": "WSOLDAI",
+      "side": "SELL",
+      "qty": 0.8275132664335052,
+      "price": 120.71424999999998,
+      "ts": 1790914082,
+      "fee": 0.1498389649838561,
+      "regime": "sideways"
+    },
     {
       "id": 1853,
       "symbol": "WSOLDAI",
@@ -2158,24 +2156,9 @@
       "ts": 1789417550,
       "fee": 0.75,
       "regime": "sideways"
-    },
-    {
-      "id": 1653,
-      "symbol": "WETHDAI",
-      "side": "SELL",
-      "qty": 0.19491903005016006,
-      "price": 2565.1677,
-      "ts": 1789417550,
-      "fee": 0.7499999999999999,
-      "regime": "sideways"
     }
   ],
   "equity": [
-    {
-      "ts": 1787295354,
-      "equity": 18925.19915972871,
-      "cash": 17911.341201661642
-    },
     {
       "ts": 1787296258,
       "equity": 18928.853864894452,
@@ -9670,9 +9653,27 @@
       "ts": 1788651381,
       "equity": 19608.620554398378,
       "cash": 16600.89813907548
+    },
+    {
+      "ts": 1788652285,
+      "equity": 19609.45052276541,
+      "cash": 16600.89813907548
     }
   ],
   "metrics": [
+    {
+      "ts": 1790914082,
+      "duration_ms": 2325,
+      "status": "ok",
+      "buys": 0,
+      "sells": 1,
+      "trades": 1,
+      "fees": 0.1498389649838561,
+      "positions": 1,
+      "equity": 19607.388845736576,
+      "cash": 18529.56398031361,
+      "note": ""
+    },
     {
       "ts": 1790913178,
       "duration_ms": 1809,
@@ -12259,29 +12260,16 @@
       "equity": 19495.604686400282,
       "cash": 10934.482633899566,
       "note": ""
-    },
-    {
-      "ts": 1790733157,
-      "duration_ms": 1829,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 3,
-      "equity": 19479.10701150349,
-      "cash": 10934.482633899566,
-      "note": ""
     }
   ],
   "rolling": {
-    "fees_24h": 8.2576,
-    "fees_7d": 58.6784,
-    "pnl_24h": 3496.7783,
-    "pnl_7d": 9060.2361,
-    "trades_24h": 12,
-    "trades_7d": 82
+    "fees_24h": 8.4074,
+    "fees_7d": 58.8282,
+    "pnl_24h": 3596.5211,
+    "pnl_7d": 9159.9789,
+    "trades_24h": 13,
+    "trades_7d": 83
   },
-  "live_cash": 18429.82,
-  "live_equity": 19607.25
+  "live_cash": 18529.56,
+  "live_equity": 19607.39
 }
