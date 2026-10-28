@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-28T03:44:56.897718+00:00",
+  "as_of": "2026-10-28T04:00:05.495267+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -42,6 +42,29 @@
         0.4756,
         0.4779,
         0.4802
+      ]
+    },
+    "WSOLDAI": {
+      "center_price": 100.21,
+      "buy_levels": [
+        99.7089,
+        99.2079,
+        98.7068,
+        98.2058,
+        97.7047,
+        97.2037,
+        96.7026,
+        96.2016
+      ],
+      "sell_levels": [
+        100.711,
+        101.2121,
+        101.7131,
+        102.2142,
+        102.7152,
+        103.2163,
+        103.7173,
+        104.2184
       ]
     },
     "WBTCDAI": {
@@ -89,58 +112,27 @@
         2399.2335,
         2410.824
       ]
-    },
-    "WSOLDAI": {
-      "center_price": 100.21,
-      "buy_levels": [
-        99.7089,
-        99.2079,
-        98.7068,
-        98.2058,
-        97.7047,
-        97.2037,
-        96.7026,
-        96.2016
-      ],
-      "sell_levels": [
-        100.711,
-        101.2121,
-        101.7131,
-        102.2142,
-        102.7152,
-        103.2163,
-        103.7173,
-        104.2184
-      ]
     }
   },
   "indicators": {
     "WBTCDAI": {
       "adx": 28.47,
-      "ema50": 80429.425,
-      "rsi": 68.86,
+      "ema50": 80427.0717,
+      "rsi": 64.59,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WETHDAI": {
       "adx": 29.56,
-      "ema50": 2336.4523,
-      "rsi": 69.44,
-      "regime": "sideways",
-      "raw_regime": "sideways"
-    },
-    "WSOLDAI": {
-      "adx": 27.68,
-      "ema50": 101.0385,
-      "rsi": 73.71,
+      "ema50": 2336.2531,
+      "rsi": 60.12,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 81200.01,
-    "WETHDAI": 2365.71,
-    "WSOLDAI": 102.25
+    "WBTCDAI": 81145.11,
+    "WETHDAI": 2360.63
   },
   "positions": [
     {
@@ -2183,11 +2175,6 @@
     }
   ],
   "equity": [
-    {
-      "ts": 1789541489,
-      "equity": 19076.83112356613,
-      "cash": 19076.83112356613
-    },
     {
       "ts": 1789542393,
       "equity": 19076.83112356613,
@@ -9682,9 +9669,27 @@
       "ts": 1790897803,
       "equity": 19589.660976942476,
       "cash": 16432.821175956025
+    },
+    {
+      "ts": 1790898708,
+      "equity": 19589.58552751611,
+      "cash": 16432.821175956025
     }
   ],
   "metrics": [
+    {
+      "ts": 1793160005,
+      "duration_ms": 5884,
+      "status": "partial",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 3,
+      "equity": 18462.480734193017,
+      "cash": 14880.044588417444,
+      "note": "Error processing WSOLDAI: 500 Server Error: Internal Server Error for url: https://api.binance.com/api/v3/klines?symbol=SOLUSDT&interval=1h&limit=100"
+    },
     {
       "ts": 1793159096,
       "duration_ms": 1804,
@@ -12271,19 +12276,6 @@
       "equity": 18377.444037760433,
       "cash": 12895.044588417444,
       "note": ""
-    },
-    {
-      "ts": 1792979068,
-      "duration_ms": 1880,
-      "status": "ok",
-      "buys": 4,
-      "sells": 0,
-      "trades": 4,
-      "fees": 3.0,
-      "positions": 3,
-      "equity": 18356.79990119165,
-      "cash": 12895.044588417444,
-      "note": ""
     }
   ],
   "rolling": {
@@ -12295,5 +12287,5 @@
     "trades_7d": 61
   },
   "live_cash": 14880.04,
-  "live_equity": 18477.69
+  "live_equity": 15929.46
 }
