@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-30T05:45:33.758624+00:00",
+  "as_of": "2026-10-30T06:00:38.408515+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "cash",
-  "adx_value": 30.457008,
+  "adx_value": 29.69855,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -47,31 +47,31 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 30.46,
-      "ema50": 79808.4593,
-      "rsi": 60.09,
+      "adx": 29.7,
+      "ema50": 79753.9266,
+      "rsi": 56.35,
       "regime": "downtrend",
-      "raw_regime": "downtrend"
+      "raw_regime": "sideways"
     },
     "WETHDAI": {
-      "adx": 32.88,
-      "ema50": 2305.0356,
-      "rsi": 54.52,
+      "adx": 33.15,
+      "ema50": 2302.0928,
+      "rsi": 48.77,
       "regime": "downtrend",
       "raw_regime": "downtrend"
     },
     "WSOLDAI": {
-      "adx": 32.35,
-      "ema50": 99.5486,
-      "rsi": 66.81,
+      "adx": 31.32,
+      "ema50": 99.4684,
+      "rsi": 62.27,
       "regime": "downtrend",
       "raw_regime": "downtrend"
     }
   },
   "prices": {
-    "WBTCDAI": 78725.01,
-    "WETHDAI": 2249.48,
-    "WSOLDAI": 98.38
+    "WBTCDAI": 78574.0,
+    "WETHDAI": 2240.55,
+    "WSOLDAI": 98.06
   },
   "positions": [],
   "trades": [
@@ -2077,11 +2077,6 @@
     }
   ],
   "equity": [
-    {
-      "ts": 1789721515,
-      "equity": 19097.106869582327,
-      "cash": 19079.416225693683
-    },
     {
       "ts": 1789722420,
       "equity": 19097.218930787636,
@@ -9576,9 +9571,27 @@
       "ts": 1791077783,
       "equity": 19632.75823377372,
       "cash": 16104.986118000474
+    },
+    {
+      "ts": 1791078687,
+      "equity": 19633.572033187404,
+      "cash": 16104.986118000474
     }
   ],
   "metrics": [
+    {
+      "ts": 1793340038,
+      "duration_ms": 1849,
+      "status": "ok",
+      "buys": 0,
+      "sells": 0,
+      "trades": 0,
+      "fees": 0.0,
+      "positions": 0,
+      "equity": 17551.207894031297,
+      "cash": 17551.207894031297,
+      "note": ""
+    },
     {
       "ts": 1793339133,
       "duration_ms": 1867,
@@ -12165,19 +12178,6 @@
       "equity": 18462.480734193017,
       "cash": 14880.044588417444,
       "note": "Error processing WSOLDAI: 500 Server Error: Internal Server Error for url: https://api.binance.com/api/v3/klines?symbol=SOLUSDT&interval=1h&limit=100"
-    },
-    {
-      "ts": 1793159096,
-      "duration_ms": 1804,
-      "status": "ok",
-      "buys": 0,
-      "sells": 3,
-      "trades": 3,
-      "fees": 2.25,
-      "positions": 3,
-      "equity": 18477.694350268648,
-      "cash": 14880.044588417444,
-      "note": ""
     }
   ],
   "rolling": {
