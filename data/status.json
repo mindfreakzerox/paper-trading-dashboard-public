@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-01T11:16:38.805455+00:00",
+  "as_of": "2026-11-01T11:31:43.253168+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -117,30 +117,30 @@
   "indicators": {
     "WBTCDAI": {
       "adx": 20.54,
-      "ema50": 77943.896,
-      "rsi": 50.52,
+      "ema50": 77942.9462,
+      "rsi": 48.9,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WETHDAI": {
-      "adx": 35.17,
-      "ema50": 2263.0415,
-      "rsi": 52.82,
+      "adx": 35.09,
+      "ema50": 2262.9485,
+      "rsi": 47.97,
       "regime": "uptrend",
       "raw_regime": "uptrend"
     },
     "WSOLDAI": {
-      "adx": 8.47,
-      "ema50": 96.2285,
-      "rsi": 44.5,
+      "adx": 8.56,
+      "ema50": 96.225,
+      "rsi": 42.06,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 78008.01,
-    "WETHDAI": 2271.12,
-    "WSOLDAI": 95.4
+    "WBTCDAI": 77983.79,
+    "WETHDAI": 2268.75,
+    "WSOLDAI": 95.31
   },
   "positions": [
     {
@@ -157,18 +157,28 @@
     },
     {
       "symbol": "WSOLDAI",
-      "qty": 15.64619249341744,
+      "qty": 20.89162634325116,
       "entry_price": 96.3558,
       "entry_time": 1793418735,
       "last_sell_time": null,
       "high_since_entry": 0.0,
       "dca_level": 1,
-      "avg_entry_price": 95.86996968310788,
-      "total_invested": 1500.0,
+      "avg_entry_price": 95.73213531296383,
+      "total_invested": 2000.0,
       "last_dca_time": 0
     }
   ],
   "trades": [
+    {
+      "id": 2140,
+      "symbol": "WSOLDAI",
+      "side": "BUY",
+      "qty": 5.24543384983372,
+      "price": 95.321,
+      "ts": 1793532703,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
     {
       "id": 2139,
       "symbol": "WBTCDAI",
@@ -2158,24 +2168,9 @@
       "ts": 1791984036,
       "fee": 0.75,
       "regime": "sideways"
-    },
-    {
-      "id": 1940,
-      "symbol": "WBTCDAI",
-      "side": "BUY",
-      "qty": 0.0060497407262616945,
-      "price": 82648.17,
-      "ts": 1791984035,
-      "fee": 0.75,
-      "regime": "sideways"
     }
   ],
   "equity": [
-    {
-      "ts": 1789914372,
-      "equity": 19016.171988845213,
-      "cash": 11131.079329369571
-    },
     {
       "ts": 1789915277,
       "equity": 19025.819231445555,
@@ -9670,9 +9665,27 @@
       "ts": 1791270423,
       "equity": 19636.032286472968,
       "cash": 15600.829613284408
+    },
+    {
+      "ts": 1791271327,
+      "equity": 19632.951841028902,
+      "cash": 15600.829613284408
     }
   ],
   "metrics": [
+    {
+      "ts": 1793532703,
+      "duration_ms": 1830,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.75,
+      "positions": 2,
+      "equity": 17539.099759855893,
+      "cash": 14545.207894031297,
+      "note": ""
+    },
     {
       "ts": 1793531798,
       "duration_ms": 1797,
@@ -12259,29 +12272,16 @@
       "equity": 17544.329000689064,
       "cash": 16549.707894031297,
       "note": ""
-    },
-    {
-      "ts": 1793351797,
-      "duration_ms": 1897,
-      "status": "ok",
-      "buys": 1,
-      "sells": 0,
-      "trades": 1,
-      "fees": 0.75,
-      "positions": 1,
-      "equity": 17546.620068781333,
-      "cash": 16549.707894031297,
-      "note": ""
     }
   ],
   "rolling": {
-    "fees_24h": 0.75,
-    "fees_7d": 87.3484,
-    "pnl_24h": 499.25,
-    "pnl_7d": -1855.0867,
-    "trades_24h": 1,
-    "trades_7d": 81
+    "fees_24h": 1.5,
+    "fees_7d": 88.0984,
+    "pnl_24h": -1.5,
+    "pnl_7d": -2355.8367,
+    "trades_24h": 2,
+    "trades_7d": 82
   },
-  "live_cash": 15045.96,
-  "live_equity": 17541.63
+  "live_cash": 14545.21,
+  "live_equity": 17539.1
 }
