@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-09T07:49:44.073961+00:00",
+  "as_of": "2026-11-09T08:04:48.624126+00:00",
   "strategy": "grid_dca_hybrid_v2",
   "version": "2.1",
   "config": {
@@ -19,7 +19,7 @@
     "regime_candle_interval": "1h"
   },
   "current_regime": "grid",
-  "adx_value": 25.950865,
+  "adx_value": 27.344353,
   "grid_levels": {
     "FRAXDAI": {
       "center_price": 0.4617,
@@ -93,31 +93,31 @@
   },
   "indicators": {
     "WBTCDAI": {
-      "adx": 25.95,
-      "ema50": 75589.117,
-      "rsi": 34.26,
+      "adx": 27.34,
+      "ema50": 75510.9516,
+      "rsi": 30.45,
       "regime": "sideways",
       "raw_regime": "sideways"
     },
     "WETHDAI": {
-      "adx": 41.75,
-      "ema50": 2204.067,
-      "rsi": 29.34,
+      "adx": 43.42,
+      "ema50": 2199.534,
+      "rsi": 28.29,
       "regime": "downtrend",
       "raw_regime": "downtrend"
     },
     "WSOLDAI": {
-      "adx": 26.37,
-      "ema50": 88.7785,
-      "rsi": 31.43,
+      "adx": 27.74,
+      "ema50": 88.646,
+      "rsi": 30.87,
       "regime": "sideways",
       "raw_regime": "sideways"
     }
   },
   "prices": {
-    "WBTCDAI": 74024.01,
-    "WETHDAI": 2094.18,
-    "WSOLDAI": 85.65
+    "WBTCDAI": 73796.01,
+    "WETHDAI": 2091.45,
+    "WSOLDAI": 85.61
   },
   "positions": [
     {
@@ -134,18 +134,28 @@
     },
     {
       "symbol": "WBTCDAI",
-      "qty": 0.03338678067837121,
+      "qty": 0.040148838353777416,
       "entry_price": 75721.49995,
       "entry_time": 1794066759,
       "last_sell_time": null,
       "high_since_entry": 0.0,
       "dca_level": 1,
-      "avg_entry_price": 74926.29024680097,
-      "total_invested": 2501.547619513928,
+      "avg_entry_price": 74760.50970803559,
+      "total_invested": 3001.547619513928,
       "last_dca_time": 0
     }
   ],
   "trades": [
+    {
+      "id": 2254,
+      "symbol": "WBTCDAI",
+      "side": "BUY",
+      "qty": 0.0067620576754062025,
+      "price": 73941.98985,
+      "ts": 1794211487,
+      "fee": 0.75,
+      "regime": "sideways"
+    },
     {
       "id": 2253,
       "symbol": "WBTCDAI",
@@ -2135,24 +2145,9 @@
       "ts": 1792855153,
       "fee": 2.168051289155779,
       "regime": "downtrend"
-    },
-    {
-      "id": 2054,
-      "symbol": "WBTCDAI",
-      "side": "SELL",
-      "qty": 0.03048087843737438,
-      "price": 80126.57,
-      "ts": 1792851534,
-      "fee": 3.6634923596606535,
-      "regime": "downtrend"
     }
   ],
   "equity": [
-    {
-      "ts": 1790592914,
-      "equity": 19327.724469082837,
-      "cash": 7450.232633899566
-    },
     {
       "ts": 1790593819,
       "equity": 19342.107534015402,
@@ -9647,9 +9642,27 @@
       "ts": 1791948760,
       "equity": 19038.1548960367,
       "cash": 14975.209686391107
+    },
+    {
+      "ts": 1791949664,
+      "equity": 19036.73506528567,
+      "cash": 15474.459686391107
     }
   ],
   "metrics": [
+    {
+      "ts": 1794211488,
+      "duration_ms": 1846,
+      "status": "ok",
+      "buys": 1,
+      "sells": 0,
+      "trades": 1,
+      "fees": 0.75,
+      "positions": 2,
+      "equity": 16700.835946899624,
+      "cash": 8387.730649330466,
+      "note": ""
+    },
     {
       "ts": 1794210584,
       "duration_ms": 1805,
@@ -12236,29 +12249,16 @@
       "equity": 17057.107980824094,
       "cash": 16556.204612391826,
       "note": ""
-    },
-    {
-      "ts": 1794030580,
-      "duration_ms": 1783,
-      "status": "ok",
-      "buys": 0,
-      "sells": 0,
-      "trades": 0,
-      "fees": 0.0,
-      "positions": 1,
-      "equity": 17056.775044055445,
-      "cash": 16556.204612391826,
-      "note": ""
     }
   ],
   "rolling": {
-    "fees_24h": 23.0375,
-    "fees_7d": 105.6749,
-    "pnl_24h": -5664.724,
-    "pnl_7d": -3655.7698,
-    "trades_24h": 23,
-    "trades_7d": 104
+    "fees_24h": 23.7875,
+    "fees_7d": 106.4249,
+    "pnl_24h": -6165.474,
+    "pnl_7d": -4156.5198,
+    "trades_24h": 24,
+    "trades_7d": 105
   },
-  "live_cash": 8888.48,
-  "live_equity": 16712.69
+  "live_cash": 8387.73,
+  "live_equity": 16700.84
 }
